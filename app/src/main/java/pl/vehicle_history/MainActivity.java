@@ -10,9 +10,15 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import org.joda.time.DateTime;
+
+import pl.vehicle_history.api.exception.VehicleHistoryApiException;
 import pl.vehicle_history.api.method.AuthMethod;
+import pl.vehicle_history.api.method.GetVehicleMethod;
 import pl.vehicle_history.api.method.ResponseListener;
 import pl.vehicle_history.api.model.Auth;
+import pl.vehicle_history.api.model.VehicleInput;
+import pl.vehicle_history.api.model.VehicleResponse;
 import pl.vehicle_history.fragment.AboutFragment;
 import pl.vehicle_history.fragment.FindVehicleFragment;
 import pl.vehicle_history.fragment.NavigationDrawerFragment;
@@ -44,8 +50,6 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
 
         // Set up the drawer.
         navigationDrawerFragment.setUp(R.id.navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout));
-
-        testApiCall();
     }
 
     @Override
@@ -141,21 +145,4 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
 
         return super.onOptionsItemSelected(item);
     }
-
-    private void testApiCall() {
-        AuthMethod auth = new AuthMethod(new ResponseListener<Auth>() {
-
-            @Override
-            public void onSuccess(Auth response) {
-                Log.d("DEBUG", "response:" + response.getAccessToken());
-            }
-
-            @Override
-            public void onError(Exception exception) {
-                Log.d("DEBUG", "api exception");
-            }
-        });
-        auth.makeRequest();
-    }
-
 }
