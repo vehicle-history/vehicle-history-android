@@ -51,4 +51,10 @@
         android:maxLines="1"
         android:layout_gravity="center_horizontal"/>
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/search_form_vertical_padding"
+        android:text="@string/post_search_form"/>
+
 </LinearLayout>

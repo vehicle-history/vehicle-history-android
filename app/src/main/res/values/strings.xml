@@ -14,5 +14,6 @@
     <string name="input_plate">Numer rejestracyjny</string>
     <string name="input_vin">Numer VIN</string>
     <string name="input_registration_date">Data pierwszej rejestracji</string>
+    <string name="post_search_form">Sprawdź pojazd</string>
 
 </resources>
