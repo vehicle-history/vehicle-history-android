@@ -1,13 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-     android:layout_width="match_parent"
-     android:layout_height="match_parent">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <TextView
         style="@style/PrimaryText"
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:text="@string/title_section_find_vehicle"
-        android:layout_gravity="center"/>
+        android:text="@string/input_plate"
+        android:layout_gravity="center_horizontal"/>
 
-</FrameLayout>
+    <EditText
+        android:id="@+id/plate_edit_text"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"/>
+
+    <TextView
+        style="@style/PrimaryText"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="@string/input_vin"
+        android:layout_gravity="center_horizontal"/>
+
+    <EditText
+        android:id="@+id/vin_edit_text"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"/>
+
+    <TextView
+        style="@style/PrimaryText"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="@string/input_registration_date"
+        android:layout_gravity="center_horizontal"/>
+
+    <EditText
+        android:id="@+id/registration_edit_text"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"/>
+
+</LinearLayout>
