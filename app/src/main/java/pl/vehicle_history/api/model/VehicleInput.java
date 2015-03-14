@@ -9,7 +9,7 @@ public class VehicleInput {
     private String plate;
     private String vin;
     private DateTime firstRegistrationDate;
-    
+
     public String getPlate() {
         return plate;
     }

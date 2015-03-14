@@ -36,25 +36,13 @@ public abstract class Method<T> {
                 .setClient(new OkClient(new UnsafeOkHttpClientProvider().getUnsafeOkHttpClient()))
                 .setEndpoint(Settings.OAUTH_HOST)
                 .setRequestInterceptor(requestInterceptor)
+                .setLogLevel(RestAdapter.LogLevel.FULL)
                 .build();
 
         apiService = restAdapter.create(VehicleHistoryApiInterface.class);
     }
 
-    public String prepareAuthorization()     {
-        // Prepare authorization data
-        String credentialsToken = Credentials.CLIENT + ":" + Credentials.CLIENT_PASSWORD;
-
-        byte[] bytes = new byte[0];
-        try {
-            bytes = credentialsToken.getBytes("UTF-8");
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
-        String base64 = Base64.encodeToString(bytes, Base64.DEFAULT);
-        String authToken = "Basic" + " " + base64;
-        return authToken;
-    }
+    protected abstract String prepareAuthorization();
 
     public abstract void makeRequest();
 }
