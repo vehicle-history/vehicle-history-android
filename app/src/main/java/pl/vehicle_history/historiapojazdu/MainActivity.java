@@ -8,6 +8,7 @@ import android.support.v4.app.FragmentManager;
 import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -17,6 +18,10 @@ import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
+
+import pl.vehicle_history.api.method.AuthMethod;
+import pl.vehicle_history.api.method.ResponseListener;
+import pl.vehicle_history.api.model.Auth;
 
 
 public class MainActivity extends ActionBarActivity
@@ -45,6 +50,8 @@ public class MainActivity extends ActionBarActivity
         mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
+
+        testApiCall();
     }
 
     @Override
@@ -104,6 +111,21 @@ public class MainActivity extends ActionBarActivity
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void testApiCall() {
+        AuthMethod auth = new AuthMethod(new ResponseListener<Auth>() {
+            @Override
+            public void onSuccess(Auth response) {
+                Log.d("DEBUG", "response:" + response.getAccessToken());
+            }
+
+            @Override
+            public void onError(Exception exception) {
+                Log.d("DEBUG","api exception");
+            }
+        });
+        auth.makeRequest();
     }
 
     /**
