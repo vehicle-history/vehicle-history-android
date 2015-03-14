@@ -15,6 +15,9 @@ import retrofit.client.Response;
  * Created by dudvar on 2015-03-13.
  */
 public class AuthMethod extends Method<Auth> {
+
+    private static final String TAG = AuthMethod.class.getSimpleName();
+
     public AuthMethod(ResponseListener<Auth> listener) {
         super(listener);
     }
@@ -44,13 +47,12 @@ public class AuthMethod extends Method<Auth> {
         try {
             bytes = credentialsToken.getBytes("UTF-8");
         } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
+            Log.e(TAG, "UnsupportedEncodingException while preparing authorization data");
         }
-        String base64 = Base64.encodeToString(bytes, Base64.URL_SAFE);
+        String base64 = Base64.encodeToString(bytes, Base64.NO_WRAP);
         String authToken = "Basic" + " " + base64;
         return authToken;
     }
-
 
     private String getCredentials() {
         String credentials = "username=" + Credentials.LOGIN + "&password=" + Credentials.PASSWORD
