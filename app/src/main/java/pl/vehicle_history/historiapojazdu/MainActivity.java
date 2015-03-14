@@ -18,8 +18,7 @@ import pl.vehicle_history.api.method.AuthMethod;
 import pl.vehicle_history.api.method.ResponseListener;
 import pl.vehicle_history.api.model.Auth;
 
-public class MainActivity extends ActionBarActivity
-        implements NavigationDrawerFragment.NavigationDrawerCallbacks {
+public class MainActivity extends ActionBarActivity implements NavigationDrawerFragment.NavigationDrawerCallbacks {
 
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
@@ -36,8 +35,9 @@ public class MainActivity extends ActionBarActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        navigationDrawerFragment = (NavigationDrawerFragment)
-                getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
+        navigationDrawerFragment = (NavigationDrawerFragment) getSupportFragmentManager().findFragmentById(
+                R.id.navigation_drawer);
+
         title = getTitle();
 
         // Set up the drawer.
@@ -50,22 +50,28 @@ public class MainActivity extends ActionBarActivity
     public void onNavigationDrawerItemSelected(int position) {
         // update the main content by replacing fragments
         FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction()
-                .replace(R.id.container, PlaceholderFragment.newInstance(position + 1))
-                .commit();
+        fragmentManager.beginTransaction().replace(R.id.container, PlaceholderFragment.newInstance(position + 1)).commit();
     }
 
     public void onSectionAttached(int number) {
         switch (number) {
-            case 1:
-                title = getString(R.string.title_section1);
+            case 1: {
+                title = getString(R.string.title_section_find_vehicle);
                 break;
-            case 2:
-                title = getString(R.string.title_section2);
+            }
+            case 2: {
+                title = getString(R.string.title_section_history);
                 break;
-            case 3:
-                title = getString(R.string.title_section3);
+            }
+            case 3: {
+                title = getString(R.string.title_section_options);
                 break;
+            }
+            case 4: {
+                title = getString(R.string.title_section_about);
+                break;
+            }
+
         }
     }
 
@@ -75,7 +81,6 @@ public class MainActivity extends ActionBarActivity
         actionBar.setDisplayShowTitleEnabled(true);
         actionBar.setTitle(title);
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -107,6 +112,7 @@ public class MainActivity extends ActionBarActivity
 
     private void testApiCall() {
         AuthMethod auth = new AuthMethod(new ResponseListener<Auth>() {
+
             @Override
             public void onSuccess(Auth response) {
                 Log.d("DEBUG", "response:" + response.getAccessToken());
@@ -114,7 +120,7 @@ public class MainActivity extends ActionBarActivity
 
             @Override
             public void onError(Exception exception) {
-                Log.d("DEBUG","api exception");
+                Log.d("DEBUG", "api exception");
             }
         });
         auth.makeRequest();
@@ -124,6 +130,7 @@ public class MainActivity extends ActionBarActivity
      * A placeholder fragment containing a simple view.
      */
     public static class PlaceholderFragment extends Fragment {
+
         /**
          * The fragment argument representing the section number for this
          * fragment.
@@ -146,8 +153,7 @@ public class MainActivity extends ActionBarActivity
         }
 
         @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
+        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_main, container, false);
             return rootView;
         }
@@ -155,8 +161,7 @@ public class MainActivity extends ActionBarActivity
         @Override
         public void onAttach(Activity activity) {
             super.onAttach(activity);
-            ((MainActivity) activity).onSectionAttached(
-                    getArguments().getInt(ARG_SECTION_NUMBER));
+            ((MainActivity) activity).onSectionAttached(getArguments().getInt(ARG_SECTION_NUMBER));
         }
     }
 
