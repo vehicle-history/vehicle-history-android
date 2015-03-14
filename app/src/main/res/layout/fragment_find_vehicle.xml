@@ -6,53 +6,117 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/search_form_vertical_padding"
         android:orientation="vertical"
         android:paddingLeft="@dimen/search_form_side_padding"
         android:paddingRight="@dimen/search_form_side_padding">
 
-        <TextView
-            style="@style/PrimaryText"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/input_plate"
-            android:layout_gravity="center_horizontal"/>
+            android:orientation="horizontal">
 
-        <EditText
-            android:id="@+id/plate_edit_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:maxLines="1"
-            android:layout_gravity="center_horizontal"/>
+            <TextView
+                style="@style/ParalellogramText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1"
+                android:background="@drawable/paralellogram"/>
 
-        <TextView
-            style="@style/PrimaryText"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/PrimaryText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/input_plate"
+                    android:layout_gravity="center_horizontal"/>
+
+                <EditText
+                    android:id="@+id/plate_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:maxLines="1"
+                    android:layout_gravity="center_horizontal"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/search_form_vertical_padding"
-            android:text="@string/input_vin"
-            android:layout_gravity="center_horizontal"/>
+            android:orientation="horizontal">
 
-        <EditText
-            android:id="@+id/vin_edit_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:maxLines="1"
-            android:layout_gravity="center_horizontal"/>
+            <TextView
+                style="@style/ParalellogramText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2"
+                android:background="@drawable/paralellogram"/>
 
-        <TextView
-            style="@style/PrimaryText"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/PrimaryText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/input_vin"
+                    android:layout_gravity="center_horizontal"/>
+
+                <EditText
+                    android:id="@+id/vin_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:maxLines="1"
+                    android:layout_gravity="center_horizontal"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/search_form_vertical_padding"
-            android:text="@string/input_registration_date"
-            android:layout_gravity="center_horizontal"/>
+            android:orientation="horizontal">
 
-        <EditText
-            android:id="@+id/registration_edit_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:maxLines="1"
-            android:layout_gravity="center_horizontal"/>
+            <TextView
+                style="@style/ParalellogramText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="3"
+                android:background="@drawable/paralellogram"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/PrimaryText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/input_registration_date"
+                    android:layout_gravity="center_horizontal"/>
+
+                <EditText
+                    android:id="@+id/registration_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:maxLines="1"
+                    android:layout_gravity="center_horizontal"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
 
         <Button
             style="@style/Button"
