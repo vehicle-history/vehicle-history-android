@@ -1,60 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:paddingLeft="@dimen/search_form_side_padding"
-    android:paddingRight="@dimen/search_form_side_padding"
-    android:gravity="center_vertical">
+    android:layout_height="wrap_content" >
 
-    <TextView
-        style="@style/PrimaryText"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/input_plate"
-        android:layout_gravity="center_horizontal"/>
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/search_form_side_padding"
+        android:paddingRight="@dimen/search_form_side_padding">
 
-    <EditText
-        android:id="@+id/plate_edit_text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:maxLines="1"
-        android:layout_gravity="center_horizontal"/>
+        <TextView
+            style="@style/PrimaryText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/input_plate"
+            android:layout_gravity="center_horizontal"/>
 
-    <TextView
-        style="@style/PrimaryText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/search_form_vertical_padding"
-        android:text="@string/input_vin"
-        android:layout_gravity="center_horizontal"/>
+        <EditText
+            android:id="@+id/plate_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:layout_gravity="center_horizontal"/>
 
-    <EditText
-        android:id="@+id/vin_edit_text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:maxLines="1"
-        android:layout_gravity="center_horizontal"/>
+        <TextView
+            style="@style/PrimaryText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/search_form_vertical_padding"
+            android:text="@string/input_vin"
+            android:layout_gravity="center_horizontal"/>
 
-    <TextView
-        style="@style/PrimaryText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/search_form_vertical_padding"
-        android:text="@string/input_registration_date"
-        android:layout_gravity="center_horizontal"/>
+        <EditText
+            android:id="@+id/vin_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:layout_gravity="center_horizontal"/>
 
-    <EditText
-        android:id="@+id/registration_edit_text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:maxLines="1"
-        android:layout_gravity="center_horizontal"/>
+        <TextView
+            style="@style/PrimaryText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/search_form_vertical_padding"
+            android:text="@string/input_registration_date"
+            android:layout_gravity="center_horizontal"/>
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/search_form_vertical_padding"
-        android:text="@string/post_search_form"/>
+        <EditText
+            android:id="@+id/registration_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:layout_gravity="center_horizontal"/>
 
-</LinearLayout>
+        <Button
+            style="@style/Button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/search_form_vertical_padding"
+            android:layout_marginBottom="@dimen/search_form_vertical_padding"
+            android:elevation="100dp"
+            android:text="@string/post_search_form"/>
+
+    </LinearLayout>
+
+</ScrollView>
