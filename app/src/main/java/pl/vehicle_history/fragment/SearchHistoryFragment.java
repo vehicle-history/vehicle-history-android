@@ -1,4 +1,4 @@
-package pl.vehicle_history.historiapojazdu;
+package pl.vehicle_history.fragment;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -6,6 +6,9 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import pl.vehicle_history.MainActivity;
+import pl.vehicle_history.historiapojazdu.R;
 
 /**
  * @author Piotr Makowski (<a href=\"mailto:Piotr.Makowski@allegrogroup.pl\">Piotr.Makowski@allegrogroup.pl</a>)

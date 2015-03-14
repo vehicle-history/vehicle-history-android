@@ -1,4 +1,8 @@
-package pl.vehicle_history.historiapojazdu;
+package pl.vehicle_history.fragment;
+
+/**
+ * @author Piotr Makowski (<a href=\"mailto:Piotr.Makowski@allegrogroup.pl\">Piotr.Makowski@allegrogroup.pl</a>)
+ */
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -7,28 +11,28 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-/**
- * @author Piotr Makowski (<a href=\"mailto:Piotr.Makowski@allegrogroup.pl\">Piotr.Makowski@allegrogroup.pl</a>)
- */
-public class AboutFragment extends Fragment {
+import pl.vehicle_history.MainActivity;
+import pl.vehicle_history.historiapojazdu.R;
+
+public class FindVehicleFragment extends Fragment {
 
     private static final String ARG_SECTION_NUMBER = "section_number";
 
-    public static AboutFragment newInstance(int sectionNumber) {
-        AboutFragment fragment = new AboutFragment();
+    public static FindVehicleFragment newInstance(int sectionNumber) {
+        FindVehicleFragment fragment = new FindVehicleFragment();
         Bundle args = new Bundle();
         args.putInt(ARG_SECTION_NUMBER, sectionNumber);
         fragment.setArguments(args);
         return fragment;
     }
 
-    public AboutFragment() {
+    public FindVehicleFragment() {
         //nop
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_about, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_find_vehicle, container, false);
         return rootView;
     }
 
@@ -37,5 +41,4 @@ public class AboutFragment extends Fragment {
         super.onAttach(activity);
         ((MainActivity) activity).onSectionAttached(getArguments().getInt(ARG_SECTION_NUMBER));
     }
-
 }

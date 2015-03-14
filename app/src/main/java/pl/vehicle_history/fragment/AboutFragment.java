@@ -1,4 +1,4 @@
-package pl.vehicle_history.historiapojazdu;
+package pl.vehicle_history.fragment;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -7,28 +7,31 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import pl.vehicle_history.MainActivity;
+import pl.vehicle_history.historiapojazdu.R;
+
 /**
  * @author Piotr Makowski (<a href=\"mailto:Piotr.Makowski@allegrogroup.pl\">Piotr.Makowski@allegrogroup.pl</a>)
  */
-public class OptionsFragment extends Fragment {
+public class AboutFragment extends Fragment {
 
     private static final String ARG_SECTION_NUMBER = "section_number";
 
-    public static OptionsFragment newInstance(int sectionNumber) {
-        OptionsFragment fragment = new OptionsFragment();
+    public static AboutFragment newInstance(int sectionNumber) {
+        AboutFragment fragment = new AboutFragment();
         Bundle args = new Bundle();
         args.putInt(ARG_SECTION_NUMBER, sectionNumber);
         fragment.setArguments(args);
         return fragment;
     }
 
-    public OptionsFragment() {
+    public AboutFragment() {
         //nop
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_settings, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_about, container, false);
         return rootView;
     }
 
