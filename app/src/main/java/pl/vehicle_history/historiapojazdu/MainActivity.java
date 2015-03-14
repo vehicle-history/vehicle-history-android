@@ -52,18 +52,23 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
         switch (position) {
             case 0: {
                 fragmentToSwitch = FindVehicleFragment.newInstance(0);
+                break;
             }
             case 1: {
-                fragmentToSwitch = PlaceholderFragment.newInstance(1);
+                fragmentToSwitch = SearchHistoryFragment.newInstance(1);
+                break;
             }
             case 2: {
-                fragmentToSwitch = PlaceholderFragment.newInstance(2);
+                fragmentToSwitch = OptionsFragment.newInstance(2);
+                break;
             }
             case 3: {
-                fragmentToSwitch = PlaceholderFragment.newInstance(3);
+                fragmentToSwitch = AboutFragment.newInstance(3);
+                break;
             }
             default: {
                 fragmentToSwitch = PlaceholderFragment.newInstance(0);
+                break;
             }
         }
 
