@@ -1,6 +1,7 @@
 package pl.vehicle_history.historiapojazdu;
 
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -45,25 +46,50 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
     public void onNavigationDrawerItemSelected(int position) {
         // update the main content by replacing fragments
         FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.container, PlaceholderFragment.newInstance(position + 1)).commit();
+
+        Fragment fragmentToSwitch;
+
+        switch (position) {
+            case 0: {
+                fragmentToSwitch = FindVehicleFragment.newInstance(0);
+            }
+            case 1: {
+                fragmentToSwitch = PlaceholderFragment.newInstance(1);
+            }
+            case 2: {
+                fragmentToSwitch = PlaceholderFragment.newInstance(2);
+            }
+            case 3: {
+                fragmentToSwitch = PlaceholderFragment.newInstance(3);
+            }
+            default: {
+                fragmentToSwitch = PlaceholderFragment.newInstance(0);
+            }
+        }
+
+        fragmentManager.beginTransaction().replace(R.id.container, fragmentToSwitch).commit();
     }
 
     public void onSectionAttached(int number) {
         switch (number) {
-            case 1: {
+            case 0: {
                 title = getString(R.string.title_section_find_vehicle);
                 break;
             }
-            case 2: {
+            case 1: {
                 title = getString(R.string.title_section_history);
                 break;
             }
-            case 3: {
+            case 2: {
                 title = getString(R.string.title_section_options);
                 break;
             }
-            case 4: {
+            case 3: {
                 title = getString(R.string.title_section_about);
+                break;
+            }
+            default: {
+                title = getString(R.string.app_name);
                 break;
             }
 

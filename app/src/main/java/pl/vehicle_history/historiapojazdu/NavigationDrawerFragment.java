@@ -98,9 +98,10 @@ public class NavigationDrawerFragment extends Fragment {
                 selectItem(position);
             }
         });
-        drawerListView.setAdapter(new ArrayAdapter<String>(getActionBar().getThemedContext(),
+        drawerListView.setAdapter(new ArrayAdapter<>(getActionBar().getThemedContext(),
                 android.R.layout.simple_list_item_activated_1, android.R.id.text1, new String[]{
-                getString(R.string.title_section_find_vehicle), getString(R.string.title_section_history), getString(R.string.title_section_options), }));
+                getString(R.string.title_section_find_vehicle), getString(R.string.title_section_history),
+                getString(R.string.title_section_options), getString(R.string.title_section_about)}));
         drawerListView.setItemChecked(currentSelectedPosition, true);
         return drawerListView;
     }
