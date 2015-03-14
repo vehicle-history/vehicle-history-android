@@ -118,14 +118,27 @@
 
         </LinearLayout>
 
-        <Button
-            style="@style/Button"
+        <ViewAnimator
+            android:id="@+id/find_vehicle_animator"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_marginTop="@dimen/search_form_vertical_padding"
-            android:layout_marginBottom="@dimen/search_form_vertical_padding"
-            android:elevation="100dp"
-            android:text="@string/post_search_form"/>
+            android:layout_marginBottom="@dimen/search_form_vertical_padding">
+
+            <Button
+                android:id="@+id/find_vehicle_button"
+                style="@style/Button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/post_search_form"/>
+
+            <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"/>
+
+        </ViewAnimator>
 
     </LinearLayout>
 
