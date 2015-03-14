@@ -1,17 +1,18 @@
 package pl.vehicle_history.historiapojazdu;
 
 import android.app.Activity;
-import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBar;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.os.Bundle;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarActivity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.support.v4.widget.DrawerLayout;
+
 
 public class MainActivity extends ActionBarActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
@@ -37,6 +38,8 @@ public class MainActivity extends ActionBarActivity
 
         // Set up the drawer.
         navigationDrawerFragment.setUp(R.id.navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout));
+
+        testApiCall();
     }
 
     @Override
@@ -96,6 +99,21 @@ public class MainActivity extends ActionBarActivity
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void testApiCall() {
+        AuthMethod auth = new AuthMethod(new ResponseListener<Auth>() {
+            @Override
+            public void onSuccess(Auth response) {
+                Log.d("DEBUG", "response:" + response.getAccessToken());
+            }
+
+            @Override
+            public void onError(Exception exception) {
+                Log.d("DEBUG","api exception");
+            }
+        });
+        auth.makeRequest();
     }
 
     /**

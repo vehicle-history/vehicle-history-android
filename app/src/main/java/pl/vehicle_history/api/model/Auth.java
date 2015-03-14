@@ -3,7 +3,7 @@ package pl.vehicle_history.api.model;
 import com.google.gson.annotations.SerializedName;
 
 /**
- * Created by dawid.mackowiak on 2015-03-13.
+ * Created by dudvar on 2015-03-13.
  */
 public class Auth {
     @SerializedName("access_token")

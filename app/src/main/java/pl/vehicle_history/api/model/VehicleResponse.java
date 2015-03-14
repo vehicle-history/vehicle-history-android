@@ -3,7 +3,7 @@ package pl.vehicle_history.api.model;
 import java.util.List;
 
 /**
- * Created by dawid.mackowiak on 2015-03-13.
+ * Created by dudvar on 2015-03-13.
  */
 public class VehicleResponse {
     private Vehicle vehicle;
