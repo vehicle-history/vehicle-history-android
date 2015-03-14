@@ -67,7 +67,7 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
                 break;
             }
             default: {
-                fragmentToSwitch = PlaceholderFragment.newInstance(0);
+                fragmentToSwitch = FindVehicleFragment.newInstance(0);
                 break;
             }
         }
