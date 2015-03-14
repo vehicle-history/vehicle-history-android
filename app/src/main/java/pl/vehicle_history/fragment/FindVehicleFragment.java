@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ViewAnimator;
 
 import pl.vehicle_history.MainActivity;
@@ -24,8 +25,13 @@ public class FindVehicleFragment extends Fragment {
     private static final int ANIMATOR_PROGRESS = 1;
 
     private final Handler handler = new Handler();
+
     private Button findVehicleButton;
     private ViewAnimator findVehicleAnimator;
+
+    private EditText plateEditText;
+    private EditText vinEditText;
+    private EditText registrationDateEditText;
 
     public static FindVehicleFragment newInstance(int sectionNumber) {
         FindVehicleFragment fragment = new FindVehicleFragment();
@@ -52,6 +58,10 @@ public class FindVehicleFragment extends Fragment {
     private void bindViews(View rootView) {
         findVehicleButton = (Button) rootView.findViewById(R.id.find_vehicle_button);
         findVehicleAnimator = (ViewAnimator) rootView.findViewById(R.id.find_vehicle_animator);
+
+        plateEditText = (EditText) rootView.findViewById(R.id.plate_edit_text);
+        vinEditText = (EditText) rootView.findViewById(R.id.vin_edit_text);
+        registrationDateEditText = (EditText) rootView.findViewById(R.id.registration_edit_text);
     }
 
     private void setupButton() {
@@ -60,14 +70,28 @@ public class FindVehicleFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 setButtonAnimator(ANIMATOR_PROGRESS);
+                setUiLocked(true);
 
                 new MockMethodDelegate().execute(new OnExecutionFinishedListener() {
 
                     @Override
                     public void onExecutionFinished() {
                         setButtonAnimator(ANIMATOR_BUTTON);
+                        setUiLocked(false);
                     }
                 });
+            }
+        });
+    }
+
+    private void setUiLocked(final boolean locked) {
+        this.handler.post(new Runnable() {
+
+            @Override
+            public void run() {
+                plateEditText.setEnabled(!locked);
+                vinEditText.setEnabled(!locked);
+                registrationDateEditText.setEnabled(!locked);
             }
         });
     }
