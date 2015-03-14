@@ -11,8 +11,8 @@
 
     <string name="action_settings">Settings</string>
 
-    <string name="input_plate">Podaj nr rejestracyjny:</string>
-    <string name="input_vin">Podaj nr VIN:</string>
-    <string name="input_registration_date">Podaj datę pierwszej rejestracji:</string>
+    <string name="input_plate">Numer rejestracyjny</string>
+    <string name="input_vin">Numer VIN</string>
+    <string name="input_registration_date">Data pierwszej rejestracji</string>
 
 </resources>
