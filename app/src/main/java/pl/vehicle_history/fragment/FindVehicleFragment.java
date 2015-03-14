@@ -1,6 +1,7 @@
 package pl.vehicle_history.fragment;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
@@ -13,6 +14,7 @@ import android.widget.EditText;
 import android.widget.ViewAnimator;
 
 import pl.vehicle_history.MainActivity;
+import pl.vehicle_history.VehicleDataActivity;
 import pl.vehicle_history.api.MockMethodDelegate;
 import pl.vehicle_history.api.MockMethodDelegate.OnExecutionFinishedListener;
 import pl.vehicle_history.historiapojazdu.R;
@@ -78,6 +80,8 @@ public class FindVehicleFragment extends Fragment {
                     public void onExecutionFinished() {
                         setButtonAnimator(ANIMATOR_BUTTON);
                         setUiLocked(false);
+                        Intent i = new Intent(getActivity(), VehicleDataActivity.class);
+                        startActivity(i);
                     }
                 });
             }

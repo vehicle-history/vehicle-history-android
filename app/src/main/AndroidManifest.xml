@@ -9,15 +9,29 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
+
         <activity
             android:name="pl.vehicle_history.MainActivity"
             android:label="@string/app_name">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name="pl.vehicle_history.VehicleDataActivity"
+            android:label="@string/app_name"
+            android:parentActivityName="pl.vehicle_history.MainActivity" >
+
+            <!-- Parent activity meta-data to support API level 7+ -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="pl.vehicle_history.MainActivity" />
+
+        </activity>
+
     </application>
 
 </manifest>
