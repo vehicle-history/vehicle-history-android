@@ -16,4 +16,7 @@
     <string name="input_registration_date">Data pierwszej rejestracji</string>
     <string name="post_search_form">Sprawdź pojazd</string>
 
+    <string name="vehicle_info">Dane pojazdu</string>
+    <string name="timeline">Oś czasu</string>
+
 </resources>
