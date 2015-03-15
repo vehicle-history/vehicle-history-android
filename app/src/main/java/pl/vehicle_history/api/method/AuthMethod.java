@@ -6,6 +6,7 @@ import android.util.Log;
 import java.io.UnsupportedEncodingException;
 
 import pl.vehicle_history.api.consts.Credentials;
+import pl.vehicle_history.api.exception.VehicleHistoryApiException;
 import pl.vehicle_history.api.model.Auth;
 import retrofit.Callback;
 import retrofit.RetrofitError;
@@ -32,8 +33,8 @@ public class AuthMethod extends Method<Auth> {
 
             @Override
             public void failure(RetrofitError error) {
-                listener.onError(new Exception());
-                //TODO: exception impl
+                VehicleHistoryApiException exception = (VehicleHistoryApiException) error.getBodyAs(VehicleHistoryApiException.class);
+                listener.onError(exception);
             }
         });
     }

@@ -4,6 +4,7 @@ import android.util.Log;
 
 import pl.vehicle_history.api.UnsafeOkHttpClientProvider;
 import pl.vehicle_history.api.consts.Settings;
+import pl.vehicle_history.api.exception.VehicleHistoryApiException;
 import pl.vehicle_history.api.model.VehicleInput;
 import pl.vehicle_history.api.model.VehicleResponse;
 import retrofit.Callback;
@@ -38,7 +39,10 @@ public class GetVehicleMethod extends Method<VehicleResponse> {
 
     @Override
     public void makeRequest() {
-        apiService.getVehicle(input, new Callback<VehicleResponse>() {
+        apiService.getVehicle(input.getPlate(),
+                              input.getVin(),
+                              input.getFirstRegistrationDate().toString(),
+                              new Callback<VehicleResponse>() {
             @Override
             public void success(VehicleResponse vehicleResponse, Response response) {
                 listener.onSuccess(vehicleResponse);
@@ -46,9 +50,8 @@ public class GetVehicleMethod extends Method<VehicleResponse> {
 
             @Override
             public void failure(RetrofitError error) {
-                listener.onError(new Exception());
-                Log.d("DEBUG", error.toString());
-                //TODO: exception impl
+                VehicleHistoryApiException exception = (VehicleHistoryApiException) error.getBodyAs(VehicleHistoryApiException.class);
+                listener.onError(exception);
             }
         });
     }
