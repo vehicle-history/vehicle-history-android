@@ -17,11 +17,9 @@
             android:orientation="horizontal">
 
             <TextView
-                style="@style/ParalellogramText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/PrimaryCircleTextView"
                 android:text="1"
-                android:background="@drawable/paralellogram"/>
+                android:layout_gravity="center_vertical"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -53,11 +51,9 @@
             android:orientation="horizontal">
 
             <TextView
-                style="@style/ParalellogramText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/PrimaryCircleTextView"
                 android:text="2"
-                android:background="@drawable/paralellogram"/>
+                android:layout_gravity="center_vertical"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -89,11 +85,9 @@
             android:orientation="horizontal">
 
             <TextView
-                style="@style/ParalellogramText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/PrimaryCircleTextView"
                 android:text="3"
-                android:background="@drawable/paralellogram"/>
+                android:layout_gravity="center_vertical"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
