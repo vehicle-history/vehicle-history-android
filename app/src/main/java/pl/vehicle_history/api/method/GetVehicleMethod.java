@@ -31,6 +31,7 @@ public class GetVehicleMethod extends Method<VehicleResponse> {
         restAdapter = new RestAdapter.Builder()
                 .setClient(new OkClient(new UnsafeOkHttpClientProvider().getUnsafeOkHttpClient()))
                 .setEndpoint(Settings.API_HOST)
+                .setRequestInterceptor(requestInterceptor)
                 .setLogLevel(RestAdapter.LogLevel.FULL)
                 .build();
 
@@ -58,6 +59,6 @@ public class GetVehicleMethod extends Method<VehicleResponse> {
 
     @Override
     protected String prepareAuthorization() {
-        return token;
+        return "Bearer " + token;
     }
 }

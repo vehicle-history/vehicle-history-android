@@ -8,7 +8,7 @@ import org.joda.time.DateTime;
 public class VehicleInput {
     private String plate;
     private String vin;
-    private DateTime firstRegistrationDate;
+    private String firstRegistrationDate;
 
     public String getPlate() {
         return plate;
@@ -26,11 +26,11 @@ public class VehicleInput {
         this.vin = vin;
     }
 
-    public DateTime getFirstRegistrationDate() {
+    public String getFirstRegistrationDate() {
         return firstRegistrationDate;
     }
 
-    public void setFirstRegistrationDate(DateTime firstRegistrationDate) {
+    public void setFirstRegistrationDate(String firstRegistrationDate) {
         this.firstRegistrationDate = firstRegistrationDate;
     }
 }

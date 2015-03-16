@@ -11,12 +11,19 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 import android.widget.ViewAnimator;
 
 import pl.vehicle_history.MainActivity;
 import pl.vehicle_history.VehicleDataActivity;
-import pl.vehicle_history.api.MockMethodDelegate;
-import pl.vehicle_history.api.MockMethodDelegate.OnExecutionFinishedListener;
+import pl.vehicle_history.api.exception.VehicleHistoryApiException;
+import pl.vehicle_history.api.method.AsyncMethodExecutor;
+import pl.vehicle_history.api.method.GetVehicleMethod;
+import pl.vehicle_history.api.method.RequestFinishedListener;
+import pl.vehicle_history.api.method.ResponseListener;
+import pl.vehicle_history.api.method.SessionHandler;
+import pl.vehicle_history.api.model.VehicleInput;
+import pl.vehicle_history.api.model.VehicleResponse;
 import pl.vehicle_history.historiapojazdu.R;
 
 public class FindVehicleFragment extends Fragment {
@@ -26,7 +33,11 @@ public class FindVehicleFragment extends Fragment {
     private static final int ANIMATOR_BUTTON = 0;
     private static final int ANIMATOR_PROGRESS = 1;
 
+    private static  final int UNAUTHORIZED = 401;
+
     private final Handler handler = new Handler();
+    private final AsyncMethodExecutor methodExecutor = new AsyncMethodExecutor();
+    private final SessionHandler sessionHandler = new SessionHandler();
 
     private Button findVehicleButton;
     private ViewAnimator findVehicleAnimator;
@@ -34,6 +45,8 @@ public class FindVehicleFragment extends Fragment {
     private EditText plateEditText;
     private EditText vinEditText;
     private EditText registrationDateEditText;
+
+    private GetVehicleMethod getVehicleMethod;
 
     public static FindVehicleFragment newInstance(int sectionNumber) {
         FindVehicleFragment fragment = new FindVehicleFragment();
@@ -82,19 +95,61 @@ public class FindVehicleFragment extends Fragment {
             public void onClick(View v) {
                 setButtonAnimator(ANIMATOR_PROGRESS);
                 setUiLocked(true);
-
-                new MockMethodDelegate().execute(new OnExecutionFinishedListener() {
-
-                    @Override
-                    public void onExecutionFinished() {
-                        setButtonAnimator(ANIMATOR_BUTTON);
-                        setUiLocked(false);
-                        Intent i = new Intent(getActivity(), VehicleDataActivity.class);
-                        startActivity(i);
-                    }
-                });
+                getVehicle();
             }
         });
+    }
+
+    private void getVehicle() {
+        getVehicleMethod = new GetVehicleMethod(getInput(), sessionHandler.getSession().getAccessToken(), new ResponseListener<VehicleResponse>() {
+            @Override
+            public void onSuccess(VehicleResponse response) {
+                //TODO: Save response in bundle (handler).
+                setButtonAnimator(ANIMATOR_BUTTON);
+                setUiLocked(false);
+                Intent i = new Intent(getActivity(), VehicleDataActivity.class);
+                startActivity(i);
+            }
+
+            @Override
+            public void onError(VehicleHistoryApiException exception) {
+                if (exception != null && exception.getStatusCode() == UNAUTHORIZED) {
+                    sessionHandler.getNewSession(new RequestFinishedListener() {
+                        @Override
+                        public void onFinished() {
+                            if (!sessionHandler.getSession().getAccessToken().isEmpty()) {
+                                getVehicle();
+                            } else {
+                                onExceptionUi("Can't get token.");
+                            }
+                        }
+
+                        @Override
+                        public void onException() {
+                            onExceptionUi("Can't get vehicle.");
+                        }
+                    });
+                } else {
+                    onExceptionUi("Network error.");
+                }
+            }
+        });
+        methodExecutor.execute(getVehicleMethod);
+    }
+
+    private void onExceptionUi(String message) {
+        Toast.makeText(getActivity().getApplicationContext(), message, Toast.LENGTH_LONG).show();
+        setButtonAnimator(ANIMATOR_BUTTON);
+        setUiLocked(false);
+    }
+
+    private VehicleInput getInput() {
+        VehicleInput input = new VehicleInput();
+        //TODO: Add validation.
+        input.setPlate(plateEditText.getText().toString());
+        input.setVin(vinEditText.getText().toString());
+        input.setFirstRegistrationDate(registrationDateEditText.getText().toString());
+        return input;
     }
 
     private void setUiLocked(final boolean locked) {
