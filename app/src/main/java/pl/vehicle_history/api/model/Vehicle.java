@@ -1,9 +1,11 @@
 package pl.vehicle_history.api.model;
 
+import java.io.Serializable;
+
 /**
  * Created by dudvar on 2015-03-13.
  */
-public class Vehicle {
+public class Vehicle implements Serializable {
     private Name name;
     private VehicleType type;
     private Engine engine;

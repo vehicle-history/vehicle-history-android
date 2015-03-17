@@ -6,7 +6,9 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBar.Tab;
 import android.support.v7.app.ActionBar.TabListener;
 import android.support.v7.app.ActionBarActivity;
+import android.widget.Toast;
 
+import pl.vehicle_history.api.model.VehicleResponse;
 import pl.vehicle_history.fragment.TimelineFragment;
 import pl.vehicle_history.fragment.VehicleInfoFragment;
 import pl.vehicle_history.historiapojazdu.R;
@@ -15,6 +17,8 @@ import pl.vehicle_history.historiapojazdu.R;
  * @author Piotr Makowski (<a href=\"mailto:Piotr.Makowski@allegrogroup.pl\">Piotr.Makowski@allegrogroup.pl</a>)
  */
 public class VehicleDataActivity extends ActionBarActivity implements TabListener {
+
+    public static final String EXTRA_VEHICLE_RESPONSE_KEY = "extra_vehicle";
 
     public enum VehicleTag {
         VEHICLE_INFO, TIMELINE;
@@ -28,6 +32,11 @@ public class VehicleDataActivity extends ActionBarActivity implements TabListene
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+
+        VehicleResponse vehicle = (VehicleResponse) getIntent().getSerializableExtra(
+                EXTRA_VEHICLE_RESPONSE_KEY);
+
+        Toast.makeText(this, vehicle.getVehicle().getName().getModel(), Toast.LENGTH_LONG).show();
 
         setupTabs(actionBar);
     }

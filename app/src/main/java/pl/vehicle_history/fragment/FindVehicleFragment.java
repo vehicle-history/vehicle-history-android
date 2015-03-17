@@ -108,6 +108,7 @@ public class FindVehicleFragment extends Fragment {
                 setButtonAnimator(ANIMATOR_BUTTON);
                 setUiLocked(false);
                 Intent i = new Intent(getActivity(), VehicleDataActivity.class);
+                i.putExtra(VehicleDataActivity.EXTRA_VEHICLE_RESPONSE_KEY, response);
                 startActivity(i);
             }
 
