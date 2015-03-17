@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import pl.vehicle_history.VehicleDataActivity;
+import pl.vehicle_history.api.model.VehicleResponse;
 import pl.vehicle_history.historiapojazdu.R;
 
 /**
@@ -13,8 +15,11 @@ import pl.vehicle_history.historiapojazdu.R;
  */
 public class TimelineFragment extends Fragment {
 
-    public static TimelineFragment newInstance() {
+    public static TimelineFragment newInstance(VehicleResponse vehicleResponse) {
         TimelineFragment fragment = new TimelineFragment();
+        Bundle bundle = new Bundle();
+        bundle.putSerializable(VehicleDataActivity.EXTRA_VEHICLE_RESPONSE_KEY, vehicleResponse);
+        fragment.setArguments(bundle);
         return fragment;
     }
 

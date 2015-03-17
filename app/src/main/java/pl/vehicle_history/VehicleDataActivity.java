@@ -22,6 +22,7 @@ public class VehicleDataActivity extends ActionBarActivity implements TabListene
     public static final String EXTRA_VEHICLE_RESPONSE_KEY = "extra_vehicle";
 
     private ViewPager pager;
+    private VehicleDataAdapter vehicleDataAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,14 +35,13 @@ public class VehicleDataActivity extends ActionBarActivity implements TabListene
 
         pager = (ViewPager) findViewById(R.id.vehicle_data_pager);
 
-        setupViewPager(actionBar);
-        setupTabs(actionBar);
-
         VehicleResponse vehicle = (VehicleResponse) getIntent().getSerializableExtra(
                 EXTRA_VEHICLE_RESPONSE_KEY);
 
-        Toast.makeText(this, vehicle.getVehicle().getName().getModel(), Toast.LENGTH_LONG).show();
+        vehicleDataAdapter = new VehicleDataAdapter(getSupportFragmentManager(), vehicle);
 
+        setupViewPager(actionBar);
+        setupTabs(actionBar);
     }
 
     @Override
@@ -60,7 +60,7 @@ public class VehicleDataActivity extends ActionBarActivity implements TabListene
     }
 
     private void setupViewPager(final ActionBar actionBar) {
-        pager.setAdapter(new VehicleDataAdapter(getSupportFragmentManager()));
+        pager.setAdapter(vehicleDataAdapter);
         pager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
             @Override
             public void onPageSelected(int position) {
