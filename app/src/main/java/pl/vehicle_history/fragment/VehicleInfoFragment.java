@@ -45,6 +45,24 @@ public class VehicleInfoFragment extends Fragment {
     private void bindDataToView(Vehicle vehicle, View rootView) {
         TextView carLabel = (TextView) rootView.findViewById(R.id.car_label);
         carLabel.setText(vehicle.getName().getMake() + " " + vehicle.getName().getModel());
+
+        TextView producer = (TextView) rootView.findViewById(R.id.producer);
+        producer.setText(vehicle.getName().getMake().toString());
+
+        TextView model = (TextView) rootView.findViewById(R.id.model);
+        model.setText(vehicle.getName().getModel());
+
+        TextView year = (TextView) rootView.findViewById(R.id.year);
+        year.setText(vehicle.getProduction() != null ? vehicle.getProduction().getYear() : "");
+
+        TextView reg_number = (TextView) rootView.findViewById(R.id.reg_number);
+        reg_number.setText(vehicle.getPlate().getValue());
+
+        TextView vin = (TextView) rootView.findViewById(R.id.vin);
+        vin.setText(vehicle.getVin());
+
+        TextView first_registration = (TextView) rootView.findViewById(R.id.first_registration);
+        first_registration.setText(vehicle.getRegistration().getFirstAt());
     }
 
 }
