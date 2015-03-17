@@ -19,9 +19,9 @@ import pl.vehicle_history.VehicleDataActivity;
 import pl.vehicle_history.api.exception.VehicleHistoryApiException;
 import pl.vehicle_history.api.method.AsyncMethodExecutor;
 import pl.vehicle_history.api.method.GetVehicleMethod;
-import pl.vehicle_history.api.method.RequestFinishedListener;
 import pl.vehicle_history.api.method.ResponseListener;
 import pl.vehicle_history.api.method.SessionHandler;
+import pl.vehicle_history.api.model.Auth;
 import pl.vehicle_history.api.model.VehicleInput;
 import pl.vehicle_history.api.model.VehicleResponse;
 import pl.vehicle_history.historiapojazdu.R;
@@ -114,9 +114,9 @@ public class FindVehicleFragment extends Fragment {
             @Override
             public void onError(VehicleHistoryApiException exception) {
                 if (exception != null && exception.getStatusCode() == UNAUTHORIZED) {
-                    sessionHandler.getNewSession(new RequestFinishedListener() {
+                    sessionHandler.getNewSession(new ResponseListener<Auth>() {
                         @Override
-                        public void onFinished() {
+                        public void onSuccess(Auth response) {
                             if (!sessionHandler.getSession().getAccessToken().isEmpty()) {
                                 getVehicle();
                             } else {
@@ -125,7 +125,7 @@ public class FindVehicleFragment extends Fragment {
                         }
 
                         @Override
-                        public void onException() {
+                        public void onError(VehicleHistoryApiException exception) {
                             onExceptionUi("Can't get vehicle.");
                         }
                     });

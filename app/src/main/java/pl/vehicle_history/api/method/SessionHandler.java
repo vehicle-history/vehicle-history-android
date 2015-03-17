@@ -14,17 +14,17 @@ public class SessionHandler {
         return session;
     }
 
-    public void getNewSession(final RequestFinishedListener onFinishedListener) {
+    public void getNewSession(final ResponseListener onFinishedListener) {
         AuthMethod authMethod = new AuthMethod(new ResponseListener<Auth>() {
             @Override
             public void onSuccess(Auth response) {
                 session = response;
-                onFinishedListener.onFinished();
+                onFinishedListener.onSuccess(response);
             }
 
             @Override
             public void onError(VehicleHistoryApiException exception) {
-                onFinishedListener.onException();
+                onFinishedListener.onError(exception);
             }
         });
         methodExecutor.execute(authMethod);
