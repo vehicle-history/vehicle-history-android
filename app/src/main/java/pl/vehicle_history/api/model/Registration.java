@@ -7,13 +7,13 @@ import org.joda.time.DateTime;
  */
 public class Registration {
     private RegistrationStatus status;
-    private DateTime firstAt;
+    private String firstAt;
 
     public RegistrationStatus getStatus() {
         return status;
     }
 
-    public DateTime getFirstAt() {
+    public String getFirstAt() {
         return firstAt;
     }
 }
