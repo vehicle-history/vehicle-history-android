@@ -30,7 +30,7 @@
     <string name="insurance_label">Ubezpieczenie</string>
     <string name="registration_status_label">Status rejestracji</string>
     <string name="technical_examination_label">Badania techniczne</string>
-    <string name="vehicle_stolen_status">Pojazd kradziony</string>
+    <string name="vehicle_stolen_status_label">Pojazd kradziony</string>
     <string name="vehicle_class_label">Rodzaj</string>
     <string name="vehicle_type_label">Typ</string>
 
