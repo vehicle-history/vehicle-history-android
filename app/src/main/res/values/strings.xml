@@ -34,4 +34,8 @@
     <string name="vehicle_class_label">Rodzaj</string>
     <string name="vehicle_type_label">Typ</string>
 
+    <string name="yes">tak</string>
+    <string name="no">nie</string>
+    <string name="no_data">brak danych</string>
+
 </resources>

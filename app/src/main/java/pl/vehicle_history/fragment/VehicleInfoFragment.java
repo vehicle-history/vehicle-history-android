@@ -63,6 +63,35 @@ public class VehicleInfoFragment extends Fragment {
 
         TextView first_registration = (TextView) rootView.findViewById(R.id.first_registration);
         first_registration.setText(vehicle.getRegistration().getFirstAt());
+
+        TextView engine_capacity = (TextView) rootView.findViewById(R.id.engine_capacity);
+        engine_capacity.setText(vehicle.getEngine().getCubicCapacity());
+
+        TextView fuel_type = (TextView) rootView.findViewById(R.id.fuel_type);
+        fuel_type.setText(vehicle.getEngine().getFuel().toString());
+
+        TextView mileage = (TextView) rootView.findViewById(R.id.mileage);
+        mileage.setText(vehicle.getMileage() != null ?
+                vehicle.getMileage().getValue() : getActivity().getString(R.string.no_data));
+
+        TextView insurance = (TextView) rootView.findViewById(R.id.insurance);
+        insurance.setText(vehicle.getPolicy().getStatus().toString());
+
+        TextView registration_status = (TextView) rootView.findViewById(R.id.registration_status);
+        registration_status.setText(vehicle.getRegistration().getStatus().toString());
+
+        TextView technical_examination = (TextView) rootView.findViewById(R.id.technical_examination);
+        technical_examination.setText(vehicle.getInspection().getStatus().toString());
+
+        TextView vehicle_stolen = (TextView) rootView.findViewById(R.id.vehicle_stolen);
+        vehicle_stolen.setText(vehicle.getStolen() ?
+                getActivity().getString(R.string.yes) : getActivity().getString(R.string.no));
+
+        TextView vehicle_class = (TextView) rootView.findViewById(R.id.vehicle_class);
+        vehicle_class.setText(vehicle.getType().getKind().toString());
+
+        TextView vehicle_type = (TextView) rootView.findViewById(R.id.vehicle_type);
+        vehicle_type.setText(vehicle.getType().getType().toString());
     }
 
 }
