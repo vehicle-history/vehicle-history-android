@@ -8,4 +8,5 @@
     <dimen name="navigation_drawer_width">240dp</dimen>
     <dimen name="search_form_vertical_padding">50dp</dimen>
     <dimen name="search_form_side_padding">40dp</dimen>
+    <dimen name="vehicle_info_vertical_margin">16dp</dimen>
 </resources>

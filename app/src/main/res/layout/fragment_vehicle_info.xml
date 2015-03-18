@@ -13,6 +13,8 @@
             style="@style/PrimaryText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:layout_margin="16dp"
             android:layout_gravity="center"/>
 
         <LinearLayout style="@style/VehicleInfoSection">
@@ -51,7 +53,8 @@
 
         </LinearLayout>
 
-        <LinearLayout style="@style/VehicleInfoSection">
+        <LinearLayout style="@style/VehicleInfoSection"
+            android:layout_marginTop="@dimen/vehicle_info_vertical_margin">
 
             <TextView
                 style="@style/VehicleInfoLabel"
@@ -87,7 +90,8 @@
 
         </LinearLayout>
 
-        <LinearLayout style="@style/VehicleInfoSection">
+        <LinearLayout style="@style/VehicleInfoSection"
+            android:layout_marginTop="@dimen/vehicle_info_vertical_margin">
 
             <TextView
                 style="@style/VehicleInfoLabel"
@@ -123,7 +127,8 @@
 
         </LinearLayout>
 
-        <LinearLayout style="@style/VehicleInfoSection">
+        <LinearLayout style="@style/VehicleInfoSection"
+            android:layout_marginTop="@dimen/vehicle_info_vertical_margin">
 
             <TextView
                 style="@style/VehicleInfoLabel"
@@ -171,7 +176,8 @@
 
         </LinearLayout>
 
-        <LinearLayout style="@style/VehicleInfoSection">
+        <LinearLayout style="@style/VehicleInfoSection"
+            android:layout_marginTop="@dimen/vehicle_info_vertical_margin">
 
             <TextView
                 style="@style/VehicleInfoLabel"
