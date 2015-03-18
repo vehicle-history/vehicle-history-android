@@ -24,5 +24,14 @@
     <string name="year_label">Rok produkcji</string>
     <string name="vin_label">Numer VIN</string>
     <string name="first_registration_label">Pierwsza rejestracja</string>
+    <string name="engine_capacity_label">Pojemność silnika</string>
+    <string name="fuel_type_label">Paliwo</string>
+    <string name="mileage_label">Przebieg</string>
+    <string name="insurance_label">Ubezpieczenie</string>
+    <string name="registration_status_label">Status rejestracji</string>
+    <string name="technical_examination_label">Badania techniczne</string>
+    <string name="vehicle_stolen_status">Pojazd kradziony</string>
+    <string name="vehicle_class_label">Rodzaj</string>
+    <string name="vehicle_type_label">Typ</string>
 
 </resources>

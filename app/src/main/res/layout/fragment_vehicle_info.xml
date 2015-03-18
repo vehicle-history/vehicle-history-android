@@ -87,6 +87,114 @@
 
         </LinearLayout>
 
+        <LinearLayout style="@style/VehicleInfoSection">
+
+            <TextView
+                style="@style/VehicleInfoLabel"
+                android:text="@string/engine_capacity_label"/>
+
+            <TextView
+                style="@style/VehicleInfoValue"
+                android:id="@+id/engine_capacity"/>
+
+        </LinearLayout>
+
+        <LinearLayout style="@style/VehicleInfoSection">
+
+            <TextView
+                style="@style/VehicleInfoLabel"
+                android:text="@string/fuel_type_label"/>
+
+            <TextView
+                style="@style/VehicleInfoValue"
+                android:id="@+id/fuel_type"/>
+
+        </LinearLayout>
+
+        <LinearLayout style="@style/VehicleInfoSection">
+
+            <TextView
+                style="@style/VehicleInfoLabel"
+                android:text="@string/mileage_label"/>
+
+            <TextView
+                style="@style/VehicleInfoValue"
+                android:id="@+id/mileage"/>
+
+        </LinearLayout>
+
+        <LinearLayout style="@style/VehicleInfoSection">
+
+            <TextView
+                style="@style/VehicleInfoLabel"
+                android:text="@string/insurance_label"/>
+
+            <TextView
+                style="@style/VehicleInfoValue"
+                android:id="@+id/insurance"/>
+
+        </LinearLayout>
+
+        <LinearLayout style="@style/VehicleInfoSection">
+
+            <TextView
+                style="@style/VehicleInfoLabel"
+                android:text="@string/registration_status_label"/>
+
+            <TextView
+                style="@style/VehicleInfoValue"
+                android:id="@+id/registration_status"/>
+
+        </LinearLayout>
+
+        <LinearLayout style="@style/VehicleInfoSection">
+
+            <TextView
+                style="@style/VehicleInfoLabel"
+                android:text="@string/technical_examination_label"/>
+
+            <TextView
+                style="@style/VehicleInfoValue"
+                android:id="@+id/technical_examination"/>
+
+        </LinearLayout>
+
+        <LinearLayout style="@style/VehicleInfoSection">
+
+            <TextView
+                style="@style/VehicleInfoLabel"
+                android:text="@string/vehicle_stolen_status"/>
+
+            <TextView
+                style="@style/VehicleInfoValue"
+                android:id="@+id/vehicle_stolen"/>
+
+        </LinearLayout>
+
+        <LinearLayout style="@style/VehicleInfoSection">
+
+            <TextView
+                style="@style/VehicleInfoLabel"
+                android:text="@string/vehicle_class_label"/>
+
+            <TextView
+                style="@style/VehicleInfoValue"
+                android:id="@+id/vehicle_class"/>
+
+        </LinearLayout>
+
+        <LinearLayout style="@style/VehicleInfoSection">
+
+            <TextView
+                style="@style/VehicleInfoLabel"
+                android:text="@string/vehicle_type_label"/>
+
+            <TextView
+                style="@style/VehicleInfoValue"
+                android:id="@+id/vehicle_type"/>
+
+        </LinearLayout>
+
     </LinearLayout>
 
 </ScrollView>
