@@ -15,129 +15,75 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"/>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+        <LinearLayout style="@style/VehicleInfoSection">
 
             <TextView
-                style="@style/SecondaryText"
-                android:text="@string/producent_label"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"/>
+                style="@style/VehicleInfoLabel"
+                android:text="@string/producent_label"/>
 
             <TextView
-                style="@style/PrimaryText"
-                android:id="@+id/producer"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"/>
+                style="@style/VehicleInfoValue"
+                android:id="@+id/producer"/>
 
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+        <LinearLayout style="@style/VehicleInfoSection">
 
             <TextView
-                style="@style/SecondaryText"
-                android:text="@string/model_label"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"/>
+                style="@style/VehicleInfoLabel"
+                android:text="@string/model_label"/>
 
             <TextView
-                style="@style/PrimaryText"
-                android:id="@+id/model"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"/>
+                style="@style/VehicleInfoValue"
+                android:id="@+id/model"/>
 
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+        <LinearLayout style="@style/VehicleInfoSection">
 
             <TextView
-                style="@style/SecondaryText"
-                android:text="@string/year_label"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"/>
+                style="@style/VehicleInfoLabel"
+                android:text="@string/year_label"/>
 
             <TextView
-                style="@style/PrimaryText"
-                android:id="@+id/year"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"/>
+                style="@style/VehicleInfoValue"
+                android:id="@+id/year"/>
 
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+        <LinearLayout style="@style/VehicleInfoSection">
 
             <TextView
-                style="@style/SecondaryText"
-                android:text="Numer rejestracyjny"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"/>
+                style="@style/VehicleInfoLabel"
+                android:text="Numer rejestracyjny"/>
 
             <TextView
-                style="@style/PrimaryText"
-                android:id="@+id/reg_number"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"/>
+                style="@style/VehicleInfoValue"
+                android:id="@+id/reg_number"/>
 
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+        <LinearLayout style="@style/VehicleInfoSection">
 
             <TextView
-                style="@style/SecondaryText"
-                android:text="@string/vin_label"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"/>
+                style="@style/VehicleInfoLabel"
+                android:text="@string/vin_label"/>
 
             <TextView
-                style="@style/PrimaryText"
-                android:id="@+id/vin"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"/>
+                style="@style/VehicleInfoValue"
+                android:id="@+id/vin"/>
 
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+        <LinearLayout style="@style/VehicleInfoSection">
 
             <TextView
-                style="@style/SecondaryText"
-                android:text="@string/first_registration_label"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"/>
+                style="@style/VehicleInfoLabel"
+                android:text="@string/first_registration_label"/>
 
             <TextView
-                style="@style/PrimaryText"
-                android:id="@+id/first_registration"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"/>
+                style="@style/VehicleInfoValue"
+                android:id="@+id/first_registration"/>
 
         </LinearLayout>
 
