@@ -50,4 +50,15 @@
     <string name="car_type_light_trailer">Lekka przyczepa</string>
     <string name="car_type_light_truck">Lekka ciężarówka</string>
 
+    <!-- EventType enum values -->
+    <string name="timeline_change_owner">Zmiana właściciela</string>
+    <string name="timeline_deregistration">Wyrejestrowanie pojazdu</string>
+    <string name="timeline_inspection">Badanie techniczne</string>
+    <string name="timeline_production">Produkcja pojazdu</string>
+    <string name="timeline_registration">Zarejestrowanie pojazdu</string>
+    <string name="timeline_changed_registration_location">Zmiana miejsca rejestracji</string>
+    <string name="timeline_co_owner">Dodanie współwłaściciela</string>
+    <string name="timeline_holder">Dodanie posiadacza</string>
+    <string name="timeline_stolen">Zgłoszenie kradzieży</string>
+    <string name="unknown">Nieznany</string>
 </resources>
