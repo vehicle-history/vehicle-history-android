@@ -21,6 +21,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import pl.vehicle_history.DrawerAdapter;
 import pl.vehicle_history.historiapojazdu.R;
 
 /**
@@ -99,10 +100,8 @@ public class NavigationDrawerFragment extends Fragment {
                 selectItem(position);
             }
         });
-        drawerListView.setAdapter(new ArrayAdapter<>(getActionBar().getThemedContext(),
-                R.layout.drawer_row, android.R.id.text1, new String[]{
-                getString(R.string.title_section_find_vehicle), getString(R.string.title_section_history),
-                getString(R.string.title_section_options), getString(R.string.title_section_about)}));
+
+        drawerListView.setAdapter(new DrawerAdapter(getActivity()));
         drawerListView.setItemChecked(currentSelectedPosition, true);
         return drawerListView;
     }
