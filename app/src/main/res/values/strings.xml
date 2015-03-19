@@ -61,4 +61,29 @@
     <string name="timeline_holder">Dodanie posiadacza</string>
     <string name="timeline_stolen">Zgłoszenie kradzieży</string>
     <string name="unknown">Nieznany</string>
+
+    <!-- CarKind enum values -->
+    <string name="car_kind_convertible">kabriolet</string>
+    <string name="car_kind_coupe">coupe</string>
+    <string name="car_kindEstate">kombi</string>
+    <string name="car_kind_hatchback">hatchback</string>
+    <string name="car_kind_hearse">karawan</string>
+    <string name="car_kind_limousine">limuzyna</string>
+    <string name="car_kind_other">inny</string>
+    <string name="car_kind_sedan">sedan</string>
+    <string name="car_kind_van">van</string>
+    <string name="car_kind_standard">osobowy</string>
+    <string name="car_kind_other_not_camping">inna z wyjątkiem kempingowych</string>
+    <string name="car_kind_wagon">furgon</string>
+    <string name="car_kind_wheeled">kołowy</string>
+    <string name="car_kind_cruiser">cruiser</string>
+    <string name="car_kind_off_road">off road</string>
+    <string name="car_kind_sport">sportowy</string>
+    <string name="car_kind_sport_touring">sportowo-turystyczny</string>
+    <string name="car_kind_touring">turystyczny</string>
+    <string name="car_kind_city">miejski</string>
+    <string name="car_kind_quad">quad</string>
+    <string name="car_kind_trailer">przyczepa</string>
+    <string name="car_kind_load_capacity_of_8_tons">o ładowności 8t</string>
+    <string name="car_kind_trolley">wywrotka</string>
 </resources>
