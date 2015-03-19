@@ -1,11 +1,7 @@
 package pl.vehicle_history.api.method;
 
-import android.util.Base64;
-
-import java.io.UnsupportedEncodingException;
-
+import pl.vehicle_history.PackageInfoProvider;
 import pl.vehicle_history.api.UnsafeOkHttpClientProvider;
-import pl.vehicle_history.api.consts.Credentials;
 import pl.vehicle_history.api.consts.Settings;
 import retrofit.RequestInterceptor;
 import retrofit.RestAdapter;
@@ -23,6 +19,7 @@ public abstract class Method<T> {
         @Override
         public void intercept(RequestFacade request) {
             request.addHeader("Authorization", prepareAuthorization());
+            request.addHeader("User-Agent", "VehicleHistory;Android;"+ PackageInfoProvider.getInstance().getPackageVersion());
         }
     };
 
