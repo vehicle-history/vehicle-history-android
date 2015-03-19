@@ -65,7 +65,7 @@
     <!-- CarKind enum values -->
     <string name="car_kind_convertible">kabriolet</string>
     <string name="car_kind_coupe">coupe</string>
-    <string name="car_kindEstate">kombi</string>
+    <string name="car_kind_estate">kombi</string>
     <string name="car_kind_hatchback">hatchback</string>
     <string name="car_kind_hearse">karawan</string>
     <string name="car_kind_limousine">limuzyna</string>
@@ -86,4 +86,5 @@
     <string name="car_kind_trailer">przyczepa</string>
     <string name="car_kind_load_capacity_of_8_tons">o ładowności 8t</string>
     <string name="car_kind_trolley">wywrotka</string>
+    <string name="car_kind_unknown">nieznany</string>
 </resources>
