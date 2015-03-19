@@ -2,7 +2,6 @@ package pl.vehicle_history.api.method;
 
 import org.joda.time.DateTime;
 
-import pl.vehicle_history.PackageInfoProvider;
 import pl.vehicle_history.api.consts.MethodRoot;
 import pl.vehicle_history.api.consts.Settings;
 import pl.vehicle_history.api.model.Auth;

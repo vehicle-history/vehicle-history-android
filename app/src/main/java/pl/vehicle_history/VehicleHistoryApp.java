@@ -14,6 +14,5 @@ public class VehicleHistoryApp extends Application {
         super.onCreate();
 
         JodaTimeAndroid.init(this);
-        PackageInfoProvider.newInstance(getApplicationContext());
     }
 }

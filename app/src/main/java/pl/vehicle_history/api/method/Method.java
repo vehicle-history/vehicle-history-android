@@ -1,8 +1,8 @@
 package pl.vehicle_history.api.method;
 
-import pl.vehicle_history.PackageInfoProvider;
 import pl.vehicle_history.api.UnsafeOkHttpClientProvider;
 import pl.vehicle_history.api.consts.Settings;
+import pl.vehicle_history.historiapojazdu.BuildConfig;
 import retrofit.RequestInterceptor;
 import retrofit.RestAdapter;
 import retrofit.client.OkClient;
@@ -19,7 +19,7 @@ public abstract class Method<T> {
         @Override
         public void intercept(RequestFacade request) {
             request.addHeader("Authorization", prepareAuthorization());
-            request.addHeader("User-Agent", "VehicleHistory;Android;"+ PackageInfoProvider.getInstance().getPackageVersion());
+            request.addHeader("User-Agent", "VehicleHistory;Android;"+ BuildConfig.VERSION_NAME);
         }
     };
 
