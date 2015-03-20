@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
@@ -16,6 +17,8 @@ import pl.vehicle_history.historiapojazdu.R;
  * Created by m4lysh on 2015-03-20.
  */
 public class DatePickerFragment extends DialogFragment {
+
+    public static final String EXTRA_KEY_DATE_STRING = "extraKeyDay";
 
     private DatePicker datePicker;
 
@@ -34,7 +37,7 @@ public class DatePickerFragment extends DialogFragment {
 
                         @Override
                         public void onClick(DialogInterface dialog, int whichButton) {
-                            //TODO return date
+                            returnDate();
                         }
                     }
                 )
@@ -48,6 +51,19 @@ public class DatePickerFragment extends DialogFragment {
                 )
                 .setView(datePicker)
                 .create();
+    }
+
+    private void returnDate() {
+        Intent i = new Intent();
+
+        i.putExtra(EXTRA_KEY_DATE_STRING, getFormattedDate());
+
+        getTargetFragment().onActivityResult(getTargetRequestCode(), Activity.RESULT_OK, i);
+    }
+
+    private String getFormattedDate() {
+        //TODO return real data
+        return "01.01.2000";
     }
 
 }

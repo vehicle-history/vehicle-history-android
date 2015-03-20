@@ -29,6 +29,8 @@ import pl.vehicle_history.historiapojazdu.R;
 
 public class FindVehicleFragment extends Fragment {
 
+    public static final int PICK_DATE_REQ_CODE = 101;
+
     private static final String ARG_SECTION_NUMBER = "section_number";
 
     private static final int ANIMATOR_BUTTON = 0;
@@ -103,6 +105,9 @@ public class FindVehicleFragment extends Fragment {
             public void onClick(View v) {
                 FragmentManager fm = getActivity().getSupportFragmentManager();
                 DatePickerFragment datePickerFragment = new DatePickerFragment();
+
+                datePickerFragment.setTargetFragment(FindVehicleFragment.this, PICK_DATE_REQ_CODE);
+
                 datePickerFragment.show(fm, DATE_PICKER_TAG);
             }
         });
@@ -156,6 +161,17 @@ public class FindVehicleFragment extends Fragment {
             }
         });
         methodExecutor.execute(getVehicleMethod);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        if (requestCode == PICK_DATE_REQ_CODE && resultCode == Activity.RESULT_OK) {
+            String date = data.getStringExtra(DatePickerFragment.EXTRA_KEY_DATE_STRING);
+            registrationDateEditText.setText(date);
+        }
+
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
     private void onExceptionUi(String message) {
