@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -35,6 +36,8 @@ public class FindVehicleFragment extends Fragment {
 
     private static  final int UNAUTHORIZED = 401;
 
+    private static final String DATE_PICKER_TAG = "datePickerTag";
+
     private final Handler handler = new Handler();
     private final AsyncMethodExecutor methodExecutor = new AsyncMethodExecutor();
     private final SessionHandler sessionHandler = new SessionHandler();
@@ -45,6 +48,8 @@ public class FindVehicleFragment extends Fragment {
     private EditText plateEditText;
     private EditText vinEditText;
     private EditText registrationDateEditText;
+
+    private View pickDateButton;
 
     private GetVehicleMethod getVehicleMethod;
 
@@ -65,7 +70,8 @@ public class FindVehicleFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_find_vehicle, container, false);
 
         bindViews(rootView);
-        setupButton();
+        setupPickDateButton();
+        setupSearchButton();
 
         //TODO: Remove this before release.
         setupTestVehicleData();
@@ -86,9 +92,23 @@ public class FindVehicleFragment extends Fragment {
         plateEditText = (EditText) rootView.findViewById(R.id.plate_edit_text);
         vinEditText = (EditText) rootView.findViewById(R.id.vin_edit_text);
         registrationDateEditText = (EditText) rootView.findViewById(R.id.registration_edit_text);
+
+        pickDateButton = rootView.findViewById(R.id.pick_date_button);
     }
 
-    private void setupButton() {
+    private void setupPickDateButton() {
+        pickDateButton.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                FragmentManager fm = getActivity().getSupportFragmentManager();
+                DatePickerFragment datePickerFragment = new DatePickerFragment();
+                datePickerFragment.show(fm, DATE_PICKER_TAG);
+            }
+        });
+    }
+
+    private void setupSearchButton() {
         findVehicleButton.setOnClickListener(new OnClickListener() {
 
             @Override

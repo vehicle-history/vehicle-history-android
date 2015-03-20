@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">Historia Pojazdu</string>
 
+    <string name="ok">OK</string>
+    <string name="cancel">Anuluj</string>
+
     <string name="title_section_find_vehicle">Znajdź pojazd</string>
     <string name="title_section_history">Historia wyszukań</string>
     <string name="title_section_options">Opcje</string>
