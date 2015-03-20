@@ -3,6 +3,8 @@ package pl.vehicle_history.fragment;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,6 +34,9 @@ public class SearchHistoryFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_search_history, container, false);
+
+        setupRecyclerView(rootView);
+
         return rootView;
     }
 
@@ -40,5 +45,17 @@ public class SearchHistoryFragment extends Fragment {
         super.onAttach(activity);
         ((MainActivity) activity).onSectionAttached(getArguments().getInt(ARG_SECTION_NUMBER));
     }
+
+    private void setupRecyclerView(View rootView) {
+        RecyclerView recycler = (RecyclerView) rootView.findViewById(R.id.history_recycler);
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
+        recycler.setLayoutManager(layoutManager);
+
+        HistoryAdapter historyAdapter = new HistoryAdapter();
+        recycler.setAdapter(historyAdapter);
+    }
+
+
 
 }
