@@ -3,7 +3,7 @@
     <color name="primary">#0097A7</color>
     <color name="primary_dark">#006064</color>
     <color name="primary_light">#00BCD4</color>
-    <color name="drawer_bg_selected">#4400BCD4</color>
+    <color name="drawer_bg_selected">#2200BCD4</color>
     <color name="accent">#C6FF00</color>
 
     <color name="primary_text">#212121</color>
