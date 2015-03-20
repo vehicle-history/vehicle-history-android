@@ -20,8 +20,6 @@ public class DatePickerFragment extends DialogFragment {
 
     public static final String EXTRA_KEY_DATE_STRING = "extraKeyDay";
 
-    private DatePicker datePicker;
-
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -29,7 +27,7 @@ public class DatePickerFragment extends DialogFragment {
         Activity activity = getActivity();
         
         LayoutInflater inflater = LayoutInflater.from(activity);
-        DatePicker datePicker = (DatePicker) inflater.inflate(R.layout.date_picker, null, false);
+        final DatePicker datePicker = (DatePicker) inflater.inflate(R.layout.date_picker, null, false);
 
         return new AlertDialog.Builder(activity)
                 .setTitle(R.string.input_registration_date)
@@ -37,7 +35,7 @@ public class DatePickerFragment extends DialogFragment {
 
                         @Override
                         public void onClick(DialogInterface dialog, int whichButton) {
-                            returnDate();
+                            returnDate(datePicker);
                         }
                     }
                 )
@@ -53,17 +51,20 @@ public class DatePickerFragment extends DialogFragment {
                 .create();
     }
 
-    private void returnDate() {
+    private void returnDate(DatePicker datePicker) {
         Intent i = new Intent();
 
-        i.putExtra(EXTRA_KEY_DATE_STRING, getFormattedDate());
+        i.putExtra(EXTRA_KEY_DATE_STRING, getFormattedDate(datePicker));
 
         getTargetFragment().onActivityResult(getTargetRequestCode(), Activity.RESULT_OK, i);
     }
 
-    private String getFormattedDate() {
-        //TODO return real data
-        return "01.01.2000";
+    private String getFormattedDate(DatePicker datePicker) {
+        int day = datePicker.getDayOfMonth();
+        int month = datePicker.getMonth() + 1;
+        int year = datePicker.getYear();
+
+        return day + "." + month + "." + year;
     }
 
 }
