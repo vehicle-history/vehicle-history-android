@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:background="?android:attr/activatedBackgroundIndicator"
+    android:background="@drawable/drawer_bg_selector"
     android:paddingLeft="16dp">
 
     <ImageView
@@ -17,9 +17,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textStyle="bold"
-        android:textColor="@color/drawer_text"
         android:gravity="center_vertical"
         android:paddingLeft="32dp"
+        android:textColor="@color/drawer_text_selector"
         android:minHeight="?android:attr/listPreferredItemHeightSmall" />
 
 </LinearLayout>
