@@ -91,4 +91,7 @@
     <string name="car_kind_load_capacity_of_8_tons">o ładowności 8t</string>
     <string name="car_kind_trolley">wywrotka</string>
     <string name="car_kind_unknown">nieznany</string>
+    <string name="plate_label_semicolon">Nr. rejestracyjny:</string>
+    <string name="vin_label_semicolon">VIN:</string>
+    <string name="first_reg_date_label_semicolon">Data pierwszej rejestracji:</string>
 </resources>
