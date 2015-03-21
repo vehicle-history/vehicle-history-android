@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import pl.vehicle_history.MainActivity;
+import pl.vehicle_history.SearchHistoryDb;
 import pl.vehicle_history.historiapojazdu.R;
 
 /**
@@ -52,7 +53,7 @@ public class SearchHistoryFragment extends Fragment {
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recycler.setLayoutManager(layoutManager);
 
-        HistoryAdapter historyAdapter = new HistoryAdapter();
+        HistoryAdapter historyAdapter = new HistoryAdapter(new SearchHistoryDb(getActivity()));
         recycler.setAdapter(historyAdapter);
     }
 

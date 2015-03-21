@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="8dp">
+
+    <ImageView
+        android:id="@+id/history_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_file_find_grey600_24dp"/>
+
+    <TextView
+        android:id="@+id/label"
+        style="@style/PrimaryText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="24sp"
+        android:layout_marginLeft="8dp"
+        android:layout_toRightOf="@+id/history_icon"/>
+
+    <TextView
+        android:id="@+id/plate"
+        style="@style/SecondaryText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/label"
+        android:layout_below="@+id/label"/>
+
+    <TextView
+        android:id="@+id/vin"
+        style="@style/SecondaryText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/label"
+        android:layout_below="@+id/plate"/>
+
+    <TextView
+        android:id="@+id/registration_date"
+        style="@style/SecondaryText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/label"
+        android:layout_below="@+id/vin"/>
+
+</RelativeLayout>
