@@ -1,4 +1,4 @@
-package pl.vehicle_history.fragment;
+package pl.vehicle_history;
 
 import android.content.Context;
 

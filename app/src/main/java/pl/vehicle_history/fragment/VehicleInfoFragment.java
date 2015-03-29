@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import pl.vehicle_history.VehicleDataActivity;
+import pl.vehicle_history.activity.VehicleDataActivity;
 import pl.vehicle_history.api.model.Vehicle;
 import pl.vehicle_history.api.model.VehicleResponse;
 import pl.vehicle_history.historiapojazdu.R;

@@ -7,7 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import pl.vehicle_history.MainActivity;
+import pl.vehicle_history.activity.MainActivity;
 import pl.vehicle_history.historiapojazdu.R;
 
 /**

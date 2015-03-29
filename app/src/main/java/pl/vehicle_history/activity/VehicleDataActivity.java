@@ -1,4 +1,4 @@
-package pl.vehicle_history;
+package pl.vehicle_history.activity;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
@@ -7,11 +7,9 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBar.Tab;
 import android.support.v7.app.ActionBar.TabListener;
 import android.support.v7.app.ActionBarActivity;
-import android.widget.Toast;
 
+import pl.vehicle_history.adapter.VehicleDataAdapter;
 import pl.vehicle_history.api.model.VehicleResponse;
-import pl.vehicle_history.fragment.TimelineFragment;
-import pl.vehicle_history.fragment.VehicleInfoFragment;
 import pl.vehicle_history.historiapojazdu.R;
 
 /**

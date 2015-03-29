@@ -1,4 +1,4 @@
-package pl.vehicle_history;
+package pl.vehicle_history.adapter;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;

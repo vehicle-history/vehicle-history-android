@@ -1,4 +1,4 @@
-package pl.vehicle_history;
+package pl.vehicle_history.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;

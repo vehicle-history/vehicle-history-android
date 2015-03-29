@@ -15,8 +15,9 @@ import android.widget.EditText;
 import android.widget.Toast;
 import android.widget.ViewAnimator;
 
-import pl.vehicle_history.MainActivity;
-import pl.vehicle_history.VehicleDataActivity;
+import pl.vehicle_history.SaveSearchDelegate;
+import pl.vehicle_history.activity.MainActivity;
+import pl.vehicle_history.activity.VehicleDataActivity;
 import pl.vehicle_history.api.exception.VehicleHistoryApiException;
 import pl.vehicle_history.api.method.AsyncMethodExecutor;
 import pl.vehicle_history.api.method.GetVehicleMethod;
