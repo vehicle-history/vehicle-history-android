@@ -17,8 +17,10 @@ import android.widget.ViewAnimator;
 
 import pl.vehicle_history.PerformSearchDelegate;
 import pl.vehicle_history.PerformSearchDelegate.OnSearchFinishedListener;
+import pl.vehicle_history.SaveSearchDelegate;
 import pl.vehicle_history.activity.MainActivity;
 import pl.vehicle_history.api.model.VehicleInput;
+import pl.vehicle_history.api.model.VehicleResponse;
 import pl.vehicle_history.historiapojazdu.R;
 
 public class FindVehicleFragment extends Fragment {
@@ -121,7 +123,9 @@ public class FindVehicleFragment extends Fragment {
         searchDelegate.performSearch(input, new OnSearchFinishedListener() {
 
             @Override
-            public void onSearchFinished() {
+            public void onSearchFinished(VehicleResponse vehicleResponse) {
+                new SaveSearchDelegate(getActivity()).saveSearch(input, vehicleResponse);
+
                 setButtonAnimator(ANIMATOR_BUTTON);
                 setUiLocked(false);
             }

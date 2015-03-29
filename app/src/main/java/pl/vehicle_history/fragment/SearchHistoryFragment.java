@@ -15,6 +15,7 @@ import pl.vehicle_history.Search;
 import pl.vehicle_history.activity.MainActivity;
 import pl.vehicle_history.adapter.HistoryAdapter;
 import pl.vehicle_history.adapter.HistoryAdapter.OnHistoryItemClickListener;
+import pl.vehicle_history.api.model.VehicleResponse;
 import pl.vehicle_history.database.SearchHistoryDb;
 import pl.vehicle_history.historiapojazdu.R;
 
@@ -57,7 +58,7 @@ public class SearchHistoryFragment extends Fragment implements OnHistoryItemClic
         new PerformSearchDelegate(getActivity()).performSearch(search, new OnSearchFinishedListener() {
 
             @Override
-            public void onSearchFinished() {
+            public void onSearchFinished(VehicleResponse vehicleResponse) {
                 //TODO implement me
             }
 

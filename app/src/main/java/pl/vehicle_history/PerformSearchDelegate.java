@@ -38,9 +38,10 @@ public class PerformSearchDelegate {
 
                     @Override
                     public void onSuccess(VehicleResponse response) {
-                        listener.onSearchFinished();
+                        listener.onSearchFinished(response);
                         Intent i = new Intent(activity, VehicleDataActivity.class);
                         i.putExtra(VehicleDataActivity.EXTRA_VEHICLE_RESPONSE_KEY, response);
+
                         activity.startActivity(i);
                     }
 
@@ -50,7 +51,8 @@ public class PerformSearchDelegate {
                             authorizeAndRetry(input, listener);
                         } else {
                             Log.e(TAG, "Network error");
-                            listener.onSearchError(exception.getUserMessage());
+                            listener.onSearchError(exception != null ? exception.getUserMessage() : "Błąd podczas szukania " +
+                                    "pojazdu");
                         }
                     }
                 });
@@ -90,7 +92,7 @@ public class PerformSearchDelegate {
     }
 
     public interface OnSearchFinishedListener {
-        void onSearchFinished();
+        void onSearchFinished(VehicleResponse vehicleResponse);
         void onSearchError(String message);
     }
 }
