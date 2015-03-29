@@ -126,7 +126,11 @@ public class FindVehicleFragment extends Fragment {
     }
 
     private void getVehicle() {
-        getVehicleMethod = new GetVehicleMethod(getInput(), sessionHandler.getSession().getAccessToken(), new ResponseListener<VehicleResponse>() {
+        final VehicleInput input = getInput();
+
+        getVehicleMethod = new GetVehicleMethod(input, sessionHandler.getSession().getAccessToken(),
+                new ResponseListener<VehicleResponse>() {
+
             @Override
             public void onSuccess(VehicleResponse response) {
                 //TODO: Save response in bundle (handler).
@@ -135,6 +139,7 @@ public class FindVehicleFragment extends Fragment {
                 Intent i = new Intent(getActivity(), VehicleDataActivity.class);
                 i.putExtra(VehicleDataActivity.EXTRA_VEHICLE_RESPONSE_KEY, response);
                 startActivity(i);
+                new SaveSearchDelegate(getActivity()).saveSearch(input, response);
             }
 
             @Override
