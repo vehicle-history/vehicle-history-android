@@ -8,7 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import pl.vehicle_history.Search;
-import pl.vehicle_history.SearchHistoryDb;
+import pl.vehicle_history.database.SearchHistoryDb;
 import pl.vehicle_history.historiapojazdu.R;
 
 /**
@@ -23,7 +23,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
     }
 
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+    public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int position) {
         View row = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.history_row,
                 viewGroup, false);
 
@@ -36,8 +36,8 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder viewHolder, int i) {
-        Search search = searchHistoryDb.getSearchAt(i);
+    public void onBindViewHolder(ViewHolder viewHolder, int position) {
+        Search search = searchHistoryDb.getSearchAt(position);
 
         ((ImageView) viewHolder.historyRow.findViewById(R.id.history_icon)).setImageResource(
                 R.drawable.ic_car_black_36dp);

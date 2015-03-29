@@ -34,7 +34,7 @@ public class SearchHistoryDb {
         db.insert(TABLE_NAME, null, values);
     }
 
-    public Search getSearch(int position) {
+    public Search getSearchAt(int position) {
         SQLiteDatabase db = historyDbHelper.getReadableDatabase();
 
         String[] projection = {
@@ -63,7 +63,7 @@ public class SearchHistoryDb {
         return new Search(label, registrationNumber, vin, registrationDate);
     }
 
-    public int getSearchesNumber() {
+    public int getCount() {
         SQLiteDatabase db =  historyDbHelper.getReadableDatabase();
 
         return (int) DatabaseUtils.queryNumEntries(db, TABLE_NAME, null, null);
