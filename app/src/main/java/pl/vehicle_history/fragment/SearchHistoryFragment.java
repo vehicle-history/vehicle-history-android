@@ -9,6 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import pl.vehicle_history.PerformSearchDelegate;
+import pl.vehicle_history.PerformSearchDelegate.OnSearchFinishedListener;
 import pl.vehicle_history.Search;
 import pl.vehicle_history.activity.MainActivity;
 import pl.vehicle_history.adapter.HistoryAdapter;
@@ -52,7 +54,18 @@ public class SearchHistoryFragment extends Fragment implements OnHistoryItemClic
 
     @Override
     public void onHistoryItemClick(Search search) {
-        //TODO implement me
+        new PerformSearchDelegate(getActivity()).performSearch(search, new OnSearchFinishedListener() {
+
+            @Override
+            public void onSearchFinished() {
+                //TODO implement me
+            }
+
+            @Override
+            public void onSearchError(String message) {
+                //TODO implement me
+            }
+        });
     }
 
     private void setupRecyclerView(View rootView) {
