@@ -15,17 +15,10 @@ import android.widget.EditText;
 import android.widget.Toast;
 import android.widget.ViewAnimator;
 
-import pl.vehicle_history.SaveSearchDelegate;
+import pl.vehicle_history.PerformSearchDelegate;
+import pl.vehicle_history.PerformSearchDelegate.OnSearchFinishedListener;
 import pl.vehicle_history.activity.MainActivity;
-import pl.vehicle_history.activity.VehicleDataActivity;
-import pl.vehicle_history.api.exception.VehicleHistoryApiException;
-import pl.vehicle_history.api.method.AsyncMethodExecutor;
-import pl.vehicle_history.api.method.GetVehicleMethod;
-import pl.vehicle_history.api.method.ResponseListener;
-import pl.vehicle_history.api.method.SessionHandler;
-import pl.vehicle_history.api.model.Auth;
 import pl.vehicle_history.api.model.VehicleInput;
-import pl.vehicle_history.api.model.VehicleResponse;
 import pl.vehicle_history.historiapojazdu.R;
 
 public class FindVehicleFragment extends Fragment {
@@ -37,13 +30,9 @@ public class FindVehicleFragment extends Fragment {
     private static final int ANIMATOR_BUTTON = 0;
     private static final int ANIMATOR_PROGRESS = 1;
 
-    private static  final int UNAUTHORIZED = 401;
-
     private static final String DATE_PICKER_TAG = "datePickerTag";
 
     private final Handler handler = new Handler();
-    private final AsyncMethodExecutor methodExecutor = new AsyncMethodExecutor();
-    private final SessionHandler sessionHandler = new SessionHandler();
 
     private Button findVehicleButton;
     private ViewAnimator findVehicleAnimator;
@@ -53,8 +42,6 @@ public class FindVehicleFragment extends Fragment {
     private EditText registrationDateEditText;
 
     private View pickDateButton;
-
-    private GetVehicleMethod getVehicleMethod;
 
     public static FindVehicleFragment newInstance(int sectionNumber) {
         FindVehicleFragment fragment = new FindVehicleFragment();
@@ -129,44 +116,24 @@ public class FindVehicleFragment extends Fragment {
     private void getVehicle() {
         final VehicleInput input = getInput();
 
-        getVehicleMethod = new GetVehicleMethod(input, sessionHandler.getSession().getAccessToken(),
-                new ResponseListener<VehicleResponse>() {
+        PerformSearchDelegate searchDelegate = new PerformSearchDelegate(getActivity());
+
+        searchDelegate.performSearch(input, new OnSearchFinishedListener() {
 
             @Override
-            public void onSuccess(VehicleResponse response) {
-                //TODO: Save response in bundle (handler).
+            public void onSearchFinished() {
                 setButtonAnimator(ANIMATOR_BUTTON);
                 setUiLocked(false);
-                Intent i = new Intent(getActivity(), VehicleDataActivity.class);
-                i.putExtra(VehicleDataActivity.EXTRA_VEHICLE_RESPONSE_KEY, response);
-                startActivity(i);
-                new SaveSearchDelegate(getActivity()).saveSearch(input, response);
             }
 
             @Override
-            public void onError(VehicleHistoryApiException exception) {
-                if (exception != null && exception.getStatusCode() == UNAUTHORIZED) {
-                    sessionHandler.getNewSession(new ResponseListener<Auth>() {
-                        @Override
-                        public void onSuccess(Auth response) {
-                            if (!sessionHandler.getSession().getAccessToken().isEmpty()) {
-                                getVehicle();
-                            } else {
-                                onExceptionUi("Can't get token.");
-                            }
-                        }
+            public void onSearchError(String message) {
+                setButtonAnimator(ANIMATOR_BUTTON);
+                setUiLocked(false);
 
-                        @Override
-                        public void onError(VehicleHistoryApiException exception) {
-                            onExceptionUi("Can't get vehicle.");
-                        }
-                    });
-                } else {
-                    onExceptionUi("Network error.");
-                }
+                onExceptionUi(message);
             }
         });
-        methodExecutor.execute(getVehicleMethod);
     }
 
     @Override
