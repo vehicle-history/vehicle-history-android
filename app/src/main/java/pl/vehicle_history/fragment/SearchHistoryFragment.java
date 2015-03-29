@@ -9,15 +9,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import pl.vehicle_history.Search;
 import pl.vehicle_history.activity.MainActivity;
 import pl.vehicle_history.adapter.HistoryAdapter;
+import pl.vehicle_history.adapter.HistoryAdapter.OnHistoryItemClickListener;
 import pl.vehicle_history.database.SearchHistoryDb;
 import pl.vehicle_history.historiapojazdu.R;
 
 /**
  * @author Piotr Makowski (<a href=\"mailto:Piotr.Makowski@allegrogroup.pl\">Piotr.Makowski@allegrogroup.pl</a>)
  */
-public class SearchHistoryFragment extends Fragment {
+public class SearchHistoryFragment extends Fragment implements OnHistoryItemClickListener {
 
     private static final String ARG_SECTION_NUMBER = "section_number";
 
@@ -48,16 +50,18 @@ public class SearchHistoryFragment extends Fragment {
         ((MainActivity) activity).onSectionAttached(getArguments().getInt(ARG_SECTION_NUMBER));
     }
 
+    @Override
+    public void onHistoryItemClick(Search search) {
+        //TODO implement me
+    }
+
     private void setupRecyclerView(View rootView) {
         RecyclerView recycler = (RecyclerView) rootView.findViewById(R.id.history_recycler);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recycler.setLayoutManager(layoutManager);
 
-        HistoryAdapter historyAdapter = new HistoryAdapter(new SearchHistoryDb(getActivity()));
+        HistoryAdapter historyAdapter = new HistoryAdapter(new SearchHistoryDb(getActivity()), this);
         recycler.setAdapter(historyAdapter);
     }
-
-
-
 }
