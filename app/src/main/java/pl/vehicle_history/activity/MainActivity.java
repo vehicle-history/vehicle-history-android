@@ -1,29 +1,23 @@
 package pl.vehicle_history.activity;
 
+import android.content.ActivityNotFoundException;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import org.joda.time.DateTime;
-
-import pl.vehicle_history.api.exception.VehicleHistoryApiException;
-import pl.vehicle_history.api.method.AuthMethod;
-import pl.vehicle_history.api.method.GetVehicleMethod;
-import pl.vehicle_history.api.method.ResponseListener;
-import pl.vehicle_history.api.model.Auth;
-import pl.vehicle_history.api.model.VehicleInput;
-import pl.vehicle_history.api.model.VehicleResponse;
 import pl.vehicle_history.fragment.AboutFragment;
 import pl.vehicle_history.fragment.FindVehicleFragment;
 import pl.vehicle_history.fragment.NavigationDrawerFragment;
 import pl.vehicle_history.fragment.OptionsFragment;
 import pl.vehicle_history.fragment.SearchHistoryFragment;
+import pl.vehicle_history.historiapojazdu.BuildConfig;
 import pl.vehicle_history.historiapojazdu.R;
 
 public class MainActivity extends ActionBarActivity implements NavigationDrawerFragment.NavigationDrawerCallbacks {
@@ -57,7 +51,7 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
         // update the main content by replacing fragments
         FragmentManager fragmentManager = getSupportFragmentManager();
 
-        Fragment fragmentToSwitch;
+        Fragment fragmentToSwitch = null;
 
         switch (position) {
             case 0: {
@@ -73,6 +67,10 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
                 break;
             }
             case 3: {
+                showMarketAppIn();
+                break;
+            }
+            case 4: {
                 fragmentToSwitch = AboutFragment.newInstance(3);
                 break;
             }
@@ -82,7 +80,9 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
             }
         }
 
-        fragmentManager.beginTransaction().replace(R.id.container, fragmentToSwitch).commit();
+        if (fragmentToSwitch != null) {
+            fragmentManager.beginTransaction().replace(R.id.container, fragmentToSwitch).commit();
+        }
     }
 
     public void onSectionAttached(int number) {
@@ -144,5 +144,14 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void showMarketAppIn() {
+        try {
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + BuildConfig.APPLICATION_ID)));
+        } catch (ActivityNotFoundException e) {
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://play.google.com/store/apps/details?id="
+                    + BuildConfig.APPLICATION_ID)));
+        }
     }
 }
