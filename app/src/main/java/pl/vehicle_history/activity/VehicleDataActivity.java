@@ -1,5 +1,6 @@
 package pl.vehicle_history.activity;
 
+import android.animation.Animator;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
@@ -7,7 +8,10 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBar.Tab;
 import android.support.v7.app.ActionBar.TabListener;
 import android.support.v7.app.ActionBarActivity;
+import android.view.View;
+import android.view.View.OnLayoutChangeListener;
 
+import pl.vehicle_history.RevealAnimator;
 import pl.vehicle_history.adapter.VehicleDataAdapter;
 import pl.vehicle_history.api.model.VehicleResponse;
 import pl.vehicle_history.historiapojazdu.R;
@@ -40,6 +44,25 @@ public class VehicleDataActivity extends ActionBarActivity implements TabListene
 
         setupViewPager(actionBar);
         setupTabs(actionBar);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        pager.setVisibility(View.VISIBLE);
+
+        pager.addOnLayoutChangeListener(new OnLayoutChangeListener() {
+
+            @Override
+            public void onLayoutChange(View v, int left, int top, int right, int bottom, int oldLeft, int oldTop, int oldRight,
+                    int oldBottom) {
+
+                Animator anim = new RevealAnimator().buildRevealAnimation(pager, pager);
+                anim.start();
+            }
+        });
+
     }
 
     @Override

@@ -42,6 +42,8 @@
     <string name="no">nie</string>
     <string name="no_data">brak danych</string>
 
+    <string name="search_in_progress">Szukam pojazdu</string>
+
     <!-- CarType enum values -->
     <string name="car_type_unknown">Nieznany</string>
     <string name="car_type_car">Samochód</string>

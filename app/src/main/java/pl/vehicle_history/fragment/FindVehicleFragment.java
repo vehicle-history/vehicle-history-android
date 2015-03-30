@@ -1,5 +1,6 @@
 package pl.vehicle_history.fragment;
 
+import android.animation.Animator;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,6 +18,7 @@ import android.widget.ViewAnimator;
 
 import pl.vehicle_history.PerformSearchDelegate;
 import pl.vehicle_history.PerformSearchDelegate.OnSearchFinishedListener;
+import pl.vehicle_history.RevealAnimator;
 import pl.vehicle_history.SaveSearchDelegate;
 import pl.vehicle_history.activity.MainActivity;
 import pl.vehicle_history.api.model.VehicleInput;
@@ -44,6 +46,8 @@ public class FindVehicleFragment extends Fragment {
     private EditText registrationDateEditText;
 
     private View pickDateButton;
+
+    private View overlayView;
 
     public static FindVehicleFragment newInstance(int sectionNumber) {
         FindVehicleFragment fragment = new FindVehicleFragment();
@@ -86,6 +90,8 @@ public class FindVehicleFragment extends Fragment {
         registrationDateEditText = (EditText) rootView.findViewById(R.id.registration_edit_text);
 
         pickDateButton = rootView.findViewById(R.id.pick_date_button);
+
+        overlayView = rootView.findViewById(R.id.overlay);
     }
 
     private void setupPickDateButton() {
@@ -108,9 +114,14 @@ public class FindVehicleFragment extends Fragment {
 
             @Override
             public void onClick(View v) {
-                setButtonAnimator(ANIMATOR_PROGRESS);
-                setUiLocked(true);
+//                setButtonAnimator(ANIMATOR_PROGRESS);
+//                setUiLocked(true);
                 getVehicle();
+
+                Animator anim = new RevealAnimator().buildRevealAnimation(findVehicleButton, overlayView);
+
+                overlayView.setVisibility(View.VISIBLE);
+                anim.start();
             }
         });
     }

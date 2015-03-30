@@ -43,6 +43,8 @@ public class PerformSearchDelegate {
                         i.putExtra(VehicleDataActivity.EXTRA_VEHICLE_RESPONSE_KEY, response);
 
                         activity.startActivity(i);
+
+                        activity.overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                     }
 
                     @Override
