@@ -6,6 +6,15 @@ android {
     compileSdkVersion 21
     buildToolsVersion "21.1.2"
 
+    signingConfigs {
+        release {
+            storeFile file("release.keystore")
+            storePassword getKeyStorePassword()
+            keyAlias getKeyStoreAlias()
+            keyPassword getKeyPassword()
+        }
+    }
+
     defaultConfig {
         applicationId "pl.vehicle_history.historiapojazdu"
         minSdkVersion 15
@@ -19,9 +28,11 @@ android {
         buildConfigField 'String', 'API_CLIENT', '"' + getApiClient() + '"'
         buildConfigField 'String', 'API_CLIENT_PASSWORD', '"' + getApiClientPassword() + '"'
     }
+
     buildTypes {
         release {
             minifyEnabled false
+            signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             buildConfigField "boolean", "USE_CRASHLYTICS", "true"
         }

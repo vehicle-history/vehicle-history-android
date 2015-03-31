@@ -5,3 +5,4 @@
 /build
 *.iml
 /app/credential.properties
+app/release.keystore
