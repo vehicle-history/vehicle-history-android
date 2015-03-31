@@ -2,6 +2,10 @@ apply plugin: 'com.android.application'
 apply plugin: 'io.fabric'
 apply from: 'credentials.gradle'
 
+def keyStorePassword = getKeyStorePassword()
+def keyStoreAlias = getKeyStoreAlias()
+def keyPass = getKeyPassword()
+
 android {
     compileSdkVersion 21
     buildToolsVersion "21.1.2"
@@ -9,9 +13,9 @@ android {
     signingConfigs {
         release {
             storeFile file("release.keystore")
-            storePassword getKeyStorePassword()
-            keyAlias getKeyStoreAlias()
-            keyPassword getKeyPassword()
+            storePassword = keyStorePassword
+            keyAlias = keyStoreAlias
+            keyPassword = keyPass
         }
     }
 
