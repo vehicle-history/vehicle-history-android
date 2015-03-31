@@ -13,6 +13,11 @@ android {
         versionCode 1
         versionName "1.0"
         buildConfigField "boolean", "USE_CRASHLYTICS", "false"
+
+        buildConfigField 'String', 'API_LOGIN', '"' + getApiLogin() + '"'
+        buildConfigField 'String', 'API_PASSWORD', '"' + getApiPassword() + '"'
+        buildConfigField 'String', 'API_CLIENT', '"' + getApiClient() + '"'
+        buildConfigField 'String', 'API_CLIENT_PASSWORD', '"' + getApiClientPassword() + '"'
     }
     buildTypes {
         release {
