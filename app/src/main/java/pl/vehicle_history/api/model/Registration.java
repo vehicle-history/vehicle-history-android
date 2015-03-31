@@ -1,7 +1,5 @@
 package pl.vehicle_history.api.model;
 
-import org.joda.time.DateTime;
-
 import java.io.Serializable;
 
 /**

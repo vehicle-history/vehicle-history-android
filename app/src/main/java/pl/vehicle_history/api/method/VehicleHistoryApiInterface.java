@@ -1,18 +1,13 @@
 package pl.vehicle_history.api.method;
 
-import org.joda.time.DateTime;
-
 import pl.vehicle_history.api.consts.MethodRoot;
 import pl.vehicle_history.api.consts.Settings;
 import pl.vehicle_history.api.model.Auth;
-import pl.vehicle_history.api.model.VehicleInput;
 import pl.vehicle_history.api.model.VehicleResponse;
 import retrofit.Callback;
-import retrofit.http.Body;
 import retrofit.http.Field;
 import retrofit.http.FormUrlEncoded;
 import retrofit.http.GET;
-import retrofit.http.Header;
 import retrofit.http.Headers;
 import retrofit.http.POST;
 import retrofit.http.Query;

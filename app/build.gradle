@@ -35,7 +35,7 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             buildConfigField "boolean", "USE_CRASHLYTICS", "true"
@@ -50,7 +50,6 @@ dependencies {
     compile 'com.squareup.retrofit:retrofit:1.9.0'
     compile 'com.google.code.gson:gson:2.2.4'
     compile 'com.squareup.okhttp:okhttp:2.2.0'
-    compile 'net.danlew:android.joda:2.7.1'
 
     compile('com.crashlytics.sdk.android:crashlytics:2.2.2@aar') {
         transitive = true;
