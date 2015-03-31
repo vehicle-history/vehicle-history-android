@@ -15,3 +15,6 @@
 -keep class sun.misc.Unsafe { *; }
 -dontwarn java.nio.file.*
 -dontwarn org.codehaus.mojo.animal_sniffer.IgnoreJRERequirement
+
+# classes the interact with gson
+-keep class pl.vehicle_history.api.** { *; }
