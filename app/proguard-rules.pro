@@ -17,4 +17,4 @@
 -dontwarn org.codehaus.mojo.animal_sniffer.IgnoreJRERequirement
 
 # classes the interact with gson
--keep class pl.vehicle_history.api.** { *; }
+-keep class io.vehiclehistory.api.** { *; }

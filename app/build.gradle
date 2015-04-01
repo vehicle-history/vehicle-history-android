@@ -20,7 +20,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "pl.vehicle_history.historiapojazdu"
+        applicationId "io.vehiclehistory"
         minSdkVersion 15
         targetSdkVersion 21
         versionCode 1
