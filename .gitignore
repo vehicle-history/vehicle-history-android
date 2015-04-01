@@ -4,4 +4,5 @@
 .DS_Store
 /build
 *.iml
-/app/credentials.gradle
+/app/credential.properties
+app/release.keystore
