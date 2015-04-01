@@ -19,6 +19,7 @@ import android.widget.ViewAnimator;
 import io.vehiclehistory.PerformSearchDelegate;
 import io.vehiclehistory.PerformSearchDelegate.OnSearchFinishedListener;
 import io.vehiclehistory.R;
+import io.vehiclehistory.RevealAnimator;
 import io.vehiclehistory.SaveSearchDelegate;
 import io.vehiclehistory.activity.MainActivity;
 import io.vehiclehistory.api.model.VehicleInput;

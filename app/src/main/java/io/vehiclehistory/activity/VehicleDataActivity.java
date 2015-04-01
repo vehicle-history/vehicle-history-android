@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.View.OnLayoutChangeListener;
 
 import io.vehiclehistory.R;
+import io.vehiclehistory.RevealAnimator;
 import io.vehiclehistory.adapter.VehicleDataAdapter;
 import io.vehiclehistory.api.model.VehicleResponse;
 
