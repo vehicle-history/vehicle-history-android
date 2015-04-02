@@ -11,10 +11,10 @@ import retrofit.RetrofitError;
 import retrofit.client.OkClient;
 import retrofit.client.Response;
 
-/**
- * TODO: Add a class header comment!
- */
 public class GetVehicleMethod extends Method<VehicleResponse> {
+
+    private static final String BEARER_PREFIX = "Bearer ";
+
     private VehicleInput input;
     private String token;
 
@@ -38,10 +38,9 @@ public class GetVehicleMethod extends Method<VehicleResponse> {
 
     @Override
     public void makeRequest() {
-        apiService.getVehicle(input.getPlate(),
-                              input.getVin(),
-                              input.getFirstRegistrationDate().toString(),
-                              new Callback<VehicleResponse>() {
+        apiService.getVehicle(input.getPlate(), input.getVin(), input.getFirstRegistrationDate(),
+                new Callback<VehicleResponse>() {
+
             @Override
             public void success(VehicleResponse vehicleResponse, Response response) {
                 listener.onSuccess(vehicleResponse);
@@ -49,7 +48,9 @@ public class GetVehicleMethod extends Method<VehicleResponse> {
 
             @Override
             public void failure(RetrofitError error) {
-                VehicleHistoryApiException exception = (VehicleHistoryApiException) error.getBodyAs(VehicleHistoryApiException.class);
+                VehicleHistoryApiException exception =
+                        (VehicleHistoryApiException) error.getBodyAs(VehicleHistoryApiException.class);
+
                 listener.onError(exception);
             }
         });
@@ -57,6 +58,6 @@ public class GetVehicleMethod extends Method<VehicleResponse> {
 
     @Override
     protected String prepareAuthorization() {
-        return "Bearer " + token;
+        return BEARER_PREFIX + token;
     }
 }

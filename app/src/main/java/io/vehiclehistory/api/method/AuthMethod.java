@@ -19,13 +19,16 @@ public class AuthMethod extends Method<Auth> {
 
     private static final String TAG = AuthMethod.class.getSimpleName();
 
+    private static final String PASSWORD = "password";
+
     public AuthMethod(ResponseListener<Auth> listener) {
         super(listener);
     }
 
     @Override
     public void makeRequest() {
-        apiService.getToken(Credentials.LOGIN, Credentials.PASSWORD, Credentials.CLIENT, "password", new Callback<Auth>() {
+        apiService.getToken(Credentials.LOGIN, Credentials.PASSWORD, Credentials.CLIENT, PASSWORD, new Callback<Auth>() {
+
             @Override
             public void success(Auth auth, Response response) {
                 listener.onSuccess(auth);
@@ -33,7 +36,8 @@ public class AuthMethod extends Method<Auth> {
 
             @Override
             public void failure(RetrofitError error) {
-                VehicleHistoryApiException exception = (VehicleHistoryApiException) error.getBodyAs(VehicleHistoryApiException.class);
+                VehicleHistoryApiException exception =
+                        (VehicleHistoryApiException) error.getBodyAs(VehicleHistoryApiException.class);
                 listener.onError(exception);
             }
         });
@@ -41,23 +45,23 @@ public class AuthMethod extends Method<Auth> {
 
     @Override
     protected String prepareAuthorization()     {
-        // Prepare authorization data
         String credentialsToken = Credentials.CLIENT + ":" + Credentials.CLIENT_PASSWORD;
 
         byte[] bytes = new byte[0];
+
         try {
             bytes = credentialsToken.getBytes("UTF-8");
         } catch (UnsupportedEncodingException e) {
             Log.e(TAG, "UnsupportedEncodingException while preparing authorization data");
         }
+
         String base64 = Base64.encodeToString(bytes, Base64.NO_WRAP);
-        String authToken = "Basic" + " " + base64;
-        return authToken;
+
+        return "Basic" + " " + base64;
     }
 
     private String getCredentials() {
-        String credentials = "username=" + Credentials.LOGIN + "&password=" + Credentials.PASSWORD
+        return "username=" + Credentials.LOGIN + "&password=" + Credentials.PASSWORD
                 + "&cliend_id=" + Credentials.CLIENT + "&grant_type=password";
-        return credentials;
     }
 }
