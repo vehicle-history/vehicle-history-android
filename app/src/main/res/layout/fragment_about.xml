@@ -23,6 +23,9 @@
         <TextView style="@style/AboutLabel"
             android:text="@string/about_fifth_paragraph"/>
 
+        <TextView style="@style/AboutLabel"
+            android:id="@+id/application_version"/>
+
     </LinearLayout>
     
 </ScrollView>
