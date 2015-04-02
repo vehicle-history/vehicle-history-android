@@ -1,13 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        style="@style/PrimaryText"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/title_section_about"
-        android:layout_gravity="center"/>
+        android:orientation="vertical">
 
-</FrameLayout>
+        <TextView style="@style/AboutLabel"
+            android:text="@string/about_first_paragraph"/>
+
+        <TextView style="@style/AboutLabel"
+            android:text="@string/about_second_paragraph"/>
+
+        <TextView style="@style/AboutLabel"
+            android:text="@string/about_third_paragraph"/>
+
+        <TextView style="@style/AboutLabel"
+            android:text="@string/about_fourth_paragraph"/>
+
+        <TextView style="@style/AboutLabel"
+            android:text="@string/about_fifth_paragraph"/>
+
+    </LinearLayout>
+    
+</ScrollView>

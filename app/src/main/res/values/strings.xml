@@ -96,4 +96,9 @@
     <string name="plate_label_semicolon">Nr. rejestracyjny:</string>
     <string name="vin_label_semicolon">VIN:</string>
     <string name="first_reg_date_label_semicolon">Data pierwszej rejestracji:</string>
+    <string name="about_first_paragraph">Aplikacja prezentuje treści darmowo dostępne w sieci Internet. Developerzy nie roszczą sobie żadnych praw do treści prezentowanych w aplikacji.</string>
+    <string name="about_second_paragraph">Dane pochodzą z Centralnej Ewidencji Pojazdów. Jest to rejestr prowadzony przez Ministra Spraw Wewnętrznych na podstawie przepisów ustawy Prawo o ruchu drogowym.</string>
+    <string name="about_third_paragraph">Aplikacja korzysta z otwartego API (https://vehicle-history.io).</string>
+    <string name="about_fourth_paragraph">Prezentowane dane można wykorzystać tylko na własne ryzyko i na własną odpowiedzialność.</string>
+    <string name="about_fifth_paragraph">Wszystkie użyte obrazy i loga są objęte prawami autorskimi ich właścicieli.</string>
 </resources>
