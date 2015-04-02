@@ -1,7 +1,5 @@
 package io.vehiclehistory.api.model;
 
-import com.google.gson.annotations.SerializedName;
-
 import java.io.Serializable;
 
 /**
@@ -11,13 +9,11 @@ public class Event implements Serializable {
     private EventType type;
     private String createdAt;
     private String expireAt;
-    @SerializedName("firstOwner")
-    private Boolean isFirstOwner;
+    private Boolean firstOwner;
     private String note;
     private OwnerType ownerType;
     private Location location;
-    @SerializedName("abroadRegistration")
-    private Boolean isAbroadRegistration;
+    private Boolean abroadRegistration;
     private Mileage mileage;
 
     public EventType getType() {
@@ -32,8 +28,8 @@ public class Event implements Serializable {
         return expireAt;
     }
 
-    public Boolean getIsFirstOwner() {
-        return isFirstOwner;
+    public Boolean isFirstOwner() {
+        return firstOwner;
     }
 
     public String getNote() {
@@ -48,8 +44,8 @@ public class Event implements Serializable {
         return location;
     }
 
-    public Boolean getIsAbroadRegistration() {
-        return isAbroadRegistration;
+    public Boolean isAbroadRegistration() {
+        return abroadRegistration;
     }
 
     public Mileage getMileage() {
