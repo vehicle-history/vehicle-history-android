@@ -1,11 +1,14 @@
 package io.vehiclehistory.fragment;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import io.vehiclehistory.BuildConfig;
@@ -18,6 +21,9 @@ import io.vehiclehistory.activity.MainActivity;
 public class AboutFragment extends Fragment {
 
     private static final String ARG_SECTION_NUMBER = "section_number";
+
+    private TextView applicationVersionTextView;
+    private Button contactButton;
 
     public static AboutFragment newInstance(int sectionNumber) {
         AboutFragment fragment = new AboutFragment();
@@ -35,10 +41,28 @@ public class AboutFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_about, container, false);
 
-        TextView applicationVersion = (TextView) rootView.findViewById(R.id.application_version);
-        applicationVersion.setText(getResources().getString(R.string.about_application_version) + " " + BuildConfig.VERSION_NAME);
-        
+        bindViews(rootView);
+        setupContactButton();
         return rootView;
+    }
+
+    private void bindViews(View rootView) {
+        applicationVersionTextView = (TextView) rootView.findViewById(R.id.application_version_text_view);
+        applicationVersionTextView.setText(getResources().getString(R.string.about_application_version) + " " + BuildConfig.VERSION_NAME);
+        contactButton = (Button) rootView.findViewById(R.id.contact_developer_button);
+    }
+
+    private void setupContactButton() {
+        contactButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
+                        "mailto", "developer@vehiclehistory.io", null));
+                emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Historia pojazdu");
+                startActivity(Intent.createChooser(emailIntent, getResources().getString(R.string.about_contact)));
+            }
+        });
     }
 
     @Override
