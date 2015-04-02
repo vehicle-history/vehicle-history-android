@@ -18,7 +18,7 @@ public class PerformSearchDelegate {
 
     private static final String TAG = PerformSearchDelegate.class.getSimpleName();
 
-    private static final int UNAUTHORIZED = 401;
+    private static final Integer UNAUTHORIZED = 401;
 
     private final Activity activity;
 
@@ -47,13 +47,10 @@ public class PerformSearchDelegate {
 
                     @Override
                     public void onError(VehicleHistoryApiException exception) {
-                        if (exception != null &&
-                            exception.getStatusCode() != null &&
-                            exception.getStatusCode() == UNAUTHORIZED) {
+                        if (UNAUTHORIZED.equals(exception.getStatusCode())) {
                             authorizeAndRetry(input, listener);
                         } else {
-                            listener.onSearchError(exception != null ? exception.getUserMessage() : "Błąd podczas szukania " +
-                                    "pojazdu");
+                            listener.onSearchError(exception.getUserMessage());
                         }
                     }
                 });
