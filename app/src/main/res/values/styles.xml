@@ -56,4 +56,11 @@
         <item name="android:background">@drawable/primary_circle</item>
     </style>
 
+    <style name="AboutLabel" parent="@style/SecondaryText">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/about_paragraph_vertical_margin</item>
+        <item name="android:layout_marginLeft">@dimen/about_paragraph_horizontal_margin</item>
+    </style>
+
 </resources>
