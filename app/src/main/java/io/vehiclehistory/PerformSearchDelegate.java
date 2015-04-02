@@ -47,10 +47,11 @@ public class PerformSearchDelegate {
 
                     @Override
                     public void onError(VehicleHistoryApiException exception) {
-                        if (exception != null && exception.getStatusCode() == UNAUTHORIZED) {
+                        if (exception != null &&
+                            exception.getStatusCode() != null &&
+                            exception.getStatusCode() == UNAUTHORIZED) {
                             authorizeAndRetry(input, listener);
                         } else {
-                            Log.e(TAG, "Network error");
                             listener.onSearchError(exception != null ? exception.getUserMessage() : "Błąd podczas szukania " +
                                     "pojazdu");
                         }
