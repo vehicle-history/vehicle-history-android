@@ -6,8 +6,11 @@ import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 
+import java.util.Calendar;
+
 import io.vehiclehistory.Search;
 
+import static io.vehiclehistory.database.DbConstants.COLUMN_TIMESTAMP;
 import static io.vehiclehistory.database.DbConstants.COLUMN_LABEL;
 import static io.vehiclehistory.database.DbConstants.COLUMN_REGISTRATION_DATE;
 import static io.vehiclehistory.database.DbConstants.COLUMN_REGISTRATION_NUMBER;
@@ -26,6 +29,7 @@ public class SearchHistoryDb {
         SQLiteDatabase db = historyDbHelper.getWritableDatabase();
 
         ContentValues values = new ContentValues();
+        values.put(COLUMN_TIMESTAMP, getTimestamp());
         values.put(COLUMN_LABEL, search.getLabel());
         values.put(COLUMN_REGISTRATION_NUMBER, search.getPlate());
         values.put(COLUMN_VIN, search.getVin());
@@ -38,10 +42,10 @@ public class SearchHistoryDb {
         SQLiteDatabase db = historyDbHelper.getReadableDatabase();
 
         String[] projection = {
-                COLUMN_LABEL, COLUMN_REGISTRATION_NUMBER, COLUMN_VIN, COLUMN_REGISTRATION_DATE
+                COLUMN_TIMESTAMP, COLUMN_LABEL, COLUMN_REGISTRATION_NUMBER, COLUMN_VIN, COLUMN_REGISTRATION_DATE
         };
 
-        String sortOrder = COLUMN_LABEL + " DESC";
+        String sortOrder = COLUMN_TIMESTAMP + " DESC";
 
         Cursor cursor = db.query(
                 TABLE_NAME,
@@ -55,10 +59,10 @@ public class SearchHistoryDb {
 
         cursor.moveToPosition(position);
 
-        String label = cursor.getString(0);
-        String registrationNumber = cursor.getString(1);
-        String vin = cursor.getString(2);
-        String registrationDate = cursor.getString(3);
+        String label = cursor.getString(1);
+        String registrationNumber = cursor.getString(2);
+        String vin = cursor.getString(3);
+        String registrationDate = cursor.getString(4);
 
         return new Search(label, registrationNumber, vin, registrationDate);
     }
@@ -67,6 +71,10 @@ public class SearchHistoryDb {
         SQLiteDatabase db =  historyDbHelper.getReadableDatabase();
 
         return (int) DatabaseUtils.queryNumEntries(db, TABLE_NAME, null, null);
+    }
+
+    private long getTimestamp() {
+        return Calendar.getInstance().getTimeInMillis();
     }
 
 }

@@ -7,16 +7,18 @@ import android.database.sqlite.SQLiteOpenHelper;
 import static io.vehiclehistory.database.DbConstants.COLUMN_LABEL;
 import static io.vehiclehistory.database.DbConstants.COLUMN_REGISTRATION_DATE;
 import static io.vehiclehistory.database.DbConstants.COLUMN_REGISTRATION_NUMBER;
+import static io.vehiclehistory.database.DbConstants.COLUMN_TIMESTAMP;
 import static io.vehiclehistory.database.DbConstants.COLUMN_VIN;
 import static io.vehiclehistory.database.DbConstants.DATABASE_NAME;
 import static io.vehiclehistory.database.DbConstants.TABLE_NAME;
 
 public class HistoryDbOpenHelper extends SQLiteOpenHelper {
 
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
 
     private static final String SQL_TABLE_CREATE =
             "CREATE TABLE " + TABLE_NAME + " (" +
+                    COLUMN_TIMESTAMP + " LONG, " +
                     COLUMN_LABEL + " TEXT, " +
                     COLUMN_REGISTRATION_NUMBER + " TEXT, " +
                     COLUMN_VIN + " TEXT, " +
@@ -36,5 +38,6 @@ public class HistoryDbOpenHelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL(SQL_DELETE_ENTRIES);
+        onCreate(db);
     }
 }
