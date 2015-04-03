@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Historia Pojazdu</string>
-    <string name="contact_email">developer@vehiclehistory.io</string>
+    <string name="contact_email">android-app@vehicle-history.io</string>
 
     <string name="ok">OK</string>
     <string name="cancel">Anuluj</string>
