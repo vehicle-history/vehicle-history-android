@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ViewAnimator;
 
 import io.vehiclehistory.PerformSearchDelegate;
 import io.vehiclehistory.PerformSearchDelegate.OnSearchFinishedListener;
@@ -25,6 +26,9 @@ import io.vehiclehistory.database.SearchHistoryDb;
 public class SearchHistoryFragment extends Fragment implements OnHistoryItemClickListener {
 
     private static final String ARG_SECTION_NUMBER = "section_number";
+
+    private static final int ANIMATOR_LIST = 0;
+    private static final int ANIMATOR_EMPTY_LABEL = 1;
 
     public static SearchHistoryFragment newInstance(int sectionNumber) {
         SearchHistoryFragment fragment = new SearchHistoryFragment();
@@ -70,12 +74,17 @@ public class SearchHistoryFragment extends Fragment implements OnHistoryItemClic
     }
 
     private void setupRecyclerView(View rootView) {
+        ViewAnimator animator = (ViewAnimator) rootView.findViewById(R.id.history_view_animator);
         RecyclerView recycler = (RecyclerView) rootView.findViewById(R.id.history_recycler);
+
+        SearchHistoryDb searchHistoryDb = new SearchHistoryDb(getActivity());
+
+        animator.setDisplayedChild(searchHistoryDb.getCount() > 0 ? ANIMATOR_LIST : ANIMATOR_EMPTY_LABEL);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recycler.setLayoutManager(layoutManager);
 
-        HistoryAdapter historyAdapter = new HistoryAdapter(new SearchHistoryDb(getActivity()), this);
+        HistoryAdapter historyAdapter = new HistoryAdapter(searchHistoryDb, this);
         recycler.setAdapter(historyAdapter);
     }
 }

@@ -56,4 +56,6 @@
     <string name="about_fifth_paragraph">Wszystkie użyte obrazy i loga są objęte prawami autorskimi ich właścicieli.</string>
     <string name="about_application_version">Wersja aplikacji: </string>
     <string name="about_contact">Kontakt</string>
+
+    <string name="search_history_is_empty">Historia wyszukiwania jest pusta</string>
 </resources>
