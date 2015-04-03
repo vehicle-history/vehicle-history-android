@@ -8,6 +8,18 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+        <TextView
+            style="@style/AboutLabel"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="@string/app_name"
+            android:textSize="24sp"
+            android:layout_gravity="center_horizontal"/>
+
+        <TextView style="@style/AboutLabel"
+            android:id="@+id/application_version_text_view"
+            android:layout_gravity="center_horizontal"/>
+
         <TextView style="@style/AboutLabel"
             android:text="@string/about_first_paragraph"/>
 
@@ -23,14 +35,12 @@
         <TextView style="@style/AboutLabel"
             android:text="@string/about_fifth_paragraph"/>
 
-        <TextView style="@style/AboutLabel"
-            android:id="@+id/application_version_text_view"/>
-
         <Button android:id="@+id/contact_developer_button"
             style="@style/Button"
-            android:layout_width="match_parent"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:layout_margin="16dp"
+            android:layout_margin="30dp"
+            android:layout_gravity="center_horizontal"
             android:text="@string/about_contact"/>
 
     </LinearLayout>
