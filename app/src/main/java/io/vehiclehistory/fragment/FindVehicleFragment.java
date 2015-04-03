@@ -1,11 +1,11 @@
 package io.vehiclehistory.fragment;
 
 import android.app.Activity;
+import android.app.Fragment;
+import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -93,7 +93,7 @@ public class FindVehicleFragment extends Fragment {
 
             @Override
             public void onClick(View v) {
-                FragmentManager fm = getActivity().getSupportFragmentManager();
+                FragmentManager fm = getActivity().getFragmentManager();
                 DatePickerFragment datePickerFragment = new DatePickerFragment();
 
                 datePickerFragment.setTargetFragment(FindVehicleFragment.this, PICK_DATE_REQ_CODE);

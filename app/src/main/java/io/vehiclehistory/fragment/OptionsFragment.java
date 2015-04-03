@@ -2,18 +2,17 @@ package io.vehiclehistory.fragment;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import android.preference.Preference;
+import android.preference.PreferenceFragment;
 
 import io.vehiclehistory.R;
 import io.vehiclehistory.activity.MainActivity;
+import io.vehiclehistory.database.SearchHistoryDb;
 
 /**
  * @author Piotr Makowski (<a href=\"mailto:Piotr.Makowski@allegrogroup.pl\">Piotr.Makowski@allegrogroup.pl</a>)
  */
-public class OptionsFragment extends Fragment {
+public class OptionsFragment extends PreferenceFragment {
 
     private static final String ARG_SECTION_NUMBER = "section_number";
 
@@ -30,9 +29,20 @@ public class OptionsFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_settings, container, false);
-        return rootView;
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        addPreferencesFromResource(R.xml.preferences);
+
+        Preference clearHistory = findPreference(getString(R.string.clear_history));
+        clearHistory.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                new SearchHistoryDb(getActivity()).clearHistory();
+                return true;
+            }
+        });
     }
 
     @Override

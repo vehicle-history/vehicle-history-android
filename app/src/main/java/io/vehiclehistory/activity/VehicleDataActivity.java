@@ -36,7 +36,7 @@ public class VehicleDataActivity extends ActionBarActivity implements TabListene
         VehicleResponse vehicle = (VehicleResponse) getIntent().getSerializableExtra(
                 EXTRA_VEHICLE_RESPONSE_KEY);
 
-        vehicleDataAdapter = new VehicleDataAdapter(getSupportFragmentManager(), vehicle);
+        vehicleDataAdapter = new VehicleDataAdapter(getFragmentManager(), vehicle);
 
         setupViewPager(actionBar);
         setupTabs(actionBar);

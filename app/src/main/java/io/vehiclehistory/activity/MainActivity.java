@@ -1,11 +1,11 @@
 package io.vehiclehistory.activity;
 
+import android.app.Fragment;
+import android.app.FragmentManager;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
@@ -37,7 +37,7 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        navigationDrawerFragment = (NavigationDrawerFragment) getSupportFragmentManager().findFragmentById(
+        navigationDrawerFragment = (NavigationDrawerFragment) getFragmentManager().findFragmentById(
                 R.id.navigation_drawer);
 
         title = getTitle();
@@ -49,7 +49,7 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
     @Override
     public void onNavigationDrawerItemSelected(int position) {
         // update the main content by replacing fragments
-        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentManager fragmentManager = getFragmentManager();
 
         Fragment fragmentToSwitch = null;
 

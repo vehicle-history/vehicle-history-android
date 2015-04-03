@@ -10,10 +10,10 @@ import java.util.Calendar;
 
 import io.vehiclehistory.Search;
 
-import static io.vehiclehistory.database.DbConstants.COLUMN_TIMESTAMP;
 import static io.vehiclehistory.database.DbConstants.COLUMN_LABEL;
 import static io.vehiclehistory.database.DbConstants.COLUMN_REGISTRATION_DATE;
 import static io.vehiclehistory.database.DbConstants.COLUMN_REGISTRATION_NUMBER;
+import static io.vehiclehistory.database.DbConstants.COLUMN_TIMESTAMP;
 import static io.vehiclehistory.database.DbConstants.COLUMN_VIN;
 import static io.vehiclehistory.database.DbConstants.TABLE_NAME;
 
@@ -70,6 +70,11 @@ public class SearchHistoryDb {
         SQLiteDatabase db =  historyDbHelper.getReadableDatabase();
 
         return (int) DatabaseUtils.queryNumEntries(db, TABLE_NAME, null, null);
+    }
+
+    public void clearHistory() {
+        SQLiteDatabase db = historyDbHelper.getWritableDatabase();
+        db.delete(TABLE_NAME, null, null);
     }
 
     private Search getSearchFromCursor(Cursor cursor) {
