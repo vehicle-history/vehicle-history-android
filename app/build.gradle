@@ -1,20 +1,44 @@
 apply plugin: 'com.android.application'
+apply plugin: 'io.fabric'
+apply from: 'credentials.gradle'
+
+def keyStorePassword = getKeyStorePassword()
+def keyStoreAlias = getKeyStoreAlias()
+def keyPass = getKeyPassword()
 
 android {
     compileSdkVersion 21
     buildToolsVersion "21.1.2"
 
+    signingConfigs {
+        release {
+            storeFile file("release.keystore")
+            storePassword = keyStorePassword
+            keyAlias = keyStoreAlias
+            keyPassword = keyPass
+        }
+    }
+
     defaultConfig {
-        applicationId "pl.vehicle_history.historiapojazdu"
+        applicationId "io.vehiclehistory"
         minSdkVersion 15
         targetSdkVersion 21
-        versionCode 1
-        versionName "1.0"
+        versionCode 3
+        versionName "0.3"
+        buildConfigField "boolean", "USE_CRASHLYTICS", "false"
+
+        buildConfigField 'String', 'API_LOGIN', '"' + getApiLogin() + '"'
+        buildConfigField 'String', 'API_PASSWORD', '"' + getApiPassword() + '"'
+        buildConfigField 'String', 'API_CLIENT', '"' + getApiClient() + '"'
+        buildConfigField 'String', 'API_CLIENT_PASSWORD', '"' + getApiClientPassword() + '"'
     }
+
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
+            signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            buildConfigField "boolean", "USE_CRASHLYTICS", "true"
         }
     }
 }
@@ -22,6 +46,13 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:21.0.3'
+    compile 'com.android.support:support-v13:21.0.0'
+    compile 'com.android.support:recyclerview-v7:+'
     compile 'com.squareup.retrofit:retrofit:1.9.0'
     compile 'com.google.code.gson:gson:2.2.4'
+    compile 'com.squareup.okhttp:okhttp:2.2.0'
+
+    compile('com.crashlytics.sdk.android:crashlytics:2.2.2@aar') {
+        transitive = true;
+    }
 }

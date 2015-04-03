@@ -1,14 +1,63 @@
 <resources>
     <string name="app_name">Historia Pojazdu</string>
+    <string name="contact_email">android-app@vehicle-history.io</string>
 
-    <string name="title_section1">Section 1</string>
-    <string name="title_section2">Section 2</string>
-    <string name="title_section3">Section 3</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Anuluj</string>
+
+    <string name="title_section_find_vehicle">Znajdź pojazd</string>
+    <string name="title_section_history">Historia wyszukań</string>
+    <string name="title_section_options">Opcje</string>
+    <string name="title_section_rate">Oceń nas</string>
+    <string name="title_section_about">O programie</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
-    <string name="action_example">Example action</string>
-
     <string name="action_settings">Settings</string>
+
+    <string name="input_plate">Numer rejestracyjny</string>
+    <string name="input_vin">Numer VIN</string>
+    <string name="input_registration_date">Data pierwszej rejestracji</string>
+    <string name="post_search_form">Sprawdź pojazd</string>
+
+    <string name="vehicle_info">Dane pojazdu</string>
+    <string name="timeline">Oś czasu</string>
+
+    <string name="producent_label">Producent</string>
+    <string name="model_label">Model</string>
+    <string name="year_label">Rok produkcji</string>
+    <string name="vin_label">Numer VIN</string>
+    <string name="first_registration_label">Pierwsza rejestracja</string>
+    <string name="engine_capacity_label">Pojemność silnika</string>
+    <string name="fuel_type_label">Paliwo</string>
+    <string name="mileage_label">Przebieg</string>
+    <string name="insurance_label">Ubezpieczenie</string>
+    <string name="registration_status_label">Status rejestracji</string>
+    <string name="technical_examination_label">Badania techniczne</string>
+    <string name="vehicle_stolen_status_label">Pojazd kradziony</string>
+    <string name="vehicle_class_label">Rodzaj</string>
+    <string name="vehicle_type_label">Typ</string>
+
+    <string name="yes">tak</string>
+    <string name="no">nie</string>
+    <string name="no_data">brak danych</string>
+
+    <string name="search_in_progress">Szukam pojazdu</string>
+
+    <string name="plate_label_semicolon">Nr. rejestracyjny:</string>
+    <string name="vin_label_semicolon">VIN:</string>
+    <string name="first_reg_date_label_semicolon">Data pierwszej rejestracji:</string>
+
+    <string name="about_first_paragraph">Aplikacja prezentuje treści darmowo dostępne w sieci Internet. Developerzy nie roszczą sobie żadnych praw do treści prezentowanych w aplikacji.</string>
+    <string name="about_second_paragraph">Dane pochodzą z Centralnej Ewidencji Pojazdów. Jest to rejestr prowadzony przez Ministra Spraw Wewnętrznych na podstawie przepisów ustawy Prawo o ruchu drogowym.</string>
+    <string name="about_third_paragraph">Aplikacja korzysta z otwartego API (https://vehicle-history.io).</string>
+    <string name="about_fourth_paragraph">Prezentowane dane można wykorzystać tylko na własne ryzyko i na własną odpowiedzialność.</string>
+    <string name="about_fifth_paragraph">Wszystkie użyte obrazy i loga są objęte prawami autorskimi ich właścicieli.</string>
+    <string name="about_application_version">Wersja aplikacji: </string>
+    <string name="about_contact">Kontakt</string>
+
+    <string name="search_history_is_empty">Historia wyszukiwania jest pusta</string>
+    <string name="searching_vehicle">Szukam pojazdu</string>
+    <string name="clear_history_label">Wyczyść historię wyszukiwania</string>
 </resources>

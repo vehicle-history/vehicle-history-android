@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/car_label"
+            style="@style/PrimaryText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:layout_margin="16dp"
+            android:layout_gravity="center"/>
+
+        <LinearLayout style="@style/VehicleInfoSection">
+
+            <TextView
+                style="@style/VehicleInfoLabel"
+                android:text="@string/producent_label"/>
+
+            <TextView
+                style="@style/VehicleInfoValue"
+                android:id="@+id/producer"/>
+
+        </LinearLayout>
+
+        <LinearLayout style="@style/VehicleInfoSection">
+
+            <TextView
+                style="@style/VehicleInfoLabel"
+                android:text="@string/model_label"/>
+
+            <TextView
+                style="@style/VehicleInfoValue"
+                android:id="@+id/model"/>
+
+        </LinearLayout>
+
+        <LinearLayout style="@style/VehicleInfoSection">
+
+            <TextView
+                style="@style/VehicleInfoLabel"
+                android:text="@string/year_label"/>
+
+            <TextView
+                style="@style/VehicleInfoValue"
+                android:id="@+id/year"/>
+
+        </LinearLayout>
+
+        <LinearLayout style="@style/VehicleInfoSection"
+            android:layout_marginTop="@dimen/vehicle_info_vertical_margin">
+
+            <TextView
+                style="@style/VehicleInfoLabel"
+                android:text="Numer rejestracyjny"/>
+
+            <TextView
+                style="@style/VehicleInfoValue"
+                android:id="@+id/reg_number"/>
+
+        </LinearLayout>
+
+        <LinearLayout style="@style/VehicleInfoSection">
+
+            <TextView
+                style="@style/VehicleInfoLabel"
+                android:text="@string/vin_label"/>
+
+            <TextView
+                style="@style/VehicleInfoValue"
+                android:id="@+id/vin"/>
+
+        </LinearLayout>
+
+        <LinearLayout style="@style/VehicleInfoSection">
+
+            <TextView
+                style="@style/VehicleInfoLabel"
+                android:text="@string/first_registration_label"/>
+
+            <TextView
+                style="@style/VehicleInfoValue"
+                android:id="@+id/first_registration"/>
+
+        </LinearLayout>
+
+        <LinearLayout style="@style/VehicleInfoSection"
+            android:layout_marginTop="@dimen/vehicle_info_vertical_margin">
+
+            <TextView
+                style="@style/VehicleInfoLabel"
+                android:text="@string/engine_capacity_label"/>
+
+            <TextView
+                style="@style/VehicleInfoValue"
+                android:id="@+id/engine_capacity"/>
+
+        </LinearLayout>
+
+        <LinearLayout style="@style/VehicleInfoSection">
+
+            <TextView
+                style="@style/VehicleInfoLabel"
+                android:text="@string/fuel_type_label"/>
+
+            <TextView
+                style="@style/VehicleInfoValue"
+                android:id="@+id/fuel_type"/>
+
+        </LinearLayout>
+
+        <LinearLayout style="@style/VehicleInfoSection">
+
+            <TextView
+                style="@style/VehicleInfoLabel"
+                android:text="@string/mileage_label"/>
+
+            <TextView
+                style="@style/VehicleInfoValue"
+                android:id="@+id/mileage"/>
+
+        </LinearLayout>
+
+        <LinearLayout style="@style/VehicleInfoSection"
+            android:layout_marginTop="@dimen/vehicle_info_vertical_margin">
+
+            <TextView
+                style="@style/VehicleInfoLabel"
+                android:text="@string/insurance_label"/>
+
+            <TextView
+                style="@style/VehicleInfoValue"
+                android:id="@+id/insurance"/>
+
+        </LinearLayout>
+
+        <LinearLayout style="@style/VehicleInfoSection">
+
+            <TextView
+                style="@style/VehicleInfoLabel"
+                android:text="@string/registration_status_label"/>
+
+            <TextView
+                style="@style/VehicleInfoValue"
+                android:id="@+id/registration_status"/>
+
+        </LinearLayout>
+
+        <LinearLayout style="@style/VehicleInfoSection">
+
+            <TextView
+                style="@style/VehicleInfoLabel"
+                android:text="@string/technical_examination_label"/>
+
+            <TextView
+                style="@style/VehicleInfoValue"
+                android:id="@+id/technical_examination"/>
+
+        </LinearLayout>
+
+        <LinearLayout style="@style/VehicleInfoSection">
+
+            <TextView
+                style="@style/VehicleInfoLabel"
+                android:text="@string/vehicle_stolen_status_label"/>
+
+            <TextView
+                style="@style/VehicleInfoValue"
+                android:id="@+id/vehicle_stolen"/>
+
+        </LinearLayout>
+
+        <LinearLayout style="@style/VehicleInfoSection"
+            android:layout_marginTop="@dimen/vehicle_info_vertical_margin">
+
+            <TextView
+                style="@style/VehicleInfoLabel"
+                android:text="@string/vehicle_class_label"/>
+
+            <TextView
+                style="@style/VehicleInfoValue"
+                android:id="@+id/vehicle_class"/>
+
+        </LinearLayout>
+
+        <LinearLayout style="@style/VehicleInfoSection">
+
+            <TextView
+                style="@style/VehicleInfoLabel"
+                android:text="@string/vehicle_type_label"/>
+
+            <TextView
+                style="@style/VehicleInfoValue"
+                android:id="@+id/vehicle_type"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>
