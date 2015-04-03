@@ -58,4 +58,5 @@
     <string name="about_contact">Kontakt</string>
 
     <string name="search_history_is_empty">Historia wyszukiwania jest pusta</string>
+    <string name="searching_vehicle">Szukam pojazdu</string>
 </resources>

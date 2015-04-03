@@ -1,6 +1,7 @@
 package io.vehiclehistory.fragment;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -29,6 +30,7 @@ public class SearchHistoryFragment extends Fragment implements OnHistoryItemClic
 
     private static final int ANIMATOR_LIST = 0;
     private static final int ANIMATOR_EMPTY_LABEL = 1;
+    private ProgressDialog progressDialog;
 
     public static SearchHistoryFragment newInstance(int sectionNumber) {
         SearchHistoryFragment fragment = new SearchHistoryFragment();
@@ -59,16 +61,19 @@ public class SearchHistoryFragment extends Fragment implements OnHistoryItemClic
 
     @Override
     public void onHistoryItemClick(Search search) {
+        setInteractionLocked(true);
+
         new PerformSearchDelegate(getActivity()).performSearch(search, new OnSearchFinishedListener() {
 
             @Override
             public void onSearchFinished(VehicleResponse vehicleResponse) {
-                //TODO implement me
+                setInteractionLocked(false);
             }
 
             @Override
             public void onSearchError(String message) {
                 //TODO implement me
+                setInteractionLocked(false);
             }
         });
     }
@@ -86,5 +91,17 @@ public class SearchHistoryFragment extends Fragment implements OnHistoryItemClic
 
         HistoryAdapter historyAdapter = new HistoryAdapter(searchHistoryDb, this);
         recycler.setAdapter(historyAdapter);
+    }
+
+    private void setInteractionLocked(boolean lock) {
+        if (lock) {
+            progressDialog = ProgressDialog.show(getActivity(), null,
+                    getActivity().getString(R.string.searching_vehicle), true, false);
+        } else {
+            if (progressDialog != null) {
+                progressDialog.dismiss();
+                progressDialog = null;
+            }
+        }
     }
 }
