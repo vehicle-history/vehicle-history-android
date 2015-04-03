@@ -15,7 +15,7 @@ public class SaveSearchDelegate {
     }
 
     public void saveSearch(VehicleInput input, VehicleResponse response) {
-        searchHistoryDb.saveSearch(
+        searchHistoryDb.saveOrUpdateSearch(
                 new Search(buildLabel(response), input.getPlate(), input.getVin(), input.getFirstRegistrationDate()));
     }
 

@@ -25,17 +25,21 @@ public class SearchHistoryDb {
         this.historyDbHelper = new HistoryDbOpenHelper(context);
     }
 
-    public void saveSearch(Search search) {
+    public void saveOrUpdateSearch(Search search) {
         SQLiteDatabase db = historyDbHelper.getWritableDatabase();
 
         ContentValues values = new ContentValues();
         values.put(COLUMN_TIMESTAMP, getTimestamp());
-        values.put(COLUMN_LABEL, search.getLabel());
-        values.put(COLUMN_REGISTRATION_NUMBER, search.getPlate());
-        values.put(COLUMN_VIN, search.getVin());
-        values.put(COLUMN_REGISTRATION_DATE, search.getRegistrationDate());
 
-        db.insert(TABLE_NAME, null, values);
+        int updatedRows = db.update(TABLE_NAME, values, COLUMN_REGISTRATION_NUMBER
+                + " = ? AND " + COLUMN_REGISTRATION_DATE
+                + " = ? AND " + COLUMN_VIN + " = ?", new String[] {
+                search.getPlate(), search.getRegistrationDate(), search.getVin()
+        });
+
+        if (updatedRows == 0) {
+            saveSearch(search);
+        }
     }
 
     public Search getSearchAt(int position) {
@@ -59,6 +63,16 @@ public class SearchHistoryDb {
 
         cursor.moveToPosition(position);
 
+        return getSearchFromCursor(cursor);
+    }
+
+    public int getCount() {
+        SQLiteDatabase db =  historyDbHelper.getReadableDatabase();
+
+        return (int) DatabaseUtils.queryNumEntries(db, TABLE_NAME, null, null);
+    }
+
+    private Search getSearchFromCursor(Cursor cursor) {
         String label = cursor.getString(1);
         String registrationNumber = cursor.getString(2);
         String vin = cursor.getString(3);
@@ -67,10 +81,18 @@ public class SearchHistoryDb {
         return new Search(label, registrationNumber, vin, registrationDate);
     }
 
-    public int getCount() {
-        SQLiteDatabase db =  historyDbHelper.getReadableDatabase();
+    private void saveSearch(Search search) {
+        SQLiteDatabase db = historyDbHelper.getWritableDatabase();
 
-        return (int) DatabaseUtils.queryNumEntries(db, TABLE_NAME, null, null);
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_TIMESTAMP, getTimestamp());
+        values.put(COLUMN_LABEL, search.getLabel());
+        values.put(COLUMN_REGISTRATION_NUMBER, search.getPlate());
+        values.put(COLUMN_VIN, search.getVin());
+        values.put(COLUMN_REGISTRATION_DATE, search.getRegistrationDate());
+
+        db.insert(TABLE_NAME, null, values);
+        db.close();
     }
 
     private long getTimestamp() {
