@@ -59,4 +59,5 @@
 
     <string name="search_history_is_empty">Historia wyszukiwania jest pusta</string>
     <string name="searching_vehicle">Szukam pojazdu</string>
+    <string name="clear_history_label">Wyczyść historię wyszukiwania</string>
 </resources>

@@ -34,15 +34,18 @@ public class OptionsFragment extends PreferenceFragment {
 
         addPreferencesFromResource(R.xml.preferences);
 
-        Preference clearHistory = findPreference(getString(R.string.clear_history));
+        final Preference clearHistory = findPreference(getString(R.string.clear_history));
         clearHistory.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
 
             @Override
             public boolean onPreferenceClick(Preference preference) {
                 new SearchHistoryDb(getActivity()).clearHistory();
+                clearHistory.setEnabled(false);
                 return true;
             }
         });
+
+        clearHistory.setEnabled(new SearchHistoryDb(getActivity()).getCount() > 0);
     }
 
     @Override
