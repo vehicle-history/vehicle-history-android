@@ -60,8 +60,7 @@ public class TimelineFragment extends Fragment {
         dateTextView.setText(event.getCreatedAt());
 
         TextView eventNameTextView = (TextView) row.findViewById(R.id.timeline_description);
-        //TODO: enum -> resources string value.
-        eventNameTextView.setText(event.getType().toString());
+        eventNameTextView.setText(event.getType().getValueResource());
 
         table.addView(row);
     }
