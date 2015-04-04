@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import io.vehiclehistory.DateFormatter;
 import io.vehiclehistory.R;
 import io.vehiclehistory.activity.VehicleDataActivity;
 import io.vehiclehistory.api.model.Event;
@@ -56,11 +57,11 @@ public class TimelineFragment extends Fragment {
     private void addRow(TableLayout table, Event event) {
         View row = LayoutInflater.from(getActivity()).inflate(R.layout.timeline_row, table, false);
 
-        TextView dateTextView = (TextView) row.findViewById(R.id.timeline_date);
-        dateTextView.setText(event.getCreatedAt());
-
         TextView eventNameTextView = (TextView) row.findViewById(R.id.timeline_description);
         eventNameTextView.setText(event.getType().getValueResource());
+
+        TextView dateTextView = (TextView) row.findViewById(R.id.timeline_date);
+        dateTextView.setText(new DateFormatter().formatDateFromApi(event.getCreatedAt()));
 
         table.addView(row);
     }

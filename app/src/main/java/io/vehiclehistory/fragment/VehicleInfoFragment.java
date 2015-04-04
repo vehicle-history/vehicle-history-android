@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import io.vehiclehistory.DateFormatter;
 import io.vehiclehistory.R;
 import io.vehiclehistory.activity.VehicleDataActivity;
 import io.vehiclehistory.api.model.Vehicle;
@@ -62,7 +63,7 @@ public class VehicleInfoFragment extends Fragment {
         vin.setText(vehicle.getVin());
 
         TextView first_registration = (TextView) rootView.findViewById(R.id.first_registration);
-        first_registration.setText(vehicle.getRegistration().getFirstAt());
+        first_registration.setText(new DateFormatter().formatDateFromApi(vehicle.getRegistration().getFirstAt()));
 
         TextView engine_capacity = (TextView) rootView.findViewById(R.id.engine_capacity);
         engine_capacity.setText(vehicle.getEngine().getCubicCapacity());
