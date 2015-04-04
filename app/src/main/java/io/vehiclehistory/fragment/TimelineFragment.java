@@ -5,9 +5,15 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TableLayout;
+import android.widget.TableRow;
+import android.widget.TextView;
+
+import java.util.List;
 
 import io.vehiclehistory.R;
 import io.vehiclehistory.activity.VehicleDataActivity;
+import io.vehiclehistory.api.model.Event;
 import io.vehiclehistory.api.model.VehicleResponse;
 
 /**
@@ -30,7 +36,36 @@ public class TimelineFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_timeline, container, false);
+
+        Bundle args = getArguments();
+        VehicleResponse vehicleResponse = (VehicleResponse) args.getSerializable(
+                VehicleDataActivity.EXTRA_VEHICLE_RESPONSE_KEY);
+
+        bindDataToView(vehicleResponse.getEvents(), rootView);
+
         return rootView;
     }
 
+    private void bindDataToView(List<Event> eventList, View rootView) {
+        final TableLayout table = (TableLayout) rootView.findViewById(R.id.timeline_table_layout);
+
+        for (Event event : eventList) {
+            addRow(table, event);
+        }
+    }
+
+    private void addRow(TableLayout table, Event event) {
+        TableRow row = new TableRow(table.getContext());
+
+        TextView dateTextView = new TextView(table.getContext());
+        dateTextView.setText(event.getCreatedAt());
+        row.addView(dateTextView);
+
+        TextView eventNameTextView = new TextView(table.getContext());
+        //TODO: enum -> resources string value.
+        eventNameTextView.setText(event.getType().toString());
+        row.addView(eventNameTextView);
+
+        table.addView(row);
+    }
 }
