@@ -56,7 +56,7 @@ public class TimelineFragment extends Fragment {
     private void addRow(TableLayout table, Event event) {
         View row = LayoutInflater.from(getActivity()).inflate(R.layout.timeline_row, table, false);
 
-        TextView dateTextView = (TextView) row.findViewById(R.id.timeline_time);
+        TextView dateTextView = (TextView) row.findViewById(R.id.timeline_date);
         dateTextView.setText(event.getCreatedAt());
 
         TextView eventNameTextView = (TextView) row.findViewById(R.id.timeline_description);
