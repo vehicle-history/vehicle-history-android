@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TableLayout;
-import android.widget.TableRow;
 import android.widget.TextView;
 
 import java.util.List;
@@ -55,16 +54,14 @@ public class TimelineFragment extends Fragment {
     }
 
     private void addRow(TableLayout table, Event event) {
-        TableRow row = new TableRow(table.getContext());
+        View row = LayoutInflater.from(getActivity()).inflate(R.layout.timeline_row, table, false);
 
-        TextView dateTextView = new TextView(table.getContext());
+        TextView dateTextView = (TextView) row.findViewById(R.id.timeline_time);
         dateTextView.setText(event.getCreatedAt());
-        row.addView(dateTextView);
 
-        TextView eventNameTextView = new TextView(table.getContext());
+        TextView eventNameTextView = (TextView) row.findViewById(R.id.timeline_description);
         //TODO: enum -> resources string value.
         eventNameTextView.setText(event.getType().toString());
-        row.addView(eventNameTextView);
 
         table.addView(row);
     }
