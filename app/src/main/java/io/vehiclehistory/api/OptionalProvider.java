@@ -14,8 +14,10 @@ import io.vehiclehistory.api.model.Inspection;
 import io.vehiclehistory.api.model.InspectionStatus;
 import io.vehiclehistory.api.model.Mileage;
 import io.vehiclehistory.api.model.Name;
+import io.vehiclehistory.api.model.Plate;
 import io.vehiclehistory.api.model.Policy;
 import io.vehiclehistory.api.model.PolicyStatus;
+import io.vehiclehistory.api.model.Production;
 import io.vehiclehistory.api.model.Registration;
 import io.vehiclehistory.api.model.RegistrationStatus;
 import io.vehiclehistory.api.model.Vehicle;
@@ -166,4 +168,32 @@ public class OptionalProvider {
                 ? carKind.toString() : resources.getString(R.string.unknown_vehicle_kind);
     }
 
+    public String getProductionYear(Vehicle vehicle) {
+        Production production = vehicle.getProduction();
+        if (production == null) {
+            return resources.getString(R.string.unknown_production_year);
+        }
+
+        String year = production.getYear();
+
+        return year != null
+                ? year : resources.getString(R.string.unknown_production_year);
+    }
+
+    public String getPlate(Vehicle vehicle) {
+        Plate plate = vehicle.getPlate();
+        if (plate == null) {
+            return resources.getString(R.string.unknown_plate);
+        }
+
+        String plateValue = plate.getValue();
+
+        return plateValue != null ? plateValue : resources.getString(R.string.unknown_plate);
+    }
+
+    public String getVin(Vehicle vehicle) {
+        String vin = vehicle.getVin();
+
+        return vin != null ? vin : resources.getString(R.string.unknown_vin);
+    }
 }

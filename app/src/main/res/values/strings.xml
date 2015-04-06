@@ -73,4 +73,7 @@
     <string name="unknown_inspection_status">nieznany</string>
     <string name="unknown_vehicle_type">nieznany</string>
     <string name="unknown_vehicle_kind">nieznany</string>
+    <string name="unknown_production_year">nieznany</string>
+    <string name="unknown_plate">nieznany</string>
+    <string name="unknown_vin">nieznany</string>
 </resources>

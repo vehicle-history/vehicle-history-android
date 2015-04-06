@@ -56,13 +56,13 @@ public class VehicleInfoFragment extends Fragment {
         model.setText(optionalProvider.getModel(vehicle));
 
         TextView year = (TextView) rootView.findViewById(R.id.year);
-        year.setText(vehicle.getProduction() != null ? vehicle.getProduction().getYear() : "");
+        year.setText(optionalProvider.getProductionYear(vehicle));
 
         TextView regNumber = (TextView) rootView.findViewById(R.id.reg_number);
-        regNumber.setText(vehicle.getPlate().getValue());
+        regNumber.setText(optionalProvider.getPlate(vehicle));
 
         TextView vin = (TextView) rootView.findViewById(R.id.vin);
-        vin.setText(vehicle.getVin());
+        vin.setText(optionalProvider.getVin(vehicle));
 
         TextView firstRegistration = (TextView) rootView.findViewById(R.id.first_registration);
         firstRegistration.setText(optionalProvider.getFirstVehicleRegistration(vehicle));
