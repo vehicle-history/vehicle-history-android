@@ -231,6 +231,6 @@ public class OptionalProvider {
             return resources.getString(R.string.no_data);
         }
 
-        return stolen == true ? resources.getString(R.string.yes) : resources.getString(R.string.no);
+        return stolen ? resources.getString(R.string.yes) : resources.getString(R.string.no);
     }
 }
