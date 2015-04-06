@@ -60,6 +60,33 @@ public class OptionalProvider {
                 : resources.getString(R.string.unknown_registration_status);
     }
 
+    public String getMakePlusModel(Vehicle vehicle) {
+        Name name = vehicle.getName();
+        if (name == null) {
+            return resources.getString(R.string.unknown_car);
+        }
+
+        String model = name.getModel();
+        CarMake make = name.getMake();
+
+        if (model == null && make == null) {
+            return resources.getString(R.string.unknown_car);
+        }
+
+        StringBuilder sb = new StringBuilder();
+
+        if (make != null) {
+            sb.append(make.toString());
+            sb.append(" ");
+        }
+
+        if (model != null) {
+            sb.append(model);
+        }
+
+        return sb.toString();
+    }
+
     public String getModel(Vehicle vehicle) {
         Name name = vehicle.getName();
         if (name == null) {
@@ -195,5 +222,15 @@ public class OptionalProvider {
         String vin = vehicle.getVin();
 
         return vin != null ? vin : resources.getString(R.string.unknown_vin);
+    }
+
+    public String getStolen(Vehicle vehicle) {
+        Boolean stolen = vehicle.getStolen();
+
+        if (stolen == null) {
+            return resources.getString(R.string.no_data);
+        }
+
+        return stolen == true ? resources.getString(R.string.yes) : resources.getString(R.string.no);
     }
 }

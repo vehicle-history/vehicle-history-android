@@ -47,7 +47,7 @@ public class VehicleInfoFragment extends Fragment {
         OptionalProvider optionalProvider = new OptionalProvider(getActivity());
 
         TextView carLabel = (TextView) rootView.findViewById(R.id.car_label);
-        carLabel.setText(vehicle.getName().getMake() + " " + vehicle.getName().getModel());
+        carLabel.setText(optionalProvider.getMakePlusModel(vehicle));
 
         TextView producer = (TextView) rootView.findViewById(R.id.producer);
         producer.setText(optionalProvider.getMake(vehicle));
@@ -86,8 +86,7 @@ public class VehicleInfoFragment extends Fragment {
         technicalExamination.setText(optionalProvider.getInspectionStatus(vehicle));
 
         TextView vehicleStolen = (TextView) rootView.findViewById(R.id.vehicle_stolen);
-        vehicleStolen.setText(vehicle.getStolen() ?
-                getActivity().getString(R.string.yes) : getActivity().getString(R.string.no));
+        vehicleStolen.setText(optionalProvider.getStolen(vehicle));
 
         TextView vehicleClass = (TextView) rootView.findViewById(R.id.vehicle_class);
         vehicleClass.setText(optionalProvider.getVehicleKind(vehicle));

@@ -76,4 +76,5 @@
     <string name="unknown_production_year">nieznany</string>
     <string name="unknown_plate">nieznany</string>
     <string name="unknown_vin">nieznany</string>
+    <string name="unknown_car">Nieznany pojazd</string>
 </resources>
