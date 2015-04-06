@@ -56,20 +56,20 @@ public class VehicleInfoFragment extends Fragment {
         TextView year = (TextView) rootView.findViewById(R.id.year);
         year.setText(vehicle.getProduction() != null ? vehicle.getProduction().getYear() : "");
 
-        TextView reg_number = (TextView) rootView.findViewById(R.id.reg_number);
-        reg_number.setText(vehicle.getPlate().getValue());
+        TextView regNumber = (TextView) rootView.findViewById(R.id.reg_number);
+        regNumber.setText(vehicle.getPlate().getValue());
 
         TextView vin = (TextView) rootView.findViewById(R.id.vin);
         vin.setText(vehicle.getVin());
 
-        TextView first_registration = (TextView) rootView.findViewById(R.id.first_registration);
-        first_registration.setText(new DateFormatter().formatDateFromApi(vehicle.getRegistration().getFirstAt()));
+        TextView firstRegistration = (TextView) rootView.findViewById(R.id.first_registration);
+        firstRegistration.setText(new DateFormatter().formatDateFromApi(vehicle.getRegistration().getFirstAt()));
 
-        TextView engine_capacity = (TextView) rootView.findViewById(R.id.engine_capacity);
-        engine_capacity.setText(vehicle.getEngine().getCubicCapacity());
+        TextView engineCapacity = (TextView) rootView.findViewById(R.id.engine_capacity);
+        engineCapacity.setText(vehicle.getEngine().getCubicCapacity());
 
-        TextView fuel_type = (TextView) rootView.findViewById(R.id.fuel_type);
-        fuel_type.setText(vehicle.getEngine().getFuel().toString());
+        TextView fuelType = (TextView) rootView.findViewById(R.id.fuel_type);
+        fuelType.setText(vehicle.getEngine().getFuel().toString());
 
         TextView mileage = (TextView) rootView.findViewById(R.id.mileage);
         mileage.setText(vehicle.getMileage() != null ?
@@ -78,21 +78,21 @@ public class VehicleInfoFragment extends Fragment {
         TextView insurance = (TextView) rootView.findViewById(R.id.insurance);
         insurance.setText(vehicle.getPolicy().getStatus().toString());
 
-        TextView registration_status = (TextView) rootView.findViewById(R.id.registration_status);
-        registration_status.setText(vehicle.getRegistration().getStatus().toString());
+        TextView registrationStatus = (TextView) rootView.findViewById(R.id.registration_status);
+        registrationStatus.setText(vehicle.getRegistration().getStatus().toString());
 
-        TextView technical_examination = (TextView) rootView.findViewById(R.id.technical_examination);
-        technical_examination.setText(vehicle.getInspection().getStatus().toString());
+        TextView technicalExamination = (TextView) rootView.findViewById(R.id.technical_examination);
+        technicalExamination.setText(vehicle.getInspection().getStatus().toString());
 
-        TextView vehicle_stolen = (TextView) rootView.findViewById(R.id.vehicle_stolen);
-        vehicle_stolen.setText(vehicle.getStolen() ?
+        TextView vehicleStolen = (TextView) rootView.findViewById(R.id.vehicle_stolen);
+        vehicleStolen.setText(vehicle.getStolen() ?
                 getActivity().getString(R.string.yes) : getActivity().getString(R.string.no));
 
-        TextView vehicle_class = (TextView) rootView.findViewById(R.id.vehicle_class);
-        vehicle_class.setText(vehicle.getType().getKind().getValueResource());
+        TextView vehicleClass = (TextView) rootView.findViewById(R.id.vehicle_class);
+        vehicleClass.setText(vehicle.getType().getKind().getValueResource());
 
-        TextView vehicle_type = (TextView) rootView.findViewById(R.id.vehicle_type);
-        vehicle_type.setText(vehicle.getType().getType().getValueResource());
+        TextView vehicleType = (TextView) rootView.findViewById(R.id.vehicle_type);
+        vehicleType.setText(vehicle.getType().getType().getValueResource());
     }
 
 }
