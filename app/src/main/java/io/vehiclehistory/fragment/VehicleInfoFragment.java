@@ -7,9 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import io.vehiclehistory.DateFormatter;
 import io.vehiclehistory.R;
 import io.vehiclehistory.activity.VehicleDataActivity;
+import io.vehiclehistory.api.OptionalProvider;
 import io.vehiclehistory.api.model.Vehicle;
 import io.vehiclehistory.api.model.VehicleResponse;
 
@@ -44,6 +44,8 @@ public class VehicleInfoFragment extends Fragment {
     }
 
     private void bindDataToView(Vehicle vehicle, View rootView) {
+        OptionalProvider optionalProvider = new OptionalProvider(getActivity());
+
         TextView carLabel = (TextView) rootView.findViewById(R.id.car_label);
         carLabel.setText(vehicle.getName().getMake() + " " + vehicle.getName().getModel());
 
@@ -63,7 +65,7 @@ public class VehicleInfoFragment extends Fragment {
         vin.setText(vehicle.getVin());
 
         TextView firstRegistration = (TextView) rootView.findViewById(R.id.first_registration);
-        firstRegistration.setText(new DateFormatter().formatDateFromApi(vehicle.getRegistration().getFirstAt()));
+        firstRegistration.setText(optionalProvider.getFirstVehicleRegistration(vehicle));
 
         TextView engineCapacity = (TextView) rootView.findViewById(R.id.engine_capacity);
         engineCapacity.setText(vehicle.getEngine().getCubicCapacity());
