@@ -8,6 +8,7 @@ import io.vehiclehistory.R;
 import io.vehiclehistory.api.model.CarMake;
 import io.vehiclehistory.api.model.Engine;
 import io.vehiclehistory.api.model.FuelType;
+import io.vehiclehistory.api.model.Mileage;
 import io.vehiclehistory.api.model.Name;
 import io.vehiclehistory.api.model.Registration;
 import io.vehiclehistory.api.model.RegistrationStatus;
@@ -96,6 +97,18 @@ public class OptionalProvider {
 
         return fuelType != null
                 ? fuelType.toString() : resources.getString(R.string.unknown_fuel_type);
+    }
+
+    public String getMileage(Vehicle vehicle) {
+        Mileage mileage = vehicle.getMileage();
+        if (mileage == null) {
+            return resources.getString(R.string.unknown_fuel_type);
+        }
+
+        String fuelType = mileage.getValue();
+
+        return fuelType != null
+                ? fuelType : resources.getString(R.string.unknown_mileage);
     }
 
 }

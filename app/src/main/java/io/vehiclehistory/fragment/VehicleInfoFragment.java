@@ -74,8 +74,7 @@ public class VehicleInfoFragment extends Fragment {
         fuelType.setText(optionalProvider.getFuelType(vehicle));
 
         TextView mileage = (TextView) rootView.findViewById(R.id.mileage);
-        mileage.setText(vehicle.getMileage() != null ?
-                vehicle.getMileage().getValue() : getActivity().getString(R.string.no_data));
+        mileage.setText(optionalProvider.getMileage(vehicle));
 
         TextView insurance = (TextView) rootView.findViewById(R.id.insurance);
         insurance.setText(vehicle.getPolicy().getStatus().toString());
