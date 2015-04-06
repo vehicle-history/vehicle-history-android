@@ -5,6 +5,8 @@ import android.content.res.Resources;
 
 import io.vehiclehistory.DateFormatter;
 import io.vehiclehistory.R;
+import io.vehiclehistory.api.model.CarMake;
+import io.vehiclehistory.api.model.Name;
 import io.vehiclehistory.api.model.Registration;
 import io.vehiclehistory.api.model.Vehicle;
 
@@ -30,6 +32,30 @@ public class OptionalProvider {
         return firstRegistration != null
                 ? new DateFormatter().formatDateFromApi(firstRegistration)
                 : resources.getString(R.string.unknown_first_vehicle_registration);
+    }
+
+    public String getModel(Vehicle vehicle) {
+        Name name = vehicle.getName();
+        if (name == null) {
+            return resources.getString(R.string.unknown_model);
+        }
+
+        String model = name.getModel();
+
+        return model != null
+                ? model : resources.getString(R.string.unknown_model);
+    }
+
+    public String getMake(Vehicle vehicle) {
+        Name name = vehicle.getName();
+        if (name == null) {
+            return resources.getString(R.string.unknown_make);
+        }
+
+        CarMake make = name.getMake();
+
+        return make != null
+                ? make.toString() : resources.getString(R.string.unknown_make);
     }
 
 }

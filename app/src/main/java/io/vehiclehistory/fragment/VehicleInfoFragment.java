@@ -50,10 +50,10 @@ public class VehicleInfoFragment extends Fragment {
         carLabel.setText(vehicle.getName().getMake() + " " + vehicle.getName().getModel());
 
         TextView producer = (TextView) rootView.findViewById(R.id.producer);
-        producer.setText(vehicle.getName().getMake().toString());
+        producer.setText(optionalProvider.getMake(vehicle));
 
         TextView model = (TextView) rootView.findViewById(R.id.model);
-        model.setText(vehicle.getName().getModel());
+        model.setText(optionalProvider.getModel(vehicle));
 
         TextView year = (TextView) rootView.findViewById(R.id.year);
         year.setText(vehicle.getProduction() != null ? vehicle.getProduction().getYear() : "");
