@@ -81,7 +81,7 @@ public class VehicleInfoFragment extends Fragment {
         insurance.setText(vehicle.getPolicy().getStatus().toString());
 
         TextView registrationStatus = (TextView) rootView.findViewById(R.id.registration_status);
-        registrationStatus.setText(vehicle.getRegistration().getStatus().toString());
+        registrationStatus.setText(optionalProvider.getRegistrationStatus(vehicle));
 
         TextView technicalExamination = (TextView) rootView.findViewById(R.id.technical_examination);
         technicalExamination.setText(vehicle.getInspection().getStatus().toString());

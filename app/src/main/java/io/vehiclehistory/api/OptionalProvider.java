@@ -8,6 +8,7 @@ import io.vehiclehistory.R;
 import io.vehiclehistory.api.model.CarMake;
 import io.vehiclehistory.api.model.Name;
 import io.vehiclehistory.api.model.Registration;
+import io.vehiclehistory.api.model.RegistrationStatus;
 import io.vehiclehistory.api.model.Vehicle;
 
 /**
@@ -32,6 +33,19 @@ public class OptionalProvider {
         return firstRegistration != null
                 ? new DateFormatter().formatDateFromApi(firstRegistration)
                 : resources.getString(R.string.unknown_first_vehicle_registration);
+    }
+
+    public String getRegistrationStatus(Vehicle vehicle) {
+        Registration registration = vehicle.getRegistration();
+        if (registration == null) {
+            return resources.getString(R.string.unknown_registration_status);
+        }
+
+        RegistrationStatus status = registration.getStatus();
+
+        return status != null
+                ? status.toString()
+                : resources.getString(R.string.unknown_registration_status);
     }
 
     public String getModel(Vehicle vehicle) {
