@@ -66,4 +66,6 @@
     <string name="unknown_model">nieznany</string>
     <string name="unknown_make">nieznany</string>
     <string name="unknown_registration_status">nieznany</string>
+    <string name="unknown_cubic_capacity">nieznana</string>
+    <string name="unknown_fuel_type">nieznane</string>
 </resources>

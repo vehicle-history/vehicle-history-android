@@ -68,10 +68,10 @@ public class VehicleInfoFragment extends Fragment {
         firstRegistration.setText(optionalProvider.getFirstVehicleRegistration(vehicle));
 
         TextView engineCapacity = (TextView) rootView.findViewById(R.id.engine_capacity);
-        engineCapacity.setText(vehicle.getEngine().getCubicCapacity());
+        engineCapacity.setText(optionalProvider.getCubicCapacity(vehicle));
 
         TextView fuelType = (TextView) rootView.findViewById(R.id.fuel_type);
-        fuelType.setText(vehicle.getEngine().getFuel().toString());
+        fuelType.setText(optionalProvider.getFuelType(vehicle));
 
         TextView mileage = (TextView) rootView.findViewById(R.id.mileage);
         mileage.setText(vehicle.getMileage() != null ?

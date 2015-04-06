@@ -6,6 +6,8 @@ import android.content.res.Resources;
 import io.vehiclehistory.DateFormatter;
 import io.vehiclehistory.R;
 import io.vehiclehistory.api.model.CarMake;
+import io.vehiclehistory.api.model.Engine;
+import io.vehiclehistory.api.model.FuelType;
 import io.vehiclehistory.api.model.Name;
 import io.vehiclehistory.api.model.Registration;
 import io.vehiclehistory.api.model.RegistrationStatus;
@@ -70,6 +72,30 @@ public class OptionalProvider {
 
         return make != null
                 ? make.toString() : resources.getString(R.string.unknown_make);
+    }
+
+    public String getCubicCapacity(Vehicle vehicle) {
+        Engine engine = vehicle.getEngine();
+        if (engine == null) {
+            return resources.getString(R.string.unknown_cubic_capacity);
+        }
+
+        String engineCc = engine.getCubicCapacity();
+
+        return engineCc != null
+                ? engineCc : resources.getString(R.string.unknown_cubic_capacity);
+    }
+
+    public String getFuelType(Vehicle vehicle) {
+        Engine engine = vehicle.getEngine();
+        if (engine == null) {
+            return resources.getString(R.string.unknown_fuel_type);
+        }
+
+        FuelType fuelType = engine.getFuel();
+
+        return fuelType != null
+                ? fuelType.toString() : resources.getString(R.string.unknown_fuel_type);
     }
 
 }
