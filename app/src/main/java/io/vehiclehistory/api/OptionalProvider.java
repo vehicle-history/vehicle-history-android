@@ -5,7 +5,9 @@ import android.content.res.Resources;
 
 import io.vehiclehistory.DateFormatter;
 import io.vehiclehistory.R;
+import io.vehiclehistory.api.model.CarKind;
 import io.vehiclehistory.api.model.CarMake;
+import io.vehiclehistory.api.model.CarType;
 import io.vehiclehistory.api.model.Engine;
 import io.vehiclehistory.api.model.FuelType;
 import io.vehiclehistory.api.model.Inspection;
@@ -17,6 +19,7 @@ import io.vehiclehistory.api.model.PolicyStatus;
 import io.vehiclehistory.api.model.Registration;
 import io.vehiclehistory.api.model.RegistrationStatus;
 import io.vehiclehistory.api.model.Vehicle;
+import io.vehiclehistory.api.model.VehicleType;
 
 /**
  * Created by m4lysh on 2015-04-06.
@@ -137,6 +140,30 @@ public class OptionalProvider {
 
         return inspectionStatus != null
                 ? inspectionStatus.toString() : resources.getString(R.string.unknown_inspection_status);
+    }
+
+    public String getVehicleType(Vehicle vehicle) {
+        VehicleType type = vehicle.getType();
+        if (type == null) {
+            return resources.getString(R.string.unknown_vehicle_type);
+        }
+
+        CarType vehicleType = type.getType();
+
+        return vehicleType != null
+                ? vehicleType.toString() : resources.getString(R.string.unknown_vehicle_type);
+    }
+
+    public String getVehicleKind(Vehicle vehicle) {
+        VehicleType type = vehicle.getType();
+        if (type == null) {
+            return resources.getString(R.string.unknown_vehicle_kind);
+        }
+
+        CarKind carKind = type.getKind();
+
+        return carKind != null
+                ? carKind.toString() : resources.getString(R.string.unknown_vehicle_kind);
     }
 
 }

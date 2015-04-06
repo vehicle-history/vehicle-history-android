@@ -71,4 +71,6 @@
     <string name="unknown_mileage">nieznany</string>
     <string name="unknown_policy_status">nieznany</string>
     <string name="unknown_inspection_status">nieznany</string>
+    <string name="unknown_vehicle_type">nieznany</string>
+    <string name="unknown_vehicle_kind">nieznany</string>
 </resources>

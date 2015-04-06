@@ -90,10 +90,10 @@ public class VehicleInfoFragment extends Fragment {
                 getActivity().getString(R.string.yes) : getActivity().getString(R.string.no));
 
         TextView vehicleClass = (TextView) rootView.findViewById(R.id.vehicle_class);
-        vehicleClass.setText(vehicle.getType().getKind().getValueResource());
+        vehicleClass.setText(optionalProvider.getVehicleKind(vehicle));
 
         TextView vehicleType = (TextView) rootView.findViewById(R.id.vehicle_type);
-        vehicleType.setText(vehicle.getType().getType().getValueResource());
+        vehicleType.setText(optionalProvider.getVehicleType(vehicle));
     }
 
 }
