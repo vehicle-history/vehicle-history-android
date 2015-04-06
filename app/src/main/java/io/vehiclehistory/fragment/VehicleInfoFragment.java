@@ -77,13 +77,13 @@ public class VehicleInfoFragment extends Fragment {
         mileage.setText(optionalProvider.getMileage(vehicle));
 
         TextView insurance = (TextView) rootView.findViewById(R.id.insurance);
-        insurance.setText(vehicle.getPolicy().getStatus().toString());
+        insurance.setText(optionalProvider.hasInsurance(vehicle));
 
         TextView registrationStatus = (TextView) rootView.findViewById(R.id.registration_status);
         registrationStatus.setText(optionalProvider.getRegistrationStatus(vehicle));
 
         TextView technicalExamination = (TextView) rootView.findViewById(R.id.technical_examination);
-        technicalExamination.setText(vehicle.getInspection().getStatus().toString());
+        technicalExamination.setText(optionalProvider.getInspectionStatus(vehicle));
 
         TextView vehicleStolen = (TextView) rootView.findViewById(R.id.vehicle_stolen);
         vehicleStolen.setText(vehicle.getStolen() ?

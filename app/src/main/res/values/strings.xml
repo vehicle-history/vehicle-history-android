@@ -69,4 +69,6 @@
     <string name="unknown_cubic_capacity">nieznana</string>
     <string name="unknown_fuel_type">nieznane</string>
     <string name="unknown_mileage">nieznany</string>
+    <string name="unknown_policy_status">nieznany</string>
+    <string name="unknown_inspection_status">nieznany</string>
 </resources>

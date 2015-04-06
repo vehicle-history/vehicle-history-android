@@ -8,8 +8,12 @@ import io.vehiclehistory.R;
 import io.vehiclehistory.api.model.CarMake;
 import io.vehiclehistory.api.model.Engine;
 import io.vehiclehistory.api.model.FuelType;
+import io.vehiclehistory.api.model.Inspection;
+import io.vehiclehistory.api.model.InspectionStatus;
 import io.vehiclehistory.api.model.Mileage;
 import io.vehiclehistory.api.model.Name;
+import io.vehiclehistory.api.model.Policy;
+import io.vehiclehistory.api.model.PolicyStatus;
 import io.vehiclehistory.api.model.Registration;
 import io.vehiclehistory.api.model.RegistrationStatus;
 import io.vehiclehistory.api.model.Vehicle;
@@ -102,13 +106,37 @@ public class OptionalProvider {
     public String getMileage(Vehicle vehicle) {
         Mileage mileage = vehicle.getMileage();
         if (mileage == null) {
-            return resources.getString(R.string.unknown_fuel_type);
+            return resources.getString(R.string.unknown_mileage);
         }
 
         String fuelType = mileage.getValue();
 
         return fuelType != null
                 ? fuelType : resources.getString(R.string.unknown_mileage);
+    }
+
+    public String hasInsurance(Vehicle vehicle) {
+        Policy policy = vehicle.getPolicy();
+        if (policy == null) {
+            return resources.getString(R.string.unknown_policy_status);
+        }
+
+        PolicyStatus policyStatus = policy.getStatus();
+
+        return policyStatus != null
+                ? policyStatus.toString() : resources.getString(R.string.unknown_policy_status);
+    }
+
+    public String getInspectionStatus(Vehicle vehicle) {
+        Inspection inspection = vehicle.getInspection();
+        if (inspection == null) {
+            return resources.getString(R.string.unknown_inspection_status);
+        }
+
+        InspectionStatus inspectionStatus = inspection.getStatus();
+
+        return inspectionStatus != null
+                ? inspectionStatus.toString() : resources.getString(R.string.unknown_inspection_status);
     }
 
 }
