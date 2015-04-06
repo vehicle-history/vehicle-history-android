@@ -60,4 +60,21 @@
     <string name="search_history_is_empty">Historia wyszukiwania jest pusta</string>
     <string name="searching_vehicle">Szukam pojazdu</string>
     <string name="clear_history_label">Wyczyść historię wyszukiwania</string>
+
+    <!-- default api values -->
+    <string name="unknown_first_vehicle_registration">nieznana</string>
+    <string name="unknown_model">nieznany</string>
+    <string name="unknown_make">nieznany</string>
+    <string name="unknown_registration_status">nieznany</string>
+    <string name="unknown_cubic_capacity">nieznana</string>
+    <string name="unknown_fuel_type">nieznane</string>
+    <string name="unknown_mileage">nieznany</string>
+    <string name="unknown_policy_status">nieznany</string>
+    <string name="unknown_inspection_status">nieznany</string>
+    <string name="unknown_vehicle_type">nieznany</string>
+    <string name="unknown_vehicle_kind">nieznany</string>
+    <string name="unknown_production_year">nieznany</string>
+    <string name="unknown_plate">nieznany</string>
+    <string name="unknown_vin">nieznany</string>
+    <string name="unknown_car">Nieznany pojazd</string>
 </resources>

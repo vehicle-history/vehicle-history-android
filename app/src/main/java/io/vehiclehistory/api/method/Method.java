@@ -33,7 +33,7 @@ public abstract class Method<T> {
                 .setClient(new OkClient(new UnsafeOkHttpClientProvider().getUnsafeOkHttpClient()))
                 .setEndpoint(Settings.OAUTH_HOST)
                 .setRequestInterceptor(requestInterceptor)
-                .setLogLevel(RestAdapter.LogLevel.FULL)
+                .setLogLevel(BuildConfig.DEBUG ? RestAdapter.LogLevel.FULL : RestAdapter.LogLevel.NONE)
                 .build();
 
         apiService = restAdapter.create(VehicleHistoryApiInterface.class);
