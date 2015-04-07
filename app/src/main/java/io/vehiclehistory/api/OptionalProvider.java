@@ -35,16 +35,14 @@ public class OptionalProvider {
     }
 
     public String getFirstVehicleRegistration(Vehicle vehicle) {
+        String date = resources.getString(R.string.unknown_first_vehicle_registration);
         Registration registration = vehicle.getRegistration();
-        if (registration == null) {
-            return resources.getString(R.string.unknown_first_vehicle_registration);
+
+        if (registration != null && registration.getFirstAt() != null) {
+            date = new DateFormatter().formatDateFromApi(registration.getFirstAt());
         }
 
-        String firstRegistration = registration.getFirstAt();
-
-        return firstRegistration != null
-                ? new DateFormatter().formatDateFromApi(firstRegistration)
-                : resources.getString(R.string.unknown_first_vehicle_registration);
+        return date;
     }
 
     public String getRegistrationStatus(Vehicle vehicle) {
@@ -73,6 +71,10 @@ public class OptionalProvider {
             return resources.getString(R.string.unknown_car);
         }
 
+        return buildTitle(model, make);
+    }
+
+    private String buildTitle(String model, CarMake make) {
         StringBuilder sb = new StringBuilder();
 
         if (make != null) {
