@@ -78,7 +78,7 @@ public class OptionalProvider {
         StringBuilder sb = new StringBuilder();
 
         if (make != null) {
-            sb.append(make.toString());
+            sb.append(make.getUserLabel());
             sb.append(" ");
         }
 
@@ -110,7 +110,7 @@ public class OptionalProvider {
         CarMake make = name.getMake();
 
         return make != null
-                ? make.toString() : resources.getString(R.string.unknown_make);
+                ? make.getUserLabel() : resources.getString(R.string.unknown_make);
     }
 
     public String getCubicCapacity(Vehicle vehicle) {

@@ -1,5 +1,7 @@
 package io.vehiclehistory.api.model;
 
+import org.apache.commons.lang3.text.WordUtils;
+
 import java.io.Serializable;
 
 /**
@@ -72,5 +74,9 @@ public enum CarMake implements Serializable {
     VAUXHALL,
     WANGYE,
     WAZ,
-    YAMASAKI
+    YAMASAKI;
+
+    public String getUserLabel() {
+        return WordUtils.capitalizeFully(this.toString().replaceAll("_", " "));
+    }
 }
