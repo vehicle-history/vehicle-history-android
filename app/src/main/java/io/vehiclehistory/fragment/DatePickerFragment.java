@@ -64,7 +64,17 @@ public class DatePickerFragment extends DialogFragment {
         int month = datePicker.getMonth() + 1;
         int year = datePicker.getYear();
 
-        return day + "." + month + "." + year;
+        StringBuilder sb = new StringBuilder();
+
+        sb.append(day < 10 ? "0" : "");
+        sb.append(day);
+        sb.append(".");
+        sb.append(month < 10 ? "0" : "");
+        sb.append(month);
+        sb.append(".");
+        sb.append(year);
+
+        return sb.toString();
     }
 
 }
