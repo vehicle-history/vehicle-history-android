@@ -37,7 +37,8 @@
                     android:id="@+id/plate_edit_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:maxLines="1"
+                    android:inputType="textNoSuggestions"
+                    android:lines="1"
                     android:layout_gravity="center_horizontal"/>
 
             </LinearLayout>
@@ -71,7 +72,9 @@
                     android:id="@+id/vin_edit_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:maxLines="1"
+                    android:inputType="textNoSuggestions"
+                    android:lines="1"
+                    android:nextFocusDown="@+id/registration_edit_text"
                     android:layout_gravity="center_horizontal"/>
 
             </LinearLayout>
@@ -106,7 +109,8 @@
                     android:id="@+id/registration_edit_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:maxLines="1"
+                    android:inputType="numberDecimal"
+                    android:lines="1"
                     android:layout_gravity="center_horizontal"/>
 
             </LinearLayout>
