@@ -2,9 +2,6 @@ package io.vehiclehistory.api.model;
 
 import java.io.Serializable;
 
-/**
- * TODO: Add a class header comment!
- */
 public class Mileage implements Serializable {
     private String value;
     private MileageType type;

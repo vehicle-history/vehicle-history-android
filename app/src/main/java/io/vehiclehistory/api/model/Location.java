@@ -1,8 +1,5 @@
 package io.vehiclehistory.api.model;
 
-/**
- * TODO: Add a class header comment!
- */
 public class Location {
     private String state;
     private Country country;

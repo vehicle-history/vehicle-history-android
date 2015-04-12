@@ -4,9 +4,6 @@ import java.io.Serializable;
 
 import io.vehiclehistory.R;
 
-/**
- * TODO: Add a class header comment!
- */
 public enum CarType implements Serializable {
     UNKNOWN(R.string.car_type_unknown),
     CAR(R.string.car_type_car),

@@ -2,9 +2,6 @@ package io.vehiclehistory.api.model;
 
 import io.vehiclehistory.R;
 
-/**
- * TODO: Add a class header comment!
- */
 public enum EventType {
     UNKNOWN(R.string.unknown),
     PRODUCTION(R.string.timeline_production),
