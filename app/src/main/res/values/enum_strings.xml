@@ -49,4 +49,15 @@
     <string name="car_kind_load_capacity_of_8_tons">o ładowności 8t</string>
     <string name="car_kind_trolley">wywrotka</string>
     <string name="car_kind_unknown">nieznany</string>
+
+    <!-- FuelType enum values -->
+    <string name="fuel_type_diesel">diesel</string>
+    <string name="fuel_type_electric">elektyczny</string>
+    <string name="fuel_type_etanol">etanol</string>
+    <string name="fuel_type_hybrid">hybrydowy</string>
+    <string name="fuel_type_hydrogen">hydrogen</string>
+    <string name="fuel_type_other">inny</string>
+    <string name="fuel_type_petrol">benzyna</string>
+    <string name="fuel_type_petrol_gas">benzyna/gaz</string>
+
 </resources>

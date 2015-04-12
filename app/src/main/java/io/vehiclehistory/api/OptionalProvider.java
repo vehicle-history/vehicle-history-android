@@ -134,7 +134,8 @@ public class OptionalProvider {
         FuelType fuelType = engine.getFuel();
 
         return fuelType != null
-                ? fuelType.toString() : resources.getString(R.string.unknown_fuel_type);
+                ? resources.getString(fuelType.getValueResource())
+                : resources.getString(R.string.unknown_fuel_type);
     }
 
     public String getMileage(Vehicle vehicle) {
