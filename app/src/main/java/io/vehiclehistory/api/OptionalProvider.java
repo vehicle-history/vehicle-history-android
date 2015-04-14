@@ -159,7 +159,8 @@ public class OptionalProvider {
         PolicyStatus policyStatus = policy.getStatus();
 
         return policyStatus != null
-                ? policyStatus.toString() : resources.getString(R.string.unknown_policy_status);
+                ? resources.getString(policyStatus.getValueResource())
+                : resources.getString(R.string.unknown_policy_status);
     }
 
     public String getInspectionStatus(Vehicle vehicle) {

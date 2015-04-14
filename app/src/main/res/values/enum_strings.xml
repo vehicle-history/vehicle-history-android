@@ -65,4 +65,9 @@
     <string name="inspection_status_up_to_date">aktualne</string>
     <string name="inspection_status_unknown">nieznane</string>
 
+    <!-- PolicyStatus enum values -->
+    <string name="policy_status_outdated">przedawnione</string>
+    <string name="policy_status_up_to_date">aktualne</string>
+    <string name="policy_status_unknown">nieznane</string>
+
 </resources>
