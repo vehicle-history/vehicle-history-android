@@ -171,7 +171,8 @@ public class OptionalProvider {
         InspectionStatus inspectionStatus = inspection.getStatus();
 
         return inspectionStatus != null
-                ? inspectionStatus.toString() : resources.getString(R.string.unknown_inspection_status);
+                ? resources.getString(inspectionStatus.getValueResource())
+                : resources.getString(R.string.unknown_inspection_status);
     }
 
     public String getVehicleType(Vehicle vehicle) {

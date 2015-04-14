@@ -60,4 +60,9 @@
     <string name="fuel_type_petrol">benzyna</string>
     <string name="fuel_type_petrol_gas">benzyna/gaz</string>
 
+    <!-- InspectionStatus enum values -->
+    <string name="inspection_status_outdated">przedawnione</string>
+    <string name="inspection_status_up_to_date">aktualne</string>
+    <string name="inspection_status_unknown">nieznane</string>
+
 </resources>
