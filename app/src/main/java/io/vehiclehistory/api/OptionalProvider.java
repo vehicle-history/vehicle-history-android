@@ -185,7 +185,8 @@ public class OptionalProvider {
         CarType vehicleType = type.getType();
 
         return vehicleType != null
-                ? vehicleType.toString() : resources.getString(R.string.unknown_vehicle_type);
+                ? resources.getString(vehicleType.getValueResource())
+                : resources.getString(R.string.unknown_vehicle_type);
     }
 
     public String getVehicleKind(Vehicle vehicle) {
@@ -197,7 +198,8 @@ public class OptionalProvider {
         CarKind carKind = type.getKind();
 
         return carKind != null
-                ? carKind.toString() : resources.getString(R.string.unknown_vehicle_kind);
+                ? resources.getString(carKind.getValueResource())
+                : resources.getString(R.string.unknown_vehicle_kind);
     }
 
     public String getProductionYear(Vehicle vehicle) {
