@@ -54,7 +54,7 @@ public class OptionalProvider {
         RegistrationStatus status = registration.getStatus();
 
         return status != null
-                ? status.toString()
+                ? resources.getString(status.getValueResource())
                 : resources.getString(R.string.unknown_registration_status);
     }
 

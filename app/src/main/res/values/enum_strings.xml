@@ -70,4 +70,9 @@
     <string name="policy_status_up_to_date">aktualne</string>
     <string name="policy_status_unknown">nieznane</string>
 
+    <!-- RegistrationStatus enum values -->
+    <string name="registration_status_registered">zarejestrowany</string>
+    <string name="registration_status_unregistered">wyrejestrowany</string>
+    <string name="registration_status_unknown">nieznany</string>
+
 </resources>
