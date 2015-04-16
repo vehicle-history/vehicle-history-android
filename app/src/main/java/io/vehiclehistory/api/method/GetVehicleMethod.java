@@ -25,15 +25,8 @@ public class GetVehicleMethod extends Method<VehicleResponse> {
     }
 
     @Override
-    protected void initializeAdapter() {
-        restAdapter = new RestAdapter.Builder()
-                .setClient(new OkClient(new UnsafeOkHttpClientProvider().getUnsafeOkHttpClient()))
-                .setEndpoint(Settings.API_HOST)
-                .setRequestInterceptor(requestInterceptor)
-                .setLogLevel(RestAdapter.LogLevel.FULL)
-                .build();
-
-        apiService = restAdapter.create(VehicleHistoryApiInterface.class);
+    protected String getEndpoint() {
+        return Settings.API_HOST;
     }
 
     @Override

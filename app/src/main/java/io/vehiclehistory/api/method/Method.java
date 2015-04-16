@@ -31,13 +31,15 @@ public abstract class Method<T> {
     protected void initializeAdapter() {
         restAdapter = new RestAdapter.Builder()
                 .setClient(new OkClient(new UnsafeOkHttpClientProvider().getUnsafeOkHttpClient()))
-                .setEndpoint(Settings.OAUTH_HOST)
+                .setEndpoint(getEndpoint())
                 .setRequestInterceptor(requestInterceptor)
                 .setLogLevel(BuildConfig.DEBUG ? RestAdapter.LogLevel.FULL : RestAdapter.LogLevel.NONE)
                 .build();
 
         apiService = restAdapter.create(VehicleHistoryApiInterface.class);
     }
+
+    protected abstract String getEndpoint();
 
     protected abstract String prepareAuthorization();
 

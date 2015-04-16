@@ -6,6 +6,7 @@ import android.util.Log;
 import java.io.UnsupportedEncodingException;
 
 import io.vehiclehistory.api.consts.Credentials;
+import io.vehiclehistory.api.consts.Settings;
 import io.vehiclehistory.api.exception.VehicleHistoryApiException;
 import io.vehiclehistory.api.model.Auth;
 import retrofit.Callback;
@@ -41,6 +42,11 @@ public class AuthMethod extends Method<Auth> {
                 listener.onError(exception);
             }
         });
+    }
+
+    @Override
+    protected String getEndpoint() {
+        return Settings.OAUTH_HOST;
     }
 
     @Override
