@@ -22,11 +22,12 @@ public class PerformSearchDelegate {
 
     private final Activity activity;
 
-    private final SessionHandler sessionHandler = new SessionHandler();
     private final AsyncMethodExecutor methodExecutor = new AsyncMethodExecutor();
+    private SessionHandler sessionHandler;
 
     public PerformSearchDelegate(Activity activity) {
         this.activity = activity;
+        sessionHandler = new SessionHandler(activity);
     }
     public void performSearch(Search search, OnSearchFinishedListener listener) {
         performSearch(toInput(search), listener);
@@ -53,7 +54,7 @@ public class PerformSearchDelegate {
                             listener.onSearchError(exception.getUserMessage());
                         }
                     }
-                });
+                }, activity.getApplicationContext());
 
         methodExecutor.execute(method);
     }

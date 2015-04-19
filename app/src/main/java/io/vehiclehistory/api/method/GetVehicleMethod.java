@@ -1,14 +1,13 @@
 package io.vehiclehistory.api.method;
 
-import io.vehiclehistory.api.UnsafeOkHttpClientProvider;
+import android.content.Context;
+
 import io.vehiclehistory.api.consts.Settings;
 import io.vehiclehistory.api.exception.VehicleHistoryApiException;
 import io.vehiclehistory.api.model.VehicleInput;
 import io.vehiclehistory.api.model.VehicleResponse;
 import retrofit.Callback;
-import retrofit.RestAdapter;
 import retrofit.RetrofitError;
-import retrofit.client.OkClient;
 import retrofit.client.Response;
 
 public class GetVehicleMethod extends Method<VehicleResponse> {
@@ -18,8 +17,8 @@ public class GetVehicleMethod extends Method<VehicleResponse> {
     private VehicleInput input;
     private String token;
 
-    public GetVehicleMethod(VehicleInput input, String token, ResponseListener<VehicleResponse> listener) {
-        super(listener);
+    public GetVehicleMethod(VehicleInput input, String token, ResponseListener<VehicleResponse> listener, Context context) {
+        super(listener, context);
         this.input = input;
         this.token = token;
     }

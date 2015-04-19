@@ -1,5 +1,7 @@
 package io.vehiclehistory.api.method;
 
+import android.content.Context;
+
 import io.vehiclehistory.api.exception.VehicleHistoryApiException;
 import io.vehiclehistory.api.model.Auth;
 
@@ -8,7 +10,13 @@ import io.vehiclehistory.api.model.Auth;
  */
 public class SessionHandler {
     private final AsyncMethodExecutor methodExecutor = new AsyncMethodExecutor();
+    private final Context context;
+
     private Auth session = new Auth();
+
+    public SessionHandler(Context context) {
+        this.context = context;
+    }
 
     public Auth getSession() {
         return session;
@@ -26,7 +34,7 @@ public class SessionHandler {
             public void onError(VehicleHistoryApiException exception) {
                 onFinishedListener.onError(exception);
             }
-        });
+        }, context);
         methodExecutor.execute(authMethod);
     }
 }

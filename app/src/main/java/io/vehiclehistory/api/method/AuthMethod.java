@@ -1,5 +1,6 @@
 package io.vehiclehistory.api.method;
 
+import android.content.Context;
 import android.util.Base64;
 import android.util.Log;
 
@@ -22,8 +23,8 @@ public class AuthMethod extends Method<Auth> {
 
     private static final String PASSWORD = "password";
 
-    public AuthMethod(ResponseListener<Auth> listener) {
-        super(listener);
+    public AuthMethod(ResponseListener<Auth> listener, Context context) {
+        super(listener, context);
     }
 
     @Override

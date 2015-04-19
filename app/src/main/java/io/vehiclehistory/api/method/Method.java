@@ -1,8 +1,9 @@
 package io.vehiclehistory.api.method;
 
+import android.content.Context;
+
 import io.vehiclehistory.BuildConfig;
-import io.vehiclehistory.api.UnsafeOkHttpClientProvider;
-import io.vehiclehistory.api.consts.Settings;
+import io.vehiclehistory.api.SslOkHttpClientProvider;
 import retrofit.RequestInterceptor;
 import retrofit.RestAdapter;
 import retrofit.client.OkClient;
@@ -14,6 +15,7 @@ public abstract class Method<T> {
     protected final ResponseListener<T> listener;
     protected RestAdapter restAdapter;
     protected VehicleHistoryApiInterface apiService;
+    protected Context context;
 
     RequestInterceptor requestInterceptor = new RequestInterceptor() {
         @Override
@@ -23,14 +25,15 @@ public abstract class Method<T> {
         }
     };
 
-    protected Method(ResponseListener<T> listener) {
+    protected Method(ResponseListener<T> listener, Context context) {
         this.listener = listener;
+        this.context = context;
         initializeAdapter();
     }
 
     protected void initializeAdapter() {
         restAdapter = new RestAdapter.Builder()
-                .setClient(new OkClient(new UnsafeOkHttpClientProvider().getUnsafeOkHttpClient()))
+                .setClient(new OkClient(new SslOkHttpClientProvider().getUnsafeOkHttpClient(context)))
                 .setEndpoint(getEndpoint())
                 .setRequestInterceptor(requestInterceptor)
                 .setLogLevel(BuildConfig.DEBUG ? RestAdapter.LogLevel.FULL : RestAdapter.LogLevel.NONE)
