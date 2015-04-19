@@ -10,6 +10,12 @@
     <color name="secondary_text">#727272</color>
     <color name="drawer_text">#555</color>
 
+    <color name="icon_bg_purple">#ba69c8</color>
+    <color name="icon_bg_green">#65bd57</color>
+    <color name="icon_bg_amber">#ffa746</color>
+    <color name="icon_bg_pink">#ff665e</color>
+    <color name="icon_bg_blue">#01a6de</color>
+
     <color name="icons">#FFFFFF</color>
     <color name="divider">#B6B6B6</color>
     <color name="windowBackground">#FFF</color>
