@@ -3,12 +3,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TableLayout
-        android:id="@+id/timeline_table_layout"
+    <LinearLayout
+        android:id="@+id/timeline_layout"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
+        android:orientation="vertical"
         android:paddingTop="6dp"
-        android:paddingBottom="6dp"
-        android:stretchColumns="0,2"/>
+        android:paddingBottom="6dp"/>
 
 </ScrollView>

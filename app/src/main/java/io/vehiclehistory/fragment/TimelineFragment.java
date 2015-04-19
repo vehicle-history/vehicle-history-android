@@ -47,15 +47,15 @@ public class TimelineFragment extends Fragment {
     }
 
     private void bindDataToView(List<Event> eventList, View rootView) {
-        final TableLayout table = (TableLayout) rootView.findViewById(R.id.timeline_table_layout);
+        final ViewGroup layout = (ViewGroup) rootView.findViewById(R.id.timeline_layout);
 
         for (Event event : eventList) {
-            addRow(table, event);
+            addRow(layout, event);
         }
     }
 
-    private void addRow(TableLayout table, Event event) {
-        View row = LayoutInflater.from(getActivity()).inflate(R.layout.timeline_row, table, false);
+    private void addRow(ViewGroup layout, Event event) {
+        View row = LayoutInflater.from(getActivity()).inflate(R.layout.timeline_row, layout, false);
 
         TextView eventNameTextView = (TextView) row.findViewById(R.id.timeline_description);
         eventNameTextView.setText(event.getType().getValueResource());
@@ -63,6 +63,6 @@ public class TimelineFragment extends Fragment {
         TextView dateTextView = (TextView) row.findViewById(R.id.timeline_date);
         dateTextView.setText(new DateFormatter().formatDateFromApi(event.getCreatedAt()));
 
-        table.addView(row);
+        layout.addView(row);
     }
 }
