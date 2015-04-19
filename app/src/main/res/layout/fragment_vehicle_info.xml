@@ -91,7 +91,7 @@
 
                     <TextView
                         style="@style/VehicleInfoLabel"
-                        android:text="Numer rejestracyjny"/>
+                        android:text="@string/plate_label"/>
 
                     <TextView
                         style="@style/VehicleInfoValue"
