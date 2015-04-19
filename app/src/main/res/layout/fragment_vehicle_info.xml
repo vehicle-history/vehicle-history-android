@@ -21,6 +21,8 @@
 
             <FrameLayout style="@style/VehicleInfoIconSection">
 
+                <View style="@style/VehicleInfoLineVertical"/>
+
                 <ImageView style="@style/VehicleInfoIcon"
                     android:src="@drawable/abc_ic_menu_cut_mtrl_alpha"
                     android:background="@drawable/circle_purple"/>
@@ -53,8 +55,7 @@
 
                 </LinearLayout>
 
-                <LinearLayout style="@style/VehicleInfoDetailSection"
-                    android:layout_marginBottom="@dimen/vehicle_info_vertical_margin">
+                <LinearLayout style="@style/VehicleInfoDetailSection">
 
                     <TextView
                         style="@style/VehicleInfoLabel"
@@ -66,6 +67,8 @@
 
                 </LinearLayout>
 
+                <View style="@style/VehicleInfoLineHorizontal"/>
+
             </LinearLayout>
 
         </LinearLayout>
@@ -73,6 +76,8 @@
         <LinearLayout style="@style/VehicleInfoSection">
 
             <FrameLayout style="@style/VehicleInfoIconSection">
+
+                <View style="@style/VehicleInfoLineVertical"/>
 
                 <ImageView style="@style/VehicleInfoIcon"
                     android:src="@drawable/abc_ic_menu_cut_mtrl_alpha"
@@ -106,8 +111,7 @@
 
                 </LinearLayout>
 
-                <LinearLayout style="@style/VehicleInfoDetailSection"
-                    android:layout_marginBottom="@dimen/vehicle_info_vertical_margin">
+                <LinearLayout style="@style/VehicleInfoDetailSection">
 
                     <TextView
                         style="@style/VehicleInfoLabel"
@@ -119,6 +123,8 @@
 
                 </LinearLayout>
 
+                <View style="@style/VehicleInfoLineHorizontal"/>
+
             </LinearLayout>
 
         </LinearLayout>
@@ -126,6 +132,8 @@
         <LinearLayout style="@style/VehicleInfoSection">
 
             <FrameLayout style="@style/VehicleInfoIconSection">
+
+                <View style="@style/VehicleInfoLineVertical"/>
 
                 <ImageView style="@style/VehicleInfoIcon"
                     android:src="@drawable/abc_ic_menu_cut_mtrl_alpha"
@@ -159,8 +167,7 @@
 
                 </LinearLayout>
 
-                <LinearLayout style="@style/VehicleInfoDetailSection"
-                    android:layout_marginBottom="@dimen/vehicle_info_vertical_margin">
+                <LinearLayout style="@style/VehicleInfoDetailSection">
 
                     <TextView
                         style="@style/VehicleInfoLabel"
@@ -172,6 +179,8 @@
 
                 </LinearLayout>
 
+                <View style="@style/VehicleInfoLineHorizontal"/>
+
             </LinearLayout>
 
         </LinearLayout>
@@ -179,6 +188,8 @@
         <LinearLayout style="@style/VehicleInfoSection">
 
             <FrameLayout style="@style/VehicleInfoIconSection">
+
+                <View style="@style/VehicleInfoLineVertical"/>
 
                 <ImageView style="@style/VehicleInfoIcon"
                     android:src="@drawable/abc_ic_menu_cut_mtrl_alpha"
@@ -224,8 +235,7 @@
 
                 </LinearLayout>
 
-                <LinearLayout style="@style/VehicleInfoDetailSection"
-                    android:layout_marginBottom="@dimen/vehicle_info_vertical_margin">
+                <LinearLayout style="@style/VehicleInfoDetailSection">
 
                     <TextView
                         style="@style/VehicleInfoLabel"
@@ -234,7 +244,10 @@
                     <TextView
                         style="@style/VehicleInfoValue"
                         android:id="@+id/vehicle_stolen"/>
+
                 </LinearLayout>
+
+                <View style="@style/VehicleInfoLineHorizontal"/>
 
             </LinearLayout>
 
