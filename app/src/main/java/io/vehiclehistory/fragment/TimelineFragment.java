@@ -5,12 +5,12 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TableLayout;
 import android.widget.TextView;
 
 import java.util.List;
 
 import io.vehiclehistory.DateFormatter;
+import io.vehiclehistory.EventColorProvider;
 import io.vehiclehistory.R;
 import io.vehiclehistory.activity.VehicleDataActivity;
 import io.vehiclehistory.api.model.Event;
@@ -20,6 +20,8 @@ import io.vehiclehistory.api.model.VehicleResponse;
  * @author Piotr Makowski (<a href=\"mailto:Piotr.Makowski@allegrogroup.pl\">Piotr.Makowski@allegrogroup.pl</a>)
  */
 public class TimelineFragment extends Fragment {
+
+    private final EventColorProvider eventColorProvider = new EventColorProvider();
 
     public static TimelineFragment newInstance(VehicleResponse vehicleResponse) {
         TimelineFragment fragment = new TimelineFragment();
@@ -62,6 +64,9 @@ public class TimelineFragment extends Fragment {
 
         TextView dateTextView = (TextView) row.findViewById(R.id.timeline_date);
         dateTextView.setText(new DateFormatter().formatDateFromApi(event.getCreatedAt()));
+
+        View circle = row.findViewById(R.id.timeline_circle);
+        circle.setBackgroundResource(eventColorProvider.getBackground(event.getType()));
 
         layout.addView(row);
     }
