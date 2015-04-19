@@ -4,7 +4,7 @@
     <color name="primary_dark">#7ab644</color>
     <color name="primary_light">#9cd563</color>
     <color name="drawer_bg_selected">#229cd563</color>
-    <color name="accent">#ff9100</color>
+    <color name="accent">#FF5722</color>
 
     <color name="primary_text">#212121</color>
     <color name="secondary_text">#727272</color>
