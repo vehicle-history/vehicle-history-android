@@ -6,6 +6,6 @@
 
     <item
         android:state_selected="true"
-        android:drawable="@drawable/tab_selected_example" />
+        android:drawable="@drawable/tab_selected" />
 
 </selector>
