@@ -5,6 +5,17 @@
         <item name="colorPrimaryDark">@color/primary_dark</item>
         <item name="colorAccent">@color/accent</item>
         <item name="android:windowBackground">@color/windowBackground</item>
+        <item name="actionBarTabStyle">@style/ActionBarTabStyle</item>
+        <item name="actionBarTabTextStyle">@style/MyActionBarTabText</item>
+    </style>
+
+    <style name="ActionBarTabStyle" parent="@style/Widget.AppCompat.ActionBar.TabView">
+        <item name="android:background">@drawable/tab_indicator</item>
+    </style>
+
+    <style name="MyActionBarTabText"
+        parent="@style/Widget.AppCompat.ActionBar.TabText">
+        <item name="android:textColor">@color/tab_text_color</item>
     </style>
 
     <style name="PrimaryText" parent="@android:style/TextAppearance.Small">
