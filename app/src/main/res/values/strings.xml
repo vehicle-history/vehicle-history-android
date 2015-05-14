@@ -62,6 +62,8 @@
     <string name="searching_vehicle">Szukam pojazdu</string>
     <string name="clear_history_label">Wyczyść historię wyszukiwania</string>
 
+    <string name="connection_error">Błąd sieci</string>
+
     <!-- default api values -->
     <string name="unknown_first_vehicle_registration">nieznana</string>
     <string name="unknown_model">nieznany</string>

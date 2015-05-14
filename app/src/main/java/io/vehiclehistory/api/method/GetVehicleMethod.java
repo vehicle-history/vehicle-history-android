@@ -2,6 +2,7 @@ package io.vehiclehistory.api.method;
 
 import android.content.Context;
 
+import io.vehiclehistory.R;
 import io.vehiclehistory.api.consts.Settings;
 import io.vehiclehistory.api.exception.VehicleHistoryApiException;
 import io.vehiclehistory.api.model.VehicleInput;
@@ -40,10 +41,20 @@ public class GetVehicleMethod extends Method<VehicleResponse> {
 
             @Override
             public void failure(RetrofitError error) {
-                VehicleHistoryApiException exception =
-                        (VehicleHistoryApiException) error.getBodyAs(VehicleHistoryApiException.class);
+                switch (error.getKind()) {
+                    case NETWORK:
+                    case CONVERSION: {
+                        listener.onConnectionError(context.getString(R.string.connection_error));
+                        break;
+                    }
+                    case HTTP: {
+                        VehicleHistoryApiException exception =
+                                (VehicleHistoryApiException) error.getBodyAs(VehicleHistoryApiException.class);
+                        listener.onApiError(exception);
+                        break;
+                    }
 
-                listener.onError(exception);
+                }
             }
         });
     }

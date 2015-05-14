@@ -47,12 +47,17 @@ public class PerformSearchDelegate {
                     }
 
                     @Override
-                    public void onError(VehicleHistoryApiException exception) {
+                    public void onApiError(VehicleHistoryApiException exception) {
                         if (UNAUTHORIZED.equals(exception.getStatusCode())) {
                             authorizeAndRetry(input, listener);
                         } else {
                             listener.onSearchError(exception.getUserMessage());
                         }
+                    }
+
+                    @Override
+                    public void onConnectionError(String message) {
+                        listener.onSearchError(message);
                     }
                 }, activity.getApplicationContext());
 
@@ -73,9 +78,14 @@ public class PerformSearchDelegate {
             }
 
             @Override
-            public void onError(VehicleHistoryApiException exception) {
+            public void onApiError(VehicleHistoryApiException exception) {
                 Log.e(TAG, exception.getMessage());
                 listener.onSearchError("Can't get vehicle.");
+            }
+
+            @Override
+            public void onConnectionError(String message) {
+                listener.onSearchError(message);
             }
         });
     }

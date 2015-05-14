@@ -7,5 +7,6 @@ import io.vehiclehistory.api.exception.VehicleHistoryApiException;
  */
 public interface ResponseListener<T> {
     void onSuccess(T response);
-    void onError(VehicleHistoryApiException exception);
+    void onApiError(VehicleHistoryApiException exception);
+    void onConnectionError(String message);
 }

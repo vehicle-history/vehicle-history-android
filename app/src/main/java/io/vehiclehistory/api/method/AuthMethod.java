@@ -40,7 +40,7 @@ public class AuthMethod extends Method<Auth> {
             public void failure(RetrofitError error) {
                 VehicleHistoryApiException exception =
                         (VehicleHistoryApiException) error.getBodyAs(VehicleHistoryApiException.class);
-                listener.onError(exception);
+                listener.onApiError(exception);
             }
         });
     }

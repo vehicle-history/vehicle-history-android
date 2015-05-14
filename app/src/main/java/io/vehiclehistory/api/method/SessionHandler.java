@@ -31,8 +31,13 @@ public class SessionHandler {
             }
 
             @Override
-            public void onError(VehicleHistoryApiException exception) {
-                onFinishedListener.onError(exception);
+            public void onApiError(VehicleHistoryApiException exception) {
+                onFinishedListener.onApiError(exception);
+            }
+
+            @Override
+            public void onConnectionError(String message) {
+                onFinishedListener.onConnectionError(message);
             }
         }, context);
         methodExecutor.execute(authMethod);
