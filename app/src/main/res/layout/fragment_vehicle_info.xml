@@ -24,7 +24,7 @@
                 <View style="@style/VehicleInfoLineVertical"/>
 
                 <ImageView style="@style/VehicleInfoIcon"
-                    android:src="@drawable/abc_ic_menu_cut_mtrl_alpha"
+                    android:src="@drawable/keys"
                     android:background="@drawable/circle_purple"
                     android:elevation="4dp"/>
 
@@ -81,7 +81,7 @@
                 <View style="@style/VehicleInfoLineVertical"/>
 
                 <ImageView style="@style/VehicleInfoIcon"
-                    android:src="@drawable/abc_ic_menu_cut_mtrl_alpha"
+                    android:src="@drawable/licence"
                     android:background="@drawable/circle_green"
                     android:elevation="4dp"/>
 
@@ -138,7 +138,7 @@
                 <View style="@style/VehicleInfoLineVertical"/>
 
                 <ImageView style="@style/VehicleInfoIcon"
-                    android:src="@drawable/abc_ic_menu_cut_mtrl_alpha"
+                    android:src="@drawable/engine"
                     android:background="@drawable/circle_amber"
                     android:elevation="4dp"/>
 
@@ -195,7 +195,7 @@
                 <View style="@style/VehicleInfoLineVertical"/>
 
                 <ImageView style="@style/VehicleInfoIcon"
-                    android:src="@drawable/abc_ic_menu_cut_mtrl_alpha"
+                    android:src="@drawable/policy"
                     android:background="@drawable/circle_pink"
                     android:elevation="4dp"/>
 
