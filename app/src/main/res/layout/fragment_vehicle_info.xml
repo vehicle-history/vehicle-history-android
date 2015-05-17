@@ -262,7 +262,7 @@
             <FrameLayout style="@style/VehicleInfoIconSection">
 
                 <ImageView style="@style/VehicleInfoIcon"
-                    android:src="@drawable/abc_ic_menu_cut_mtrl_alpha"
+                    android:src="@drawable/car"
                     android:background="@drawable/circle_blue"
                     android:elevation="4dp"/>
 
