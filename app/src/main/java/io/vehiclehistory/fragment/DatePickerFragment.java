@@ -29,7 +29,7 @@ public class DatePickerFragment extends DialogFragment {
         LayoutInflater inflater = LayoutInflater.from(activity);
         final DatePicker datePicker = (DatePicker) inflater.inflate(R.layout.date_picker, null, false);
 
-        return new AlertDialog.Builder(activity)
+        return new AlertDialog.Builder(activity, R.style.DialogTheme)
                 .setTitle(R.string.input_registration_date)
                 .setPositiveButton(activity.getString(R.string.ok), new DialogInterface.OnClickListener() {
 

@@ -7,6 +7,13 @@
         <item name="android:windowBackground">@color/windowBackground</item>
         <item name="actionBarTabStyle">@style/ActionBarTabStyle</item>
         <item name="actionBarTabTextStyle">@style/MyActionBarTabText</item>
+        <item name="android:dialogTheme">@style/DialogTheme</item>
+    </style>
+
+    <style name="DialogTheme" parent="Theme.AppCompat.Light.Dialog">
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryDark">@color/primary_dark</item>
+        <item name="colorAccent">@color/accent</item>
     </style>
 
     <style name="ActionBarTabStyle" parent="@style/Widget.AppCompat.ActionBar.TabView">
