@@ -1,6 +1,8 @@
 package io.vehiclehistory.api.model;
 
-public enum OwnerType {
+import java.io.Serializable;
+
+public enum OwnerType implements Serializable {
     UNKNOWN,
     PRIVATE,
     COMPANY

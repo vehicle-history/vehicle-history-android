@@ -1,8 +1,10 @@
 package io.vehiclehistory.api.model;
 
+import java.io.Serializable;
+
 import io.vehiclehistory.R;
 
-public enum EventType {
+public enum EventType implements Serializable {
     UNKNOWN(R.string.unknown),
     PRODUCTION(R.string.timeline_production),
     REGISTRATION(R.string.timeline_registration),
