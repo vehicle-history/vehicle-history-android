@@ -10,6 +10,7 @@
     <string name="car_type_bus">autobus</string>
     <string name="car_type_tractor">traktor</string>
     <string name="car_type_light_trailer">lekka przyczepa</string>
+    <string name="car_type_heavy_trailer">ciężka przyczepa</string>
     <string name="car_type_light_truck">lekka ciężarówka</string>
 
     <!-- EventType enum values -->
@@ -18,6 +19,7 @@
     <string name="timeline_inspection">Badanie techniczne</string>
     <string name="timeline_production">Produkcja pojazdu</string>
     <string name="timeline_registration">Zarejestrowanie pojazdu</string>
+    <string name="timeline_abroad_registration">Zarejestrowanie pojazdu za granicą</string>
     <string name="timeline_changed_registration_location">Zmiana miejsca rejestracji</string>
     <string name="timeline_co_owner">Dodanie współwłaściciela</string>
     <string name="timeline_holder">Dodanie posiadacza</string>
@@ -46,7 +48,11 @@
     <string name="car_kind_city">miejski</string>
     <string name="car_kind_quad">quad</string>
     <string name="car_kind_trailer">przyczepa</string>
+    <string name="car_kind_load_capacity_more_than_8_tons">o ładowności ponad 8t</string>
     <string name="car_kind_load_capacity_of_8_tons">o ładowności 8t</string>
+    <string name="car_kind_load_capacity_of_2_tons">o ładowności 2t</string>
+    <string name="car_kind_cistern">cysterna</string>
+    <string name="car_kind_crane">dźwig</string>
     <string name="car_kind_trolley">wywrotka</string>
     <string name="car_kind_unknown">nieznany</string>
 

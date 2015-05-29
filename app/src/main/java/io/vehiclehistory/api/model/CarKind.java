@@ -27,7 +27,16 @@ public enum CarKind implements Serializable {
     TRAILER(R.string.car_kind_trailer),
     OTHER_NOT_CAMPING(R.string.car_kind_other_not_camping),
     LOAD_CAPACITY_OF_8_TONS(R.string.car_kind_load_capacity_of_8_tons),
-    CITY(R.string.car_kind_city);
+    CITY(R.string.car_kind_city),
+    LOAD_CAPACITY_OF_2_TONS(R.string.car_kind_load_capacity_of_2_tons),
+    LOAD_CAPACITY_MORE_THAN_8_TONS(R.string.car_kind_load_capacity_more_than_8_tons),
+    CRANE(R.string.car_kind_crane),
+    CISTERN(R.string.car_kind_cistern),
+    TROLLEY(R.string.car_kind_other),
+    INTERCITY(R.string.car_kind_other),
+    LOADER(R.string.car_kind_other),
+    PLATFORM(R.string.car_kind_other),
+    MPV(R.string.car_kind_other);
 
     private final int valueResource;
 

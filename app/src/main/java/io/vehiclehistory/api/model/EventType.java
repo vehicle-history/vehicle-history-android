@@ -6,6 +6,7 @@ public enum EventType {
     UNKNOWN(R.string.unknown),
     PRODUCTION(R.string.timeline_production),
     REGISTRATION(R.string.timeline_registration),
+    ABROAD_REGISTRATION(R.string.timeline_abroad_registration),
     DEREGISTRATION(R.string.timeline_deregistration),
     CHANGE_OWNER(R.string.timeline_change_owner),
     INSPECTION(R.string.timeline_inspection),
