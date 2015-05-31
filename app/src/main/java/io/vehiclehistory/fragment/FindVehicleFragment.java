@@ -15,15 +15,18 @@ import android.widget.EditText;
 import android.widget.Toast;
 import android.widget.ViewAnimator;
 
+import java.util.Collection;
+
 import io.vehiclehistory.PerformSearchDelegate;
 import io.vehiclehistory.PerformSearchDelegate.OnSearchFinishedListener;
 import io.vehiclehistory.R;
 import io.vehiclehistory.SaveSearchDelegate;
-import io.vehiclehistory.VehicleInputValidator;
-import io.vehiclehistory.VehicleValidationException;
 import io.vehiclehistory.activity.MainActivity;
 import io.vehiclehistory.api.model.VehicleInput;
 import io.vehiclehistory.api.model.VehicleResponse;
+import io.vehiclehistory.validation.Issue;
+import io.vehiclehistory.validation.VehicleInputValidator;
+import io.vehiclehistory.validation.VehicleValidationException;
 
 public class FindVehicleFragment extends Fragment {
 
@@ -119,15 +122,21 @@ public class FindVehicleFragment extends Fragment {
         try {
             performSearch(getValidatedInput());
         } catch (VehicleValidationException e) {
-            switch (e.getField()) {
+            handleValidationIssues(e.getIssues());
+        }
+    }
+
+    private void handleValidationIssues(Collection<Issue> issues) {
+        for (Issue issue : issues) {
+            switch (issue.getField()) {
                 case PLATE:
-                    plateEditText.setError(e.getMessage());
+                    plateEditText.setError(issue.getDetailMessage());
                     break;
                 case VIN:
-                    vinEditText.setError(e.getMessage());
+                    vinEditText.setError(issue.getDetailMessage());
                     break;
                 case FIRST_REGISTRATION_DATE:
-                    registrationDateEditText.setError(e.getMessage());
+                    registrationDateEditText.setError(issue.getDetailMessage());
                     break;
             }
         }
@@ -184,9 +193,7 @@ public class FindVehicleFragment extends Fragment {
         String firstRegDate = registrationDateEditText.getText().toString();
 
         VehicleInputValidator validator = new VehicleInputValidator();
-        validator.validatePlate(plate);
-        validator.validateVin(vin);
-        validator.validateFirstRegistrationDate(firstRegDate);
+        validator.validate(plate, vin, firstRegDate);
 
         input.setPlate(plate);
         input.setVin(vin);
