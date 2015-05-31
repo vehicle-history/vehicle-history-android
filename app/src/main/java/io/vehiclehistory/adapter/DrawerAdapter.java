@@ -17,6 +17,7 @@ public class DrawerAdapter extends BaseAdapter {
 
     private enum DrawerOption {
         FIND_VEHICLE(R.string.title_section_find_vehicle, R.drawable.ic_file_find_grey600_24dp),
+        EXAMPLE(R.string.title_section_example, R.drawable.ic_file_find_grey600_24dp),
         SEARCH_HISTORY(R.string.title_section_history, R.drawable.ic_history_grey600_24dp),
         OPTIONS(R.string.title_section_options, R.drawable.ic_settings_grey600_24dp),
         RATE(R.string.title_section_rate, R.drawable.ic_star_grey600_24dp),

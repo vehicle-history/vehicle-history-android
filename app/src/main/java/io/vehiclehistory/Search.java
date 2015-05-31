@@ -5,6 +5,12 @@ package io.vehiclehistory;
  */
 public class Search {
 
+    private static final String EXAMPLE_PLATE = "BBC12345";
+    private static final String EXAMPLE_VIN = "ABC123456789DEF";
+    private static final String EXAMPLE_REGISTRATION_DATE = "11.03.2015";
+
+    public static final Search EXAMPLE_SEARCH = new Search("", EXAMPLE_PLATE, EXAMPLE_VIN, EXAMPLE_REGISTRATION_DATE);
+
     private String label;
     private String plate;
     private String vin;

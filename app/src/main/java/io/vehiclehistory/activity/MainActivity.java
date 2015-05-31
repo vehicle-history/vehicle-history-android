@@ -2,6 +2,7 @@ package io.vehiclehistory.activity;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
@@ -12,7 +13,11 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 
 import io.vehiclehistory.BuildConfig;
+import io.vehiclehistory.PerformSearchDelegate;
+import io.vehiclehistory.PerformSearchDelegate.OnSearchFinishedListener;
 import io.vehiclehistory.R;
+import io.vehiclehistory.Search;
+import io.vehiclehistory.api.model.VehicleResponse;
 import io.vehiclehistory.fragment.AboutFragment;
 import io.vehiclehistory.fragment.FindVehicleFragment;
 import io.vehiclehistory.fragment.NavigationDrawerFragment;
@@ -24,6 +29,8 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
     private NavigationDrawerFragment navigationDrawerFragment;
 
     private CharSequence title;
+
+    private ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,18 +57,22 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
                 break;
             }
             case 1: {
-                fragmentToSwitch = SearchHistoryFragment.newInstance(1);
+                showExampleVehicleData();
                 break;
             }
             case 2: {
-                fragmentToSwitch = OptionsFragment.newInstance(2);
+                fragmentToSwitch = SearchHistoryFragment.newInstance(1);
                 break;
             }
             case 3: {
-                showMarketAppIn();
+                fragmentToSwitch = OptionsFragment.newInstance(2);
                 break;
             }
             case 4: {
+                showMarketAppIn();
+                break;
+            }
+            case 5: {
                 fragmentToSwitch = AboutFragment.newInstance(3);
                 break;
             }
@@ -118,12 +129,41 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
         return super.onCreateOptionsMenu(menu);
     }
 
+    private void showExampleVehicleData() {
+        setInteractionLocked(true);
+
+        new PerformSearchDelegate(this).performSearch(Search.EXAMPLE_SEARCH, new OnSearchFinishedListener() {
+
+            @Override
+            public void onSearchFinished(VehicleResponse vehicleResponse) {
+                setInteractionLocked(false);
+            }
+
+            @Override
+            public void onSearchError(String message) {
+                //TODO implement me
+                setInteractionLocked(false);
+            }
+        });
+    }
+
     private void showMarketAppIn() {
         try {
             startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + BuildConfig.APPLICATION_ID)));
         } catch (ActivityNotFoundException e) {
             startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://play.google.com/store/apps/details?id="
                     + BuildConfig.APPLICATION_ID)));
+        }
+    }
+
+    private void setInteractionLocked(boolean lock) {
+        if (lock) {
+            progressDialog = ProgressDialog.show(this, null, getString(R.string.searching_vehicle), true, false);
+        } else {
+            if (progressDialog != null) {
+                progressDialog.dismiss();
+                progressDialog = null;
+            }
         }
     }
 }
