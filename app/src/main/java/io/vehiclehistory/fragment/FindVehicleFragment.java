@@ -19,6 +19,8 @@ import io.vehiclehistory.PerformSearchDelegate;
 import io.vehiclehistory.PerformSearchDelegate.OnSearchFinishedListener;
 import io.vehiclehistory.R;
 import io.vehiclehistory.SaveSearchDelegate;
+import io.vehiclehistory.VehicleInputValidator;
+import io.vehiclehistory.VehicleValidationException;
 import io.vehiclehistory.activity.MainActivity;
 import io.vehiclehistory.api.model.VehicleInput;
 import io.vehiclehistory.api.model.VehicleResponse;
@@ -108,15 +110,32 @@ public class FindVehicleFragment extends Fragment {
 
             @Override
             public void onClick(View v) {
-                setButtonAnimator(ANIMATOR_PROGRESS);
-                setUiLocked(true);
-                getVehicle();
+                validateAndPerformSearch();
             }
         });
     }
 
-    private void getVehicle() {
-        final VehicleInput input = getInput();
+    private void validateAndPerformSearch() {
+        try {
+            performSearch(getValidatedInput());
+        } catch (VehicleValidationException e) {
+            switch (e.getField()) {
+                case PLATE:
+                    plateEditText.setError(e.getMessage());
+                    break;
+                case VIN:
+                    vinEditText.setError(e.getMessage());
+                    break;
+                case FIRST_REGISTRATION_DATE:
+                    registrationDateEditText.setError(e.getMessage());
+                    break;
+            }
+        }
+    }
+
+    private void performSearch(final VehicleInput input) {
+        setUiLocked(true);
+        setButtonAnimator(ANIMATOR_PROGRESS);
 
         PerformSearchDelegate searchDelegate = new PerformSearchDelegate(getActivity());
 
@@ -157,12 +176,22 @@ public class FindVehicleFragment extends Fragment {
         setUiLocked(false);
     }
 
-    private VehicleInput getInput() {
+    private VehicleInput getValidatedInput() throws VehicleValidationException {
         VehicleInput input = new VehicleInput();
-        //TODO: Add validation.
-        input.setPlate(plateEditText.getText().toString());
-        input.setVin(vinEditText.getText().toString());
-        input.setFirstRegistrationDate(registrationDateEditText.getText().toString());
+
+        String plate = plateEditText.getText().toString();
+        String vin = vinEditText.getText().toString();
+        String firstRegDate = registrationDateEditText.getText().toString();
+
+        VehicleInputValidator validator = new VehicleInputValidator();
+        validator.validatePlate(plate);
+        validator.validateVin(vin);
+        validator.validateFirstRegistrationDate(firstRegDate);
+
+        input.setPlate(plate);
+        input.setVin(vin);
+        input.setFirstRegistrationDate(firstRegDate);
+
         return input;
     }
 
