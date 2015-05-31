@@ -111,7 +111,7 @@
                     android:id="@+id/registration_edit_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="date|textNoSuggestions"
+                    android:inputType="numberDecimal"
                     android:hint="@string/first_registration_hint"
                     android:lines="1"
                     android:layout_gravity="center_horizontal"/>
