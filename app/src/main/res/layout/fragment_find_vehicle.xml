@@ -38,6 +38,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textNoSuggestions"
+                    android:hint="@string/plate_hint"
                     android:lines="1"
                     android:layout_gravity="center_horizontal"/>
 
@@ -73,6 +74,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textNoSuggestions"
+                    android:hint="@string/vin_hint"
                     android:lines="1"
                     android:nextFocusDown="@+id/registration_edit_text"
                     android:layout_gravity="center_horizontal"/>
@@ -109,7 +111,8 @@
                     android:id="@+id/registration_edit_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="numberDecimal"
+                    android:inputType="date|textNoSuggestions"
+                    android:hint="@string/first_registration_hint"
                     android:lines="1"
                     android:layout_gravity="center_horizontal"/>
 

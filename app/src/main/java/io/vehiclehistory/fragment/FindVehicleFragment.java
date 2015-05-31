@@ -70,16 +70,7 @@ public class FindVehicleFragment extends Fragment {
         setupPickDateButton();
         setupSearchButton();
 
-        //TODO: Remove this before release.
-        setupTestVehicleData();
-
         return rootView;
-    }
-
-    private void setupTestVehicleData() {
-        plateEditText.setText("BBC12345");
-        vinEditText.setText("ABC123456789DEF");
-        registrationDateEditText.setText("11.03.2015");
     }
 
     private void bindViews(View rootView) {
