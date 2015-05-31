@@ -1,19 +1,15 @@
 package io.vehiclehistory.validation;
 
-import java.util.ArrayList;
 import java.util.Collection;
 
 public class VehicleValidationException extends Exception {
 
-    private final Collection<Issue> issues = new ArrayList<>();
+    private final Collection<Issue> issues;
 
-    public VehicleValidationException() {
+    public VehicleValidationException(Collection<Issue> issues) {
         super();
-    }
 
-    public VehicleValidationException withIssue(Issue issue) {
-        issues.add(issue);
-        return this;
+        this.issues = issues;
     }
 
     public Collection<Issue> getIssues() {

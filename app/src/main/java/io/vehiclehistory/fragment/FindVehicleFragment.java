@@ -192,7 +192,7 @@ public class FindVehicleFragment extends Fragment {
         String vin = vinEditText.getText().toString();
         String firstRegDate = registrationDateEditText.getText().toString();
 
-        VehicleInputValidator validator = new VehicleInputValidator();
+        VehicleInputValidator validator = new VehicleInputValidator(getActivity());
         validator.validate(plate, vin, firstRegDate);
 
         input.setPlate(plate);

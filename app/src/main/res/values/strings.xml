@@ -80,4 +80,7 @@
     <string name="unknown_plate">nieznany</string>
     <string name="unknown_vin">nieznany</string>
     <string name="unknown_car">Nieznany pojazd</string>
+
+    <!-- validation messages -->
+    <string name="condition_msg_not_empty">Pole nie może być puste</string>
 </resources>
