@@ -89,6 +89,8 @@ public class FindVehicleFragment extends Fragment {
 
             @Override
             public void onClick(View v) {
+                registrationDateEditText.setError(null);
+
                 FragmentManager fm = getActivity().getFragmentManager();
                 DatePickerFragment datePickerFragment = new DatePickerFragment();
 
