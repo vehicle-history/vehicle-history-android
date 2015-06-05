@@ -1,4 +1,7 @@
 # vehicle-history-android
+
+[![Google Play badge](https://developer.android.com/images/brand/en_generic_rgb_wo_60.png)](https://play.google.com/store/apps/details?id=io.vehiclehistory)
+
 [![Build Status](https://travis-ci.org/vehicle-history/vehicle-history-android.svg?branch=develop)](https://travis-ci.org/vehicle-history/vehicle-history-android)
 
 ## License
