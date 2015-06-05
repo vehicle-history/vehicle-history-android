@@ -15,21 +15,24 @@ import io.vehiclehistory.R;
  */
 public class DrawerAdapter extends BaseAdapter {
 
-    private enum DrawerOption {
-        FIND_VEHICLE(R.string.title_section_find_vehicle, R.drawable.ic_file_find_grey600_24dp),
-        EXAMPLE(R.string.title_section_example, R.drawable.ic_file_find_grey600_24dp),
-        SEARCH_HISTORY(R.string.title_section_history, R.drawable.ic_history_grey600_24dp),
-        OPTIONS(R.string.title_section_options, R.drawable.ic_settings_grey600_24dp),
-        RATE(R.string.title_section_rate, R.drawable.ic_star_grey600_24dp),
-        ABOUT(R.string.title_section_about, R.drawable.ic_information_grey600_24dp);
+    public enum DrawerOption {
+        FIND_VEHICLE(R.string.title_section_find_vehicle, R.drawable.ic_file_find_grey600_24dp, true),
+        EXAMPLE(R.string.title_section_example, R.drawable.ic_file_find_grey600_24dp, false),
+        SEARCH_HISTORY(R.string.title_section_history, R.drawable.ic_history_grey600_24dp, true),
+        OPTIONS(R.string.title_section_options, R.drawable.ic_settings_grey600_24dp, true),
+        RATE(R.string.title_section_rate, R.drawable.ic_star_grey600_24dp, false),
+        ABOUT(R.string.title_section_about, R.drawable.ic_information_grey600_24dp, true);
 
         private int labelResId;
 
         private int iconResId;
 
-        DrawerOption(int labelResId, int iconResId) {
+        private boolean selectable;
+
+        DrawerOption(int labelResId, int iconResId, boolean selectable) {
             this.labelResId = labelResId;
             this.iconResId = iconResId;
+            this.selectable = selectable;
         }
 
         public int getLabelResId() {
@@ -40,6 +43,9 @@ public class DrawerAdapter extends BaseAdapter {
             return iconResId;
         }
 
+        public boolean isSelectable() {
+            return selectable;
+        }
     }
 
     private Context context;

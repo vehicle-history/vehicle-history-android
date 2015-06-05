@@ -58,6 +58,7 @@ public class NavigationDrawerFragment extends Fragment {
     private int currentSelectedPosition = 0;
     private boolean fromSavedInstanceState;
     private boolean userLearnedDrawer;
+    private DrawerAdapter drawerAdapter;
 
     public NavigationDrawerFragment() {
     }
@@ -70,6 +71,8 @@ public class NavigationDrawerFragment extends Fragment {
         // drawer. See PREF_USER_LEARNED_DRAWER for details.
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getActivity());
         userLearnedDrawer = sp.getBoolean(PREF_USER_LEARNED_DRAWER, false);
+
+        drawerAdapter = new DrawerAdapter(getActivity());
 
         if (savedInstanceState != null) {
             currentSelectedPosition = savedInstanceState.getInt(STATE_SELECTED_POSITION);
@@ -100,7 +103,7 @@ public class NavigationDrawerFragment extends Fragment {
             }
         });
 
-        drawerListView.setAdapter(new DrawerAdapter(getActivity()));
+        drawerListView.setAdapter(drawerAdapter);
         drawerListView.setItemChecked(currentSelectedPosition, true);
         return drawerListView;
     }
@@ -184,13 +187,18 @@ public class NavigationDrawerFragment extends Fragment {
     }
 
     private void selectItem(int position) {
-        currentSelectedPosition = position;
-        if (drawerListView != null) {
-            drawerListView.setItemChecked(position, true);
+        if (drawerAdapter.getItem(position).isSelectable()) {
+            if (drawerListView != null) {
+                drawerListView.setItemChecked(position, true);
+            }
+
+            currentSelectedPosition = position;
         }
+
         if (drawerLayout != null) {
             drawerLayout.closeDrawer(fragmentContainerView);
         }
+
         if (callbacks != null) {
             callbacks.onNavigationDrawerItemSelected(position);
         }
