@@ -37,6 +37,7 @@
                     android:inputType="textNoSuggestions"
                     android:hint="@string/input_plate"
                     android:lines="1"
+                    android:singleLine="true"
                     android:layout_gravity="center_horizontal" />
 
             </android.support.design.widget.TextInputLayout>
@@ -68,6 +69,7 @@
                     android:inputType="textNoSuggestions"
                     android:hint="@string/input_vin"
                     android:lines="1"
+                    android:singleLine="true"
                     android:nextFocusDown="@+id/registration_edit_text"
                     android:layout_gravity="center_horizontal"/>
 
@@ -100,6 +102,7 @@
                     android:layout_height="wrap_content"
                     android:hint="@string/input_registration_date"
                     android:lines="1"
+                    android:singleLine="true"
                     android:layout_gravity="center_horizontal"/>
 
             </android.support.design.widget.TextInputLayout>
