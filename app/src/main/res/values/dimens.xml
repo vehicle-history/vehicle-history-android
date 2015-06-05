@@ -9,8 +9,11 @@
 
     <dimen name="search_form_vertical_padding">24dp</dimen>
     <dimen name="search_form_side_padding">32dp</dimen>
+    <dimen name="search_form_top_padding">32dp</dimen>
     <dimen name="vehicle_info_vertical_margin">12dp</dimen>
     <dimen name="about_paragraph_vertical_margin">16dp</dimen>
     <dimen name="about_paragraph_horizontal_margin">16dp</dimen>
+
+    <dimen name="search_form_circle_bottom_margin">8dp</dimen>
 
 </resources>

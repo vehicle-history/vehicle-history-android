@@ -8,7 +8,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/search_form_vertical_padding"
+        android:layout_marginTop="@dimen/search_form_top_padding"
         android:orientation="vertical"
         android:paddingLeft="@dimen/search_form_side_padding"
         android:paddingRight="@dimen/search_form_side_padding">
@@ -21,13 +21,15 @@
             <TextView
                 style="@style/PrimaryCircleTextView"
                 android:text="1"
-                android:layout_gravity="center_vertical"/>
+                android:layout_gravity="center_vertical"
+                android:layout_marginBottom="@dimen/search_form_circle_bottom_margin"/>
 
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/plate_edit_text"
                 app:errorEnabled="true"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" >
+                android:layout_height="wrap_content"
+                app:hintTextAppearance="@style/TextAppearence.App.TextInputLayout">
 
                 <EditText
                     android:layout_width="match_parent"
@@ -50,13 +52,15 @@
             <TextView
                 style="@style/PrimaryCircleTextView"
                 android:text="2"
-                android:layout_gravity="center_vertical"/>
+                android:layout_gravity="center_vertical"
+                android:layout_marginBottom="@dimen/search_form_circle_bottom_margin"/>
 
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/vin_edit_text"
                 app:errorEnabled="true"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" >
+                android:layout_height="wrap_content"
+                app:hintTextAppearance="@style/TextAppearence.App.TextInputLayout" >
 
                 <EditText
                     android:layout_width="match_parent"
@@ -80,14 +84,16 @@
             <TextView
                 style="@style/PrimaryCircleTextView"
                 android:text="3"
-                android:layout_gravity="center_vertical"/>
+                android:layout_gravity="center_vertical"
+                android:layout_marginBottom="@dimen/search_form_circle_bottom_margin"/>
 
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/registration_edit_text"
                 app:errorEnabled="true"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                app:hintTextAppearance="@style/TextAppearence.App.TextInputLayout">
 
                 <EditText
                     android:layout_width="match_parent"
