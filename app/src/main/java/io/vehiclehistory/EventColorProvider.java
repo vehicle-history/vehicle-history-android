@@ -9,6 +9,7 @@ public class EventColorProvider {
             case PRODUCTION:
                 return R.drawable.circle_amber;
             case REGISTRATION:
+            case ABROAD_REGISTRATION:
             case DEREGISTRATION:
             case CHANGED_REGISTRATION_LOCATION:
             case HOLDER:
