@@ -106,9 +106,17 @@ public class FindVehicleFragment extends Fragment {
 
             @Override
             public void onClick(View v) {
+                clearErrors();
                 validateAndPerformSearch();
             }
+
         });
+    }
+
+    private void clearErrors() {
+        plateInputLayout.setError(null);
+        vinInputLayout.setError(null);
+        registrationDateInputLayout.setError(null);
     }
 
     private void validateAndPerformSearch() {
