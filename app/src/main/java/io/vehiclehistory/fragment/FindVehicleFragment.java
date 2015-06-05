@@ -6,12 +6,12 @@ import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.design.widget.TextInputLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Toast;
 import android.widget.ViewAnimator;
 
@@ -44,9 +44,9 @@ public class FindVehicleFragment extends Fragment {
     private Button findVehicleButton;
     private ViewAnimator findVehicleAnimator;
 
-    private EditText plateEditText;
-    private EditText vinEditText;
-    private EditText registrationDateEditText;
+    private TextInputLayout plateInputLayout;
+    private TextInputLayout vinInputLayout;
+    private TextInputLayout registrationDateInputLayout;
 
     private View pickDateButton;
 
@@ -77,9 +77,9 @@ public class FindVehicleFragment extends Fragment {
         findVehicleButton = (Button) rootView.findViewById(R.id.find_vehicle_button);
         findVehicleAnimator = (ViewAnimator) rootView.findViewById(R.id.find_vehicle_animator);
 
-        plateEditText = (EditText) rootView.findViewById(R.id.plate_edit_text);
-        vinEditText = (EditText) rootView.findViewById(R.id.vin_edit_text);
-        registrationDateEditText = (EditText) rootView.findViewById(R.id.registration_edit_text);
+        plateInputLayout = (TextInputLayout) rootView.findViewById(R.id.plate_edit_text);
+        vinInputLayout = (TextInputLayout) rootView.findViewById(R.id.vin_edit_text);
+        registrationDateInputLayout = (TextInputLayout) rootView.findViewById(R.id.registration_edit_text);
 
         pickDateButton = rootView.findViewById(R.id.pick_date_button);
     }
@@ -89,7 +89,7 @@ public class FindVehicleFragment extends Fragment {
 
             @Override
             public void onClick(View v) {
-                registrationDateEditText.setError(null);
+                registrationDateInputLayout.setError(null);
 
                 FragmentManager fm = getActivity().getFragmentManager();
                 DatePickerFragment datePickerFragment = new DatePickerFragment();
@@ -123,13 +123,13 @@ public class FindVehicleFragment extends Fragment {
         for (Issue issue : issues) {
             switch (issue.getField()) {
                 case PLATE:
-                    plateEditText.setError(issue.getDetailMessage());
+                    plateInputLayout.setError(issue.getDetailMessage());
                     break;
                 case VIN:
-                    vinEditText.setError(issue.getDetailMessage());
+                    vinInputLayout.setError(issue.getDetailMessage());
                     break;
                 case FIRST_REGISTRATION_DATE:
-                    registrationDateEditText.setError(issue.getDetailMessage());
+                    registrationDateInputLayout.setError(issue.getDetailMessage());
                     break;
             }
         }
@@ -166,7 +166,7 @@ public class FindVehicleFragment extends Fragment {
 
         if (requestCode == PICK_DATE_REQ_CODE && resultCode == Activity.RESULT_OK) {
             String date = data.getStringExtra(DatePickerFragment.EXTRA_KEY_DATE_STRING);
-            registrationDateEditText.setText(date);
+            registrationDateInputLayout.getEditText().setText(date);
         }
 
         super.onActivityResult(requestCode, resultCode, data);
@@ -181,9 +181,9 @@ public class FindVehicleFragment extends Fragment {
     private VehicleInput getValidatedInput() throws VehicleValidationException {
         VehicleInput input = new VehicleInput();
 
-        String plate = plateEditText.getText().toString();
-        String vin = vinEditText.getText().toString();
-        String firstRegDate = registrationDateEditText.getText().toString();
+        String plate = plateInputLayout.getEditText().getText().toString();
+        String vin = vinInputLayout.getEditText().getText().toString();
+        String firstRegDate = registrationDateInputLayout.getEditText().getText().toString();
 
         VehicleInputValidator validator = new VehicleInputValidator(getActivity());
         validator.validate(plate, vin, firstRegDate);
@@ -200,9 +200,9 @@ public class FindVehicleFragment extends Fragment {
 
             @Override
             public void run() {
-                plateEditText.setEnabled(!locked);
-                vinEditText.setEnabled(!locked);
-                registrationDateEditText.setEnabled(!locked);
+                plateInputLayout.setEnabled(!locked);
+                vinInputLayout.setEnabled(!locked);
+                registrationDateInputLayout.setEnabled(!locked);
             }
         });
     }

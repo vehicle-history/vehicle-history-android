@@ -21,10 +21,6 @@
     <string name="input_vin">Numer VIN</string>
     <string name="input_registration_date">Data pierwszej rejestracji</string>
 
-    <string name="first_registration_hint">np. 01.01.2000</string>
-    <string name="vin_hint">17 znaków - liczby i litery</string>
-    <string name="plate_hint">np. ABC123456</string>
-
     <string name="post_search_form">Sprawdź pojazd</string>
 
     <string name="vehicle_info">Dane pojazdu</string>
