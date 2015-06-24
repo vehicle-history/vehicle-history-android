@@ -112,17 +112,17 @@ public class TimelineFragment extends Fragment {
         }
 
         //INSPECTION
-        if (event.getMileage() != null) {
-            stringBuilder.append("\n")
-                    .append(getActivity().getString(R.string.mileage_semicolon))
-                    .append(event.getMileage().getValue());
-        }
-
-        //INSPECTION
         if (event.getExpireAt() != null) {
             stringBuilder.append("\n")
                     .append(getActivity().getString(R.string.expires_at_semicolon))
                     .append(new DateFormatter().formatDateFromApi(event.getExpireAt()));
+        }
+
+        //INSPECTION
+        if (event.getMileage() != null) {
+            stringBuilder.append("\n")
+                    .append(getActivity().getString(R.string.mileage_semicolon))
+                    .append(event.getMileage().getValue());
         }
 
         return stringBuilder.toString();
