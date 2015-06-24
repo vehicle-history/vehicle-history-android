@@ -3,6 +3,7 @@ package io.vehiclehistory.fragment;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -153,10 +154,14 @@ public class FindVehicleFragment extends Fragment {
 
             @Override
             public void onSearchFinished(VehicleResponse vehicleResponse) {
-                new SaveSearchDelegate(getActivity()).saveSearch(input, vehicleResponse);
+                Context context = getActivity();
 
-                setButtonAnimator(ANIMATOR_BUTTON);
-                setUiLocked(false);
+                if (context != null) {
+                    new SaveSearchDelegate(context.getApplicationContext()).saveSearch(input, vehicleResponse);
+
+                    setButtonAnimator(ANIMATOR_BUTTON);
+                    setUiLocked(false);
+                }
             }
 
             @Override
@@ -181,9 +186,13 @@ public class FindVehicleFragment extends Fragment {
     }
 
     private void onExceptionUi(String message) {
-        Toast.makeText(getActivity().getApplicationContext(), message, Toast.LENGTH_LONG).show();
-        setButtonAnimator(ANIMATOR_BUTTON);
-        setUiLocked(false);
+        Context context = getActivity();
+
+        if (context != null) {
+            Toast.makeText(context.getApplicationContext(), message, Toast.LENGTH_LONG).show();
+            setButtonAnimator(ANIMATOR_BUTTON);
+            setUiLocked(false);
+        }
     }
 
     private VehicleInput getValidatedInput() throws VehicleValidationException {

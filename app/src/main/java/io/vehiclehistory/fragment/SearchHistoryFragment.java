@@ -98,7 +98,7 @@ public class SearchHistoryFragment extends Fragment implements OnHistoryItemClic
             progressDialog = ProgressDialog.show(getActivity(), null,
                     getActivity().getString(R.string.searching_vehicle), true, false);
         } else {
-            if (progressDialog != null) {
+            if (progressDialog != null && progressDialog.isShowing()) {
                 progressDialog.dismiss();
                 progressDialog = null;
             }

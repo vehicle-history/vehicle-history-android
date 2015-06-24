@@ -79,8 +79,10 @@ public class PerformSearchDelegate {
 
             @Override
             public void onApiError(VehicleHistoryApiException exception) {
-                Log.e(TAG, exception.getMessage());
-                listener.onSearchError("Can't get vehicle.");
+                if (exception != null) {
+                    Log.e(TAG, exception.getMessage());
+                    listener.onSearchError("Can't get vehicle.");
+                }
             }
 
             @Override
