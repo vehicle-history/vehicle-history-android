@@ -81,4 +81,8 @@
     <string name="registration_status_unregistered">wyrejestrowany</string>
     <string name="registration_status_unknown">nieznany</string>
 
+    <!-- OwnerType enum values -->
+    <string name="owner_type_private">osoba prywatna</string>
+    <string name="owner_type_company">firma</string>
+
 </resources>

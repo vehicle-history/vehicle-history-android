@@ -17,6 +17,7 @@ import io.vehiclehistory.api.model.Event;
 import io.vehiclehistory.api.model.VehicleResponse;
 
 import static io.vehiclehistory.api.model.EventType.REGISTRATION;
+import static io.vehiclehistory.api.model.OwnerType.UNKNOWN;
 
 public class TimelineFragment extends Fragment {
 
@@ -77,13 +78,15 @@ public class TimelineFragment extends Fragment {
         stringBuilder.append(getString(event.getType().getValueResource()));
 
         //REGISTRATION
-        if (event.isAbroadRegistration() != null && REGISTRATION == event.getType()) {
+        if (event.isAbroadRegistration() != null
+                && event.isAbroadRegistration()
+                && REGISTRATION == event.getType()) {
             stringBuilder.append(" ")
                     .append(getActivity().getString(R.string.abroad));
         }
 
         //CHANGE_OWNER
-        if (event.isFirstOwner() != null) {
+        if (event.isFirstOwner() != null && event.isFirstOwner()) {
             stringBuilder.append("\n")
                     .append(getActivity().getString(R.string.first_owner));
         }
@@ -91,13 +94,15 @@ public class TimelineFragment extends Fragment {
         //CHANGE_OWNER
         if (event.getLocation() != null) {
             stringBuilder.append("\n")
-                    .append(event.getLocation().getState());
+                    .append(event.getLocation().getState())
+                    .append(", ")
+                    .append(event.getLocation().getCountry());
         }
 
         //CHANGE_OWNER or CO_OWNER
-        if (event.getOwnerType() != null) {
+        if (event.getOwnerType() != null && UNKNOWN != event.getOwnerType()) {
             stringBuilder.append("\n")
-                    .append(event.getOwnerType());
+                    .append(getString(event.getOwnerType().getValueResource()));
         }
 
         //DEREGISTRATION
@@ -109,13 +114,15 @@ public class TimelineFragment extends Fragment {
         //INSPECTION
         if (event.getMileage() != null) {
             stringBuilder.append("\n")
+                    .append(getActivity().getString(R.string.mileage_semicolon))
                     .append(event.getMileage().getValue());
         }
 
         //INSPECTION
         if (event.getExpireAt() != null) {
             stringBuilder.append("\n")
-                    .append(event.getExpireAt());
+                    .append(getActivity().getString(R.string.expires_at_semicolon))
+                    .append(new DateFormatter().formatDateFromApi(event.getExpireAt()));
         }
 
         return stringBuilder.toString();

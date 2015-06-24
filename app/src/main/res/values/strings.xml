@@ -69,6 +69,9 @@
     <string name="abroad">za granicą</string>
     <string name="first_owner">Pierwszy właściciel</string>
 
+    <string name="mileage_semicolon">"przebieg: "</string>
+    <string name="expires_at_semicolon">"wygasa: "</string>
+
     <!-- default api values -->
     <string name="unknown_first_vehicle_registration">nieznana</string>
     <string name="unknown_model">nieznany</string>
