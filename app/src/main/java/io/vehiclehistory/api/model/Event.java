@@ -9,6 +9,7 @@ public class Event implements Serializable {
     private EventType type;
     private String createdAt;
     private String expireAt;
+    private String description;
     private Boolean firstOwner;
     private String note;
     private OwnerType ownerType;
@@ -26,6 +27,10 @@ public class Event implements Serializable {
 
     public String getExpireAt() {
         return expireAt;
+    }
+
+    public String getDescription() {
+        return description;
     }
 
     public Boolean isFirstOwner() {
