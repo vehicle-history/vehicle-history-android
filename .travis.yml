@@ -4,6 +4,8 @@ android:
     - build-tools-21.1.2
     - android-21
     - extra-android-support
+    - extra-android-m2repository
+    - android-sdk-license-.+
 
 before_install:
   - chmod +x gradlew
