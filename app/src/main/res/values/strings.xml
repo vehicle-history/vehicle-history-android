@@ -66,6 +66,9 @@
 
     <string name="connection_error">Błąd sieci</string>
 
+    <string name="abroad">za granicą</string>
+    <string name="first_owner">Pierwszy właściciel</string>
+
     <!-- default api values -->
     <string name="unknown_first_vehicle_registration">nieznana</string>
     <string name="unknown_model">nieznany</string>

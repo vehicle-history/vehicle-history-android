@@ -16,9 +16,8 @@ import io.vehiclehistory.activity.VehicleDataActivity;
 import io.vehiclehistory.api.model.Event;
 import io.vehiclehistory.api.model.VehicleResponse;
 
-/**
- * @author Piotr Makowski (<a href=\"mailto:Piotr.Makowski@allegrogroup.pl\">Piotr.Makowski@allegrogroup.pl</a>)
- */
+import static io.vehiclehistory.api.model.EventType.REGISTRATION;
+
 public class TimelineFragment extends Fragment {
 
     private final EventColorProvider eventColorProvider = new EventColorProvider();
@@ -60,7 +59,7 @@ public class TimelineFragment extends Fragment {
         View row = LayoutInflater.from(getActivity()).inflate(R.layout.timeline_row, layout, false);
 
         TextView eventNameTextView = (TextView) row.findViewById(R.id.timeline_description);
-        eventNameTextView.setText(event.getType().getValueResource());
+        eventNameTextView.setText(buildDescription(event));
 
         TextView dateTextView = (TextView) row.findViewById(R.id.timeline_date);
         dateTextView.setText(new DateFormatter().formatDateFromApi(event.getCreatedAt()));
@@ -69,5 +68,56 @@ public class TimelineFragment extends Fragment {
         circle.setBackgroundResource(eventColorProvider.getBackground(event.getType()));
 
         layout.addView(row);
+    }
+
+    //TODO Work in progress
+    private String buildDescription(Event event) {
+        StringBuilder stringBuilder = new StringBuilder();
+
+        stringBuilder.append(getString(event.getType().getValueResource()));
+
+        //REGISTRATION
+        if (event.isAbroadRegistration() != null && REGISTRATION == event.getType()) {
+            stringBuilder.append(" ")
+                    .append(getActivity().getString(R.string.abroad));
+        }
+
+        //CHANGE_OWNER
+        if (event.isFirstOwner() != null) {
+            stringBuilder.append("\n")
+                    .append(getActivity().getString(R.string.first_owner));
+        }
+
+        //CHANGE_OWNER
+        if (event.getLocation() != null) {
+            stringBuilder.append("\n")
+                    .append(event.getLocation().getState());
+        }
+
+        //CHANGE_OWNER or CO_OWNER
+        if (event.getOwnerType() != null) {
+            stringBuilder.append("\n")
+                    .append(event.getOwnerType());
+        }
+
+        //DEREGISTRATION
+        if (event.getNote() != null) {
+            stringBuilder.append("\n")
+                    .append(event.getNote());
+        }
+
+        //INSPECTION
+        if (event.getMileage() != null) {
+            stringBuilder.append("\n")
+                    .append(event.getMileage().getValue());
+        }
+
+        //INSPECTION
+        if (event.getExpireAt() != null) {
+            stringBuilder.append("\n")
+                    .append(event.getExpireAt());
+        }
+
+        return stringBuilder.toString();
     }
 }
