@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="wrap_content"
     android:layout_width="match_parent"
     android:minHeight="52dp"
@@ -35,15 +36,34 @@
 
     </FrameLayout>
 
-    <TextView
-        android:id="@+id/timeline_description"
-        style="@style/PrimaryText"
-        android:layout_height="wrap_content"
+    <LinearLayout
         android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
         android:layout_weight="13"
         android:layout_marginTop="12dp"
         android:layout_marginBottom="12dp"
-        android:layout_gravity="center"
-        android:gravity="center_vertical"/>
+        android:gravity="center_vertical"
+        android:layout_gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/timeline_description"
+            style="@style/PrimaryText"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:gravity="center_vertical"
+            android:layout_gravity="center"
+            tools:text="asdasd"/>
+
+        <TextView
+            android:id="@+id/timeline_extras"
+            style="@style/SecondaryText"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:gravity="center_vertical"
+            android:visibility="gone"
+            tools:text="asdasd\nawdwdwdwdwd\nffsafsdfasdfdsa"/>
+
+    </LinearLayout>
 
 </LinearLayout>

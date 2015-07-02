@@ -60,7 +60,15 @@ public class TimelineFragment extends Fragment {
         View row = LayoutInflater.from(getActivity()).inflate(R.layout.timeline_row, layout, false);
 
         TextView eventNameTextView = (TextView) row.findViewById(R.id.timeline_description);
-        eventNameTextView.setText(buildDescription(event));
+        eventNameTextView.setText(getString(event.getType().getValueResource()));
+
+        String extras = buildExtras(event);
+
+        if (!extras.isEmpty()) {
+            TextView eventExtrasTextView = (TextView) row.findViewById(R.id.timeline_extras);
+            eventExtrasTextView.setVisibility(View.VISIBLE);
+            eventExtrasTextView.setText(extras);
+        }
 
         TextView dateTextView = (TextView) row.findViewById(R.id.timeline_date);
         dateTextView.setText(new DateFormatter().formatDateFromApi(event.getCreatedAt()));
@@ -71,29 +79,28 @@ public class TimelineFragment extends Fragment {
         layout.addView(row);
     }
 
-    //TODO Work in progress
-    private String buildDescription(Event event) {
+    private String buildExtras(Event event) {
         StringBuilder stringBuilder = new StringBuilder();
-
-        stringBuilder.append(getString(event.getType().getValueResource()));
 
         //REGISTRATION
         if (event.isAbroadRegistration() != null
                 && event.isAbroadRegistration()
                 && REGISTRATION == event.getType()) {
-            stringBuilder.append(" ")
-                    .append(getActivity().getString(R.string.abroad));
+
+            appendNewLineIfNotEmpty(stringBuilder);
+            stringBuilder.append(getActivity().getString(R.string.abroad));
         }
 
         //CHANGE_OWNER
         if (event.isFirstOwner() != null && event.isFirstOwner()) {
-            stringBuilder.append("\n")
-                    .append(getActivity().getString(R.string.first_owner));
+            appendNewLineIfNotEmpty(stringBuilder);
+            stringBuilder.append(getActivity().getString(R.string.first_owner));
         }
 
         //CHANGE_OWNER
         if (event.getLocation() != null) {
-            stringBuilder.append("\n")
+            appendNewLineIfNotEmpty(stringBuilder);
+            stringBuilder
                     .append(event.getLocation().getState())
                     .append(", ")
                     .append(event.getLocation().getCountry());
@@ -101,30 +108,38 @@ public class TimelineFragment extends Fragment {
 
         //CHANGE_OWNER or CO_OWNER
         if (event.getOwnerType() != null && UNKNOWN != event.getOwnerType()) {
-            stringBuilder.append("\n")
-                    .append(getString(event.getOwnerType().getValueResource()));
+            appendNewLineIfNotEmpty(stringBuilder);
+            stringBuilder.append(getString(event.getOwnerType().getValueResource()));
         }
 
         //DEREGISTRATION
         if (event.getNote() != null) {
-            stringBuilder.append("\n")
-                    .append(event.getNote());
+            appendNewLineIfNotEmpty(stringBuilder);
+            stringBuilder.append(event.getNote());
         }
 
         //INSPECTION
         if (event.getExpireAt() != null) {
-            stringBuilder.append("\n")
+            appendNewLineIfNotEmpty(stringBuilder);
+            stringBuilder
                     .append(getActivity().getString(R.string.expires_at_semicolon))
                     .append(new DateFormatter().formatDateFromApi(event.getExpireAt()));
         }
 
         //INSPECTION
         if (event.getMileage() != null) {
-            stringBuilder.append("\n")
+            appendNewLineIfNotEmpty(stringBuilder);
+            stringBuilder
                     .append(getActivity().getString(R.string.mileage_semicolon))
                     .append(event.getMileage().getValue());
         }
 
         return stringBuilder.toString();
+    }
+
+    private void appendNewLineIfNotEmpty(StringBuilder stringBuilder) {
+        if (!stringBuilder.toString().isEmpty()) {
+            stringBuilder.append("\n");
+        }
     }
 }
