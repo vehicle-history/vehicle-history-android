@@ -4,6 +4,7 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
+import android.widget.Toast;
 
 import io.vehiclehistory.BuildConfig;
 import io.vehiclehistory.PerformSearchDelegate;
@@ -141,7 +143,7 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
 
             @Override
             public void onSearchError(String message) {
-                //TODO implement me
+                Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
                 setInteractionLocked(false);
             }
         });
