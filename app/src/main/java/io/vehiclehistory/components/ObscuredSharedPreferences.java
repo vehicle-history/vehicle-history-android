@@ -6,17 +6,26 @@ import android.content.SharedPreferences;
 import android.provider.Settings;
 import android.util.Base64;
 
+import java.io.UnsupportedEncodingException;
+import java.security.InvalidAlgorithmParameterException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
 import javax.crypto.SecretKey;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
 import javax.crypto.spec.PBEParameterSpec;
 
 import io.vehiclehistory.BuildConfig;
+import timber.log.Timber;
 
 public class ObscuredSharedPreferences implements SharedPreferences {
 
@@ -191,6 +200,7 @@ public class ObscuredSharedPreferences implements SharedPreferences {
     }
 
     protected String decrypt(String value) {
+        Throwable th;
         try {
             final byte[] bytes = value != null ? Base64.decode(value, Base64.DEFAULT) : new byte[0];
             SecretKeyFactory keyFactory = SecretKeyFactory.getInstance("PBEWithMD5AndDES");
@@ -198,10 +208,33 @@ public class ObscuredSharedPreferences implements SharedPreferences {
             Cipher pbeCipher = Cipher.getInstance("PBEWithMD5AndDES");
             pbeCipher.init(Cipher.DECRYPT_MODE, key, new PBEParameterSpec(Settings.Secure.getString(context.getContentResolver(), Settings.System.ANDROID_ID).getBytes(UTF8), 20));
             return new String(pbeCipher.doFinal(bytes), UTF8);
-
-        } catch (Exception e) {
-            throw new RuntimeException(e);
+        } catch (NoSuchAlgorithmException e) {
+            Timber.e(e, "NoSuchAlgorithmException");
+            th = e;
+        } catch (InvalidKeyException e) {
+            Timber.e(e, "InvalidKeyException");
+            th = e;
+        } catch (InvalidAlgorithmParameterException e) {
+            Timber.e(e, "InvalidAlgorithmParameterException");
+            th = e;
+        } catch (NoSuchPaddingException e) {
+            Timber.e(e, "NoSuchPaddingException");
+            th = e;
+        } catch (BadPaddingException e) {
+            Timber.e(e, "BadPaddingException");
+            th = e;
+        } catch (UnsupportedEncodingException e) {
+            Timber.e(e, "UnsupportedEncodingException");
+            th = e;
+        } catch (InvalidKeySpecException e) {
+            Timber.e(e, "InvalidKeySpecException");
+            th = e;
+        } catch (IllegalBlockSizeException e) {
+            Timber.e(e, "IllegalBlockSizeException");
+            th = e;
         }
+
+        throw new RuntimeException(th);
     }
 
 }

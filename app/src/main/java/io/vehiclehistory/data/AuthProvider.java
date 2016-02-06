@@ -34,7 +34,6 @@ public class AuthProvider implements AuthMvpView {
         this.session = session;
     }
 
-    //TODO REMOVE OnAuthCallback
     public void getNewSession(OnAuthCallback onFinishedListener) {
         String refreshToken = session.getRefreshToken();
         Timber.d("getNewSession: refreshToken: %s", refreshToken);
@@ -92,11 +91,11 @@ public class AuthProvider implements AuthMvpView {
 
     @Override
     public void onPasswordFailed() {
-        //toast TODO
+        //nop
     }
 
     @Override
     public void onNoConnectionError() {
-
+        //nop
     }
 }

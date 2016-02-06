@@ -39,7 +39,6 @@ android {
         debug {
             applicationIdSuffix ".debug"
             versionNameSuffix " Debug"
-            debuggable true
         }
 
         release {

@@ -28,6 +28,8 @@ public abstract class BaseCaller<T extends MvpView> implements Caller<T> {
 
     private int retry = 0;
 
+    private T mvpView;
+
     private Subscription subscription;
 
     public BaseCaller(
@@ -38,8 +40,6 @@ public abstract class BaseCaller<T extends MvpView> implements Caller<T> {
         this.retrofit = retrofit;
     }
 
-    private T mMvpView;
-
 
     protected void resetRetry() {
         retry = 0;
@@ -47,12 +47,12 @@ public abstract class BaseCaller<T extends MvpView> implements Caller<T> {
 
     @Override
     public void attachView(T mvpView) {
-        mMvpView = mvpView;
+        this.mvpView = mvpView;
     }
 
     @Override
     public void detachView() {
-        mMvpView = null;
+        mvpView = null;
 
         if (subscription != null) {
             subscription.unsubscribe();
@@ -60,11 +60,11 @@ public abstract class BaseCaller<T extends MvpView> implements Caller<T> {
     }
 
     public boolean isViewAttached() {
-        return mMvpView != null;
+        return mvpView != null;
     }
 
     public T getMvpView() {
-        return mMvpView;
+        return mvpView;
     }
 
     public DataManager getDataManager() {
@@ -91,7 +91,7 @@ public abstract class BaseCaller<T extends MvpView> implements Caller<T> {
 
         if (retry > Settings.RETRY_COUNT) {
             Timber.e("Reached max retries: %d", retry);
-            mMvpView.onRetryError();
+            mvpView.onRetryError();
             return;
         }
 
@@ -151,7 +151,7 @@ public abstract class BaseCaller<T extends MvpView> implements Caller<T> {
             @Override
             public void onError() {
                 Timber.e("authorizeAndRetry.onError");
-                mMvpView.onNoConnectionError();
+                mvpView.onNoConnectionError();
             }
         });
     }
