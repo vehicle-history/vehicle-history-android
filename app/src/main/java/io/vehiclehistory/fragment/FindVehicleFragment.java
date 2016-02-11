@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.TextInputLayout;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -18,18 +19,23 @@ import android.widget.ViewAnimator;
 
 import java.util.Collection;
 
-import io.vehiclehistory.PerformSearchDelegate;
-import io.vehiclehistory.PerformSearchDelegate.OnSearchFinishedListener;
+import javax.inject.Inject;
+
 import io.vehiclehistory.R;
 import io.vehiclehistory.SaveSearchDelegate;
+import io.vehiclehistory.VehicleHistoryApp;
 import io.vehiclehistory.activity.MainActivity;
+import io.vehiclehistory.activity.VehicleDataActivity;
 import io.vehiclehistory.api.model.VehicleInput;
 import io.vehiclehistory.api.model.VehicleResponse;
+import io.vehiclehistory.data.api.caller.GetVehicleHistoryCaller;
+import io.vehiclehistory.data.api.view.VehicleHistoryMvpView;
+import io.vehiclehistory.injection.component.ApplicationComponent;
 import io.vehiclehistory.validation.Issue;
 import io.vehiclehistory.validation.VehicleInputValidator;
 import io.vehiclehistory.validation.VehicleValidationException;
 
-public class FindVehicleFragment extends Fragment {
+public class FindVehicleFragment extends Fragment implements VehicleHistoryMvpView {
 
     public static final int PICK_DATE_REQ_CODE = 101;
 
@@ -51,6 +57,21 @@ public class FindVehicleFragment extends Fragment {
 
     private View pickDateButton;
 
+    @Inject
+    protected GetVehicleHistoryCaller getVehicleHistoryCaller;
+
+    private ApplicationComponent component;
+
+    public ApplicationComponent component() {
+
+        if (component == null) {
+            component = VehicleHistoryApp.get(getActivity()).component();
+        }
+
+        return component;
+    }
+
+
     public static FindVehicleFragment newInstance(int sectionNumber) {
         FindVehicleFragment fragment = new FindVehicleFragment();
         Bundle args = new Bundle();
@@ -67,6 +88,7 @@ public class FindVehicleFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_find_vehicle, container, false);
 
+        component().inject(this);
         bindViews(rootView);
         setupPickDateButton();
         setupSearchButton();
@@ -75,6 +97,7 @@ public class FindVehicleFragment extends Fragment {
     }
 
     private void bindViews(View rootView) {
+        getVehicleHistoryCaller.attachView(this);
         findVehicleButton = (Button) rootView.findViewById(R.id.find_vehicle_button);
         findVehicleAnimator = (ViewAnimator) rootView.findViewById(R.id.find_vehicle_animator);
 
@@ -122,7 +145,7 @@ public class FindVehicleFragment extends Fragment {
 
     private void validateAndPerformSearch() {
         try {
-            performSearch(getValidatedInput());
+            getVehicleHistoryCaller.getVehicleHistory(getValidatedInput());
         } catch (VehicleValidationException e) {
             handleValidationIssues(e.getIssues());
         }
@@ -142,36 +165,6 @@ public class FindVehicleFragment extends Fragment {
                     break;
             }
         }
-    }
-
-    private void performSearch(final VehicleInput input) {
-        setUiLocked(true);
-        setButtonAnimator(ANIMATOR_PROGRESS);
-
-        PerformSearchDelegate searchDelegate = new PerformSearchDelegate(getActivity());
-
-        searchDelegate.performSearch(input, new OnSearchFinishedListener() {
-
-            @Override
-            public void onSearchFinished(VehicleResponse vehicleResponse) {
-                Context context = getActivity();
-
-                if (context != null) {
-                    new SaveSearchDelegate(context.getApplicationContext()).saveSearch(input, vehicleResponse);
-
-                    setButtonAnimator(ANIMATOR_BUTTON);
-                    setUiLocked(false);
-                }
-            }
-
-            @Override
-            public void onSearchError(String message) {
-                setButtonAnimator(ANIMATOR_BUTTON);
-                setUiLocked(false);
-
-                onExceptionUi(message);
-            }
-        });
     }
 
     @Override
@@ -238,6 +231,61 @@ public class FindVehicleFragment extends Fragment {
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         ((MainActivity) activity).onSectionAttached(getArguments().getInt(ARG_SECTION_NUMBER));
+    }
+
+    @Override
+    public void onGetVehicleHistoryFinished(VehicleInput request, VehicleResponse response) {
+        new SaveSearchDelegate(getActivity().getApplicationContext()).saveSearch(request, response);
+        Intent i = new Intent(getActivity(), VehicleDataActivity.class);
+        i.putExtra(VehicleDataActivity.EXTRA_VEHICLE_RESPONSE_KEY, response);
+
+        getActivity().startActivity(i);
+    }
+
+    @Override
+    public void onErrorResponse(String message) {
+        Context applicationContext = getActivity().getApplicationContext();
+
+        if (applicationContext != null) {
+            if (TextUtils.isEmpty(message)) {
+                message = getString(R.string.connection_error);
+            }
+            onExceptionUi(message);
+        }
+    }
+
+    @Override
+    public void onNoConnectionError() {
+        onErrorResponse(getString(R.string.connection_error));
+    }
+
+    @Override
+    public void onRetryError() {
+        onErrorResponse(getString(R.string.connection_error));
+    }
+
+    @Override
+    public void unableToGetTokenError() {
+        onErrorResponse(getString(R.string.connection_error));
+    }
+
+    @Override
+    public void startedLoadingData() {
+        setUiLocked(true);
+        setButtonAnimator(ANIMATOR_PROGRESS);
+    }
+
+    @Override
+    public void finishedLoadingData() {
+        setButtonAnimator(ANIMATOR_BUTTON);
+        setUiLocked(false);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+
+        getVehicleHistoryCaller.detachView();
     }
 
 }

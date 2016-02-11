@@ -3,14 +3,28 @@
 # Retrofit, OkHttp, Gson
 -keepattributes *Annotation*
 -keepattributes Signature
--keep class com.squareup.okhttp.** { *; }
--keep interface com.squareup.okhttp.** { *; }
--dontwarn com.squareup.okhttp.**
+-keepattributes Exceptions
+
+-keep class okhttp3.** { *; }
+-keep interface okhttp3.** { *; }
+-dontwarn okhttp3.**
+
+# RxJava rules
+# RxAndroid will soon ship with rules so this may not be needed in the future
+# https://github.com/ReactiveX/RxAndroid/issues/219
+-dontwarn sun.misc.Unsafe
 -dontwarn rx.**
--dontwarn retrofit.**
--keep class retrofit.** { *; }
+-keep class rx.internal.util.** { *; }
+-keep class rx.internal.util.atomic.** { *; }
+-keep class rx.Subscription
+-keep class rx.Subscriber
+
+-dontwarn retrofit2.**
+-keep class okio.** { *; }
+-keep class retrofit2.** { *; }
+
 -keepclasseswithmembers class * {
-    @retrofit.http.* <methods>;
+    @retrofit2.http.* <methods>;
 }
 -keep class sun.misc.Unsafe { *; }
 -dontwarn java.nio.file.*
@@ -24,4 +38,12 @@
 -dontwarn org.joda.**
 
 # classes the interact with gson
--keep class io.vehiclehistory.api.** { *; }
+-keep class com.google.gson.** { *; }
+-keep class io.vehiclehistory.api.model.** { *; }
+
+-keepclassmembers class io.vehiclehistory.data.api.auth.AuthApiService$** {
+    !static !private <fields>;
+}
+-keepclassmembers class io.vehiclehistory.data.api.VehicleHistoryApiInterface$** {
+    !static !private <fields>;
+}

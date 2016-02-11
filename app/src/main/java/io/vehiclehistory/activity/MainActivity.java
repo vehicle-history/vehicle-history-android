@@ -11,22 +11,31 @@ import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.widget.Toast;
 
+import javax.inject.Inject;
+
 import io.vehiclehistory.BuildConfig;
-import io.vehiclehistory.PerformSearchDelegate;
-import io.vehiclehistory.PerformSearchDelegate.OnSearchFinishedListener;
 import io.vehiclehistory.R;
+import io.vehiclehistory.SaveSearchDelegate;
 import io.vehiclehistory.Search;
+import io.vehiclehistory.VehicleHistoryApp;
+import io.vehiclehistory.api.model.VehicleInput;
 import io.vehiclehistory.api.model.VehicleResponse;
+import io.vehiclehistory.data.api.caller.GetVehicleHistoryCaller;
+import io.vehiclehistory.data.api.view.VehicleHistoryMvpView;
 import io.vehiclehistory.fragment.AboutFragment;
 import io.vehiclehistory.fragment.FindVehicleFragment;
 import io.vehiclehistory.fragment.NavigationDrawerFragment;
 import io.vehiclehistory.fragment.OptionsFragment;
 import io.vehiclehistory.fragment.SearchHistoryFragment;
+import io.vehiclehistory.injection.component.ActivityComponent;
+import io.vehiclehistory.injection.component.DaggerActivityComponent;
+import io.vehiclehistory.injection.module.ActivityModule;
 
-public class MainActivity extends ActionBarActivity implements NavigationDrawerFragment.NavigationDrawerCallbacks {
+public class MainActivity extends ActionBarActivity implements NavigationDrawerFragment.NavigationDrawerCallbacks, VehicleHistoryMvpView {
 
     private NavigationDrawerFragment navigationDrawerFragment;
 
@@ -34,10 +43,30 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
 
     private ProgressDialog progressDialog;
 
+    private ActivityComponent component;
+
+    @Inject
+    protected GetVehicleHistoryCaller getVehicleHistoryCaller;
+
+    public ActivityComponent component() {
+
+        if (component == null) {
+            component = DaggerActivityComponent.builder()
+                    .activityModule(new ActivityModule(this))
+                    .applicationComponent(VehicleHistoryApp.get(this).component())
+                    .build();
+        }
+
+        return component;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        component().inject(this);
         setContentView(R.layout.activity_main);
+
+        getVehicleHistoryCaller.attachView(this);
 
         navigationDrawerFragment = (NavigationDrawerFragment) getFragmentManager().findFragmentById(
                 R.id.navigation_drawer);
@@ -59,7 +88,7 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
                 break;
             }
             case 1: {
-                showExampleVehicleData();
+                getVehicleHistoryCaller.getVehicleHistory(toInput(Search.EXAMPLE_SEARCH));
                 break;
             }
             case 2: {
@@ -131,24 +160,6 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
         return super.onCreateOptionsMenu(menu);
     }
 
-    private void showExampleVehicleData() {
-        setInteractionLocked(true);
-
-        new PerformSearchDelegate(this).performSearch(Search.EXAMPLE_SEARCH, new OnSearchFinishedListener() {
-
-            @Override
-            public void onSearchFinished(VehicleResponse vehicleResponse) {
-                setInteractionLocked(false);
-            }
-
-            @Override
-            public void onSearchError(String message) {
-                Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
-                setInteractionLocked(false);
-            }
-        });
-    }
-
     private void showMarketAppIn() {
         try {
             startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + BuildConfig.APPLICATION_ID)));
@@ -167,5 +178,73 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
                 progressDialog = null;
             }
         }
+    }
+
+    private VehicleInput toInput(Search search) {
+        VehicleInput input = new VehicleInput();
+
+        input.setPlate(search.getPlate());
+        input.setVin(search.getVin());
+        input.setFirstRegistrationDate(search.getRegistrationDate());
+
+        return input;
+    }
+
+    private void onExceptionUi(String message) {
+        Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
+        setInteractionLocked(false);
+    }
+
+    @Override
+    public void onGetVehicleHistoryFinished(VehicleInput request, VehicleResponse response) {
+        new SaveSearchDelegate(getApplicationContext()).saveSearch(request, response);
+        Intent i = new Intent(this, VehicleDataActivity.class);
+        i.putExtra(VehicleDataActivity.EXTRA_VEHICLE_RESPONSE_KEY, response);
+
+        startActivity(i);
+    }
+
+    @Override
+    public void onErrorResponse(String message) {
+        Context applicationContext = getApplicationContext();
+
+        if (applicationContext != null) {
+            if (TextUtils.isEmpty(message)) {
+                message = getString(R.string.connection_error);
+            }
+            onExceptionUi(message);
+        }
+    }
+
+    @Override
+    public void onNoConnectionError() {
+        onErrorResponse(getString(R.string.connection_error));
+    }
+
+    @Override
+    public void onRetryError() {
+        onErrorResponse(getString(R.string.connection_error));
+    }
+
+    @Override
+    public void unableToGetTokenError() {
+        onErrorResponse(getString(R.string.connection_error));
+    }
+
+    @Override
+    public void startedLoadingData() {
+        setInteractionLocked(true);
+    }
+
+    @Override
+    public void finishedLoadingData() {
+        setInteractionLocked(false);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+
+        getVehicleHistoryCaller.detachView();
     }
 }

@@ -17,6 +17,8 @@ public class Auth {
 
     @SerializedName("expires_in")
     private long expiresIn;
+    private String scope;
+    private String jti;
 
     public String getAccessToken() {
         return accessToken;
@@ -42,9 +44,39 @@ public class Auth {
         return jti;
     }
 
-    @SerializedName("scope")
-    private String scope;
+    public void setAccessToken(String accessToken) {
+        this.accessToken = accessToken;
+    }
 
-    @SerializedName("jti")
-    private String jti;
+    public void setTokenType(String tokenType) {
+        this.tokenType = tokenType;
+    }
+
+    public void setRefreshToken(String refreshToken) {
+        this.refreshToken = refreshToken;
+    }
+
+    public void setExpiresIn(long expiresIn) {
+        this.expiresIn = expiresIn;
+    }
+
+    public void setScope(String scope) {
+        this.scope = scope;
+    }
+
+    public void setJti(String jti) {
+        this.jti = jti;
+    }
+
+    @Override
+    public String toString() {
+        return "Auth{" +
+                "accessToken='" + accessToken + '\'' +
+                ", tokenType='" + tokenType + '\'' +
+                ", refreshToken='" + refreshToken + '\'' +
+                ", expiresIn=" + expiresIn +
+                ", scope='" + scope + '\'' +
+                ", jti='" + jti + '\'' +
+                '}';
+    }
 }

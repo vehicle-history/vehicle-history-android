@@ -9,8 +9,12 @@ import android.support.v7.app.ActionBar.TabListener;
 import android.support.v7.app.ActionBarActivity;
 
 import io.vehiclehistory.R;
+import io.vehiclehistory.VehicleHistoryApp;
 import io.vehiclehistory.adapter.VehicleDataAdapter;
 import io.vehiclehistory.api.model.VehicleResponse;
+import io.vehiclehistory.injection.component.ActivityComponent;
+import io.vehiclehistory.injection.component.DaggerActivityComponent;
+import io.vehiclehistory.injection.module.ActivityModule;
 
 /**
  * @author Piotr Makowski (<a href=\"mailto:Piotr.Makowski@allegrogroup.pl\">Piotr.Makowski@allegrogroup.pl</a>)
@@ -22,9 +26,24 @@ public class VehicleDataActivity extends ActionBarActivity implements TabListene
     private ViewPager pager;
     private VehicleDataAdapter vehicleDataAdapter;
 
+    private ActivityComponent component;
+
+    public ActivityComponent component() {
+
+        if (component == null) {
+            component = DaggerActivityComponent.builder()
+                    .activityModule(new ActivityModule(this))
+                    .applicationComponent(VehicleHistoryApp.get(this).component())
+                    .build();
+        }
+
+        return component;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        component().inject(this);
         setContentView(R.layout.activity_vehicle_data);
 
         final ActionBar actionBar = getSupportActionBar();

@@ -4,8 +4,9 @@ buildscript {
         maven { url 'https://maven.fabric.io/public' }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:1.0.1'
+        classpath 'com.android.tools.build:gradle:1.5.0'
         classpath 'io.fabric.tools:gradle:1.+'
+        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
     }
 }
 
@@ -14,4 +15,8 @@ allprojects {
         jcenter()
         maven { url 'https://maven.fabric.io/public' }
     }
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.10'
 }

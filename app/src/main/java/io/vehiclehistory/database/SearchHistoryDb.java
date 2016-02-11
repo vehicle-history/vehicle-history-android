@@ -33,13 +33,15 @@ public class SearchHistoryDb {
 
         int updatedRows = db.update(TABLE_NAME, values, COLUMN_REGISTRATION_NUMBER
                 + " = ? AND " + COLUMN_REGISTRATION_DATE
-                + " = ? AND " + COLUMN_VIN + " = ?", new String[] {
+                + " = ? AND " + COLUMN_VIN + " = ?", new String[]{
                 search.getPlate(), search.getRegistrationDate(), search.getVin()
         });
 
         if (updatedRows == 0) {
             saveSearch(search);
         }
+
+        db.close();
     }
 
     public Search getSearchAt(int position) {
@@ -63,18 +65,25 @@ public class SearchHistoryDb {
 
         cursor.moveToPosition(position);
 
-        return getSearchFromCursor(cursor);
+        Search searchFromCursor = getSearchFromCursor(cursor);
+        cursor.close();
+        db.close();
+
+        return searchFromCursor;
     }
 
     public int getCount() {
-        SQLiteDatabase db =  historyDbHelper.getReadableDatabase();
+        SQLiteDatabase db = historyDbHelper.getReadableDatabase();
 
-        return (int) DatabaseUtils.queryNumEntries(db, TABLE_NAME, null, null);
+        int count = (int) DatabaseUtils.queryNumEntries(db, TABLE_NAME, null, null);
+        db.close();
+        return count;
     }
 
     public void clearHistory() {
         SQLiteDatabase db = historyDbHelper.getWritableDatabase();
         db.delete(TABLE_NAME, null, null);
+        db.close();
     }
 
     private Search getSearchFromCursor(Cursor cursor) {
